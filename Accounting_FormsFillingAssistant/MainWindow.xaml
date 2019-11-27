@@ -1,0 +1,138 @@
+﻿<Window x:Class="Accounting_FormsFillingAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+
+
+    <Window.Resources>
+        
+        <!-- Стиль главного меню -->
+        <Style x:Key="MainMenu_style">
+            <Setter Property="Control.Background" Value="White" />
+            <Setter Property="Control.Foreground" Value="Black" />
+            <Setter Property="Control.Margin"     Value="0" />
+            <Setter Property="Control.Width"      Value="200" />
+
+            <!-- Стиль элементов меню -->
+            <Style.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Margin" Value="1"/>
+                    <Setter Property="Height" Value="36"/>
+                    <Setter Property="Control.Width"     Value="200" />
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="Control.BorderBrush" Value="LightGray" />
+                    <Setter Property="Control.BorderThickness" Value="2" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <!-- Стиль Border -->
+        <Style x:Key="MenuBorder_style">
+            <Setter Property="Control.BorderBrush" Value="LightGray" />
+            <Setter Property="Control.Background"  Value="LightGray" />
+            <Setter Property="Control.BorderThickness" Value="0" />
+        </Style>
+
+    </Window.Resources>
+
+    <!-- Основной контейнер -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Левое меню -->
+        <Border Style="{StaticResource MenuBorder_style}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Верхние кнопки -->
+                <Border Style="{StaticResource MenuBorder_style}">
+
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="1 0"
+                                Background="White">
+
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="White" />
+                                <Setter Property="Width" Value="50" />
+                                <Setter Property="Margin" Value="3 1" />
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Button Command="{Binding GoToHomePage}" CommandParameter="">Дом</Button>
+                        <Button Command="{Binding OpenSettingsWindow}" CommandParameter="">Settings</Button>
+                        <Button>3</Button>
+                    </StackPanel>
+                </Border>
+
+                <!-- Главное меню -->
+                <StackPanel Grid.Row="1">
+                    <Border Style="{StaticResource MenuBorder_style}">
+
+                        <Menu Style="{StaticResource MainMenu_style}">
+
+                            <Menu.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </Menu.ItemsPanel>
+                            <MenuItem Header="Организации" HorizontalAlignment="Left" Margin="0,1" >
+                                <MenuItem Header="Добавить" />
+                                <MenuItem Header="Все организации" />
+                            </MenuItem>
+                            <MenuItem Header="Оформление бланков">
+                                <MenuItem Header="Аккредитив">
+                                    <MenuItem Header="Создать" 
+                                              Command="{Binding GoToAccreditivePage_Create}"/>
+                                    <MenuItem Header="Редактировать" />
+                                </MenuItem>
+                                <MenuItem Header="Инкассо">
+                                    <MenuItem Header="Создать" />
+                                    <MenuItem Header="Редактировать" />
+                                </MenuItem>
+                                <MenuItem Header="Платежное поручение">
+                                    <MenuItem Header="Создать" />
+                                    <MenuItem Header="Редактировать" />
+                                </MenuItem>
+                                <MenuItem Header="Платежное требование">
+                                    <MenuItem Header="Создать" />
+                                    <MenuItem Header="Редактировать" />
+                                </MenuItem>
+                            </MenuItem>
+
+                            <MenuItem Header="Дополнительно">
+                                <MenuItem Header="Банки">
+                                    <MenuItem Header="Добавить" />
+                                    <MenuItem Header="Все банки" />
+                                </MenuItem>
+                                <MenuItem Header="Счета">
+                                    <MenuItem Header="Добавить" />
+                                    <MenuItem Header="Все счета" />
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Рабочая область (справа)    NavigationUIVisibility="Hidden" -->
+        <Frame Grid.Column="1" x:Name="mfr_WorkingPanel"  NavigationUIVisibility="Hidden">
+            
+        </Frame>
+    </Grid>
+   
+</Window>

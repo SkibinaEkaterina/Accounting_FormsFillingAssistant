@@ -1,0 +1,34 @@
+﻿<Page x:Class="Accounting_FormsFillingAssistant.View_Accreditiv"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="View_Accreditiv">
+
+    <Grid Background="White">
+        <TextBox x:Name="mtb_Sum_Rubles" HorizontalAlignment="Left" Height="23" Margin="29,25,0,0"
+                 TextWrapping="Wrap" Text="{Binding Sum_Rubles}" VerticalAlignment="Top" Width="120"
+                 MaxLength="12"
+                 />
+        <TextBlock x:Name="mtbl_SumRepresentation" HorizontalAlignment="Left" 
+                   Margin="29,79,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        
+        <Button Content="Создать" HorizontalAlignment="Left" Margin="118,101,0,0" 
+                VerticalAlignment="Top" Width="75"
+                Command="{Binding OkButtonClick}"
+                />
+        <TextBlock x:Name="mtbl_SumRepresentation_Copy" HorizontalAlignment="Left" 
+            Margin="171,25,0,0" TextWrapping="Wrap" Text="Руб." VerticalAlignment="Top"/>
+        
+        <TextBox x:Name="mtb_Sum_Kopeyki" HorizontalAlignment="Left" Height="23" Margin="225,24,0,0"
+            TextWrapping="Wrap" Text="{Binding Sum_Kopeyki}" VerticalAlignment="Top" Width="120"
+                 MaxLength="2"
+                 />
+        <TextBlock x:Name="mtbl_SumRepresentation_Copy1" HorizontalAlignment="Left" 
+            Margin="366,26,0,0" TextWrapping="Wrap" Text="Коп." VerticalAlignment="Top"/>
+
+    </Grid>
+</Page>

@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Accounting_FormsFillingAssistant.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PathToDataBase" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MainOrganisationId" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="ListOfBookmarksNames_Accreditiv" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;ak_01_Number&lt;/string&gt;
+  &lt;string&gt;ak_02_CurrentDate&lt;/string&gt;
+  &lt;string&gt;ak_03_PaymentType&lt;/string&gt;
+  &lt;string&gt;ak_04_SumInCuirsive&lt;/string&gt;
+  &lt;string&gt;ak_05_INN_Payer&lt;/string&gt;
+  &lt;string&gt;ak_06_SumNumber&lt;/string&gt;
+  &lt;string&gt;ak_07_PayerName&lt;/string&gt;
+  &lt;string&gt;ak_08_PayerBankAccount&lt;/string&gt;
+  &lt;string&gt;ak_09_Payer_BankName&lt;/string&gt;
+  &lt;string&gt;ak_10_Payer_Bank_BIK&lt;/string&gt;
+  &lt;string&gt;ak_11_Payer_Bank_BankAccount&lt;/string&gt;
+  &lt;string&gt;ak_12_Recipient_BankName&lt;/string&gt;
+  &lt;string&gt;ak_13_Recipient_Bank_BIK&lt;/string&gt;
+  &lt;string&gt;ak_14_Recipient_Bank_BankAccount&lt;/string&gt;
+  &lt;string&gt;ak_15_INN_Recipient&lt;/string&gt;
+  &lt;string&gt;ak_16_RecipientName&lt;/string&gt;
+  &lt;string&gt;ak_17_Recipient_BankAccount&lt;/string&gt;
+  &lt;string&gt;ak_18_OperationType&lt;/string&gt;
+  &lt;string&gt;ak_19_NazPL&lt;/string&gt;
+  &lt;string&gt;ak_20_Code&lt;/string&gt;
+  &lt;string&gt;ak_21_AkTimePeriod&lt;/string&gt;
+  &lt;string&gt;ak_22_ResField&lt;/string&gt;
+  &lt;string&gt;ak_23_AkType&lt;/string&gt;
+  &lt;string&gt;ak_24_PaymentCondition&lt;/string&gt;
+  &lt;string&gt;ak_25_ConditionsDetails&lt;/string&gt;
+  &lt;string&gt;ak_26_SubmissionPayment&lt;/string&gt;
+  &lt;string&gt;ak_27_AdditionalDetails&lt;/string&gt;
+  &lt;string&gt;ak_28_Recipient_BankAccount_2&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ListOfBookmarksNames_Inkasso" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ListOfBookmarksNames_PaymentRequirement" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ListOfBookmarksNames_PaymentOrder" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
