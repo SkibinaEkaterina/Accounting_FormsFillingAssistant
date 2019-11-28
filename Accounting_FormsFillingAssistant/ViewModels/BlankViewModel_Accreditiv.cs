@@ -94,7 +94,7 @@ namespace Accounting_FormsFillingAssistant
         /// <param name="o"></param>
         public void OkButtonClick_Execute(object o)
         {
-            MessageBox.Show(ConvertSumToTextRepresentation(Sum_Rubles, Sum_Kopeyki));
+            //MessageBox.Show(ConvertSumToTextRepresentation(Sum_Rubles, Sum_Kopeyki));
         }
 
 

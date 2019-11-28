@@ -94,10 +94,11 @@ namespace Accounting_FormsFillingAssistant
             md_ParametersValues = new Dictionary<string, string>();
 
             Word.Document WordDoc = null;
-            Word.Application WordApplication = new Word.Application();
+            Word.Application WordApplication = null;
 
             try
             {
+                WordApplication = new Word.Application();
                 if (m_PathToWordFile == "" || m_PathToWordFile == null)
                 {
                     //MessageBox.Show("Невозможно осуществить операцию выгрузки параметров из файла. Отсутствует путь к файлу. ");

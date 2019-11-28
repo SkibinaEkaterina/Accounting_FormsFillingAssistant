@@ -13,21 +13,16 @@ namespace Accounting_FormsFillingAssistant
 
         #region Fields and properties
 
-        private ICommand mcmnd_ChooseWorkingDirectory;
+        
         private string ms_PathToWorkingDirectory;
+        private string ms_PathToDataBase;
+        private ICommand mcmnd_ChooseWorkingDirectory;
         private ICommand mcmnd_OkClicked;
         private ICommand mcmnd_CancelClicked;
         private Action m_GoToTheHomePage;
 
 
-        public ICommand ChooseWorkingDirectory
-        {
-            get { return mcmnd_ChooseWorkingDirectory; }
-            set { 
-                mcmnd_ChooseWorkingDirectory = value;
-                RaisePropertyChanged("ChooseWorkingDirectory");
-            }
-        }
+        
 
         public string PathToWorkingDirectory
         {
@@ -36,6 +31,26 @@ namespace Accounting_FormsFillingAssistant
             {
                 ms_PathToWorkingDirectory = value;
                 RaisePropertyChanged("PathToWorkingDirectory");
+            }
+        }
+
+        public string PathToDataBase
+        {
+            get { return ms_PathToDataBase; }
+            set
+            {
+                ms_PathToDataBase = value;
+                RaisePropertyChanged("PathToDataBase");
+            }
+        }
+
+        public ICommand ChooseWorkingDirectory
+        {
+            get { return mcmnd_ChooseWorkingDirectory; }
+            set
+            {
+                mcmnd_ChooseWorkingDirectory = value;
+                RaisePropertyChanged("ChooseWorkingDirectory");
             }
         }
 
@@ -67,7 +82,7 @@ namespace Accounting_FormsFillingAssistant
         public ViewModel_SettingsWindow(Action GoToTheHomePage)
         {
 
-            PathToWorkingDirectory = Properties.Settings.Default.PathToDataBase;
+            PathToWorkingDirectory = Properties.Settings.Default.PathToWorkingDirectory;
             if(PathToWorkingDirectory == null || PathToWorkingDirectory == "")
                 PathToWorkingDirectory = @"C:\";
             m_GoToTheHomePage = GoToTheHomePage;
@@ -84,7 +99,7 @@ namespace Accounting_FormsFillingAssistant
         public ViewModel_SettingsWindow()
         {
 
-            PathToWorkingDirectory = Properties.Settings.Default.PathToDataBase;
+            PathToWorkingDirectory = Properties.Settings.Default.PathToWorkingDirectory;
             if (PathToWorkingDirectory == null || PathToWorkingDirectory == "")
                 PathToWorkingDirectory = @"C:\";
 
@@ -93,6 +108,9 @@ namespace Accounting_FormsFillingAssistant
             OkClicked = new RelayCommand(AddValuesToSettings);
             CancelClicked = new RelayCommand(FinishWorkOnCurrentPage);
 
+            // Добавть создание выпадающего списка и выбор нужной организации
+
+            // решение проблемы с обновлением комба - см. https://stackoverflow.com/questions/34321074/wpf-binding-combobox-to-my-viewmodel
         }
 
 
@@ -119,10 +137,23 @@ namespace Accounting_FormsFillingAssistant
 
         private void AddValuesToSettings(object o)
         {
-            Properties.Settings.Default.PathToDataBase = PathToWorkingDirectory;
-            Properties.Settings.Default.Save();
+            if(Properties.Settings.Default.PathToWorkingDirectory != ms_PathToWorkingDirectory)
+            {
+                Properties.Settings.Default.PathToWorkingDirectory = ms_PathToWorkingDirectory + "\\";
+                Properties.Settings.Default.Save();
+            }
+            
+            if(Properties.Settings.Default.PathToDataBase != ms_PathToDataBase)
+            {
+                Properties.Settings.Default.PathToDataBase = ms_PathToDataBase;
+                Properties.Settings.Default.Save();
 
-            m_GoToTheHomePage.Invoke();
+                MessageBox.Show("Путь к базе был изменен.");
+
+            }
+
+
+            //m_GoToTheHomePage.Invoke();
         }
 
 

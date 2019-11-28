@@ -1,0 +1,70 @@
+﻿<Page x:Class="Accounting_FormsFillingAssistant.View_InitialFillingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="View_InitialFillingPage">
+
+    <Grid Background="White">
+        <!-- Шаг 1 -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" 
+                   TextWrapping="Wrap"  VerticalAlignment="Top"
+                   Text="Шаг 1. Выбор рабочей директории."
+                   />
+
+        <TextBlock HorizontalAlignment="Left" Margin="10,26,0,0" 
+            TextWrapping="Wrap" Text="Для хранения данных выберите рабочую директорию. Все бланки будут автоматически сохраняться в эту директорию." 
+            VerticalAlignment="Top" Height="44" Width="489"/>
+
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="12,70,0,0" 
+            TextWrapping="Wrap" Text="Рабочая директория" 
+            VerticalAlignment="Top"/>
+
+        <TextBox x:Name="mtbox_WorkingDirectory"
+            HorizontalAlignment="Left" 
+            Height="23" Margin="158,68,0,0" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" Width="347"
+            Text ="{Binding PathToWorkingDirectory}"/>
+
+        <Button x:Name="mbtn_ChooseWorkingDirectory" 
+            Content="..." HorizontalAlignment="Left" 
+            Margin="520,69,0,0" VerticalAlignment="Top" 
+            Width="33" Height="23"
+            Command="{Binding ChooseWorkingDirectory, FallbackValue=No Data}"/>
+
+        <!-- Шаг 2 -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,102,0,0" 
+            TextWrapping="Wrap"  VerticalAlignment="Top"
+            Text="Шаг 2. Создание базы данных программы."
+                   />
+        <TextBlock HorizontalAlignment="Left" Margin="11,123,0,0" 
+            TextWrapping="Wrap" Text="Для хранения данных об организациях, их счетах и 
+банках необходимо наличие Excel файл. Файл будет сохранен в рабочей директории." 
+            VerticalAlignment="Top" Height="44" Width="489"/>
+
+        <TextBlock x:Name="mtb_DbStatus"
+            HorizontalAlignment="Left" Margin="55,166,0,0" 
+            TextWrapping="Wrap"  
+            VerticalAlignment="Top" Height="20" Width="304"
+            Text="{Binding DatabaseStatus}"
+                   />
+
+
+        <!-- Шаг 3 -->
+        <TextBlock HorizontalAlignment="Left" Margin="10,192,0,0" 
+            TextWrapping="Wrap"  VerticalAlignment="Top"
+            Text="Шаг 3. Добавление главной организации."
+                   />
+        <TextBlock HorizontalAlignment="Left" Margin="10,213,0,0" 
+            TextWrapping="Wrap" Text="Далее для работы программы необходимо добавить Вашу организацию." 
+            VerticalAlignment="Top" Height="18" Width="489"/>
+        <Button Content="Добаивть" HorizontalAlignment="Left" Margin="55,236,0,0" VerticalAlignment="Top" Width="75"/>
+       
+    </Grid>
+</Page>

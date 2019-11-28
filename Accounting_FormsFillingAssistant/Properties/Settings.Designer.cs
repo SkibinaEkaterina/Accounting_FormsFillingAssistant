@@ -121,5 +121,17 @@ namespace Accounting_FormsFillingAssistant.Properties {
                 this["ListOfBookmarksNames_PaymentOrder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathToWorkingDirectory {
+            get {
+                return ((string)(this["PathToWorkingDirectory"]));
+            }
+            set {
+                this["PathToWorkingDirectory"] = value;
+            }
+        }
     }
 }

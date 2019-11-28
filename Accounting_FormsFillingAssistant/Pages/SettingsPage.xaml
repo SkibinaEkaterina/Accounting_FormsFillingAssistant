@@ -13,27 +13,27 @@
         <TextBlock HorizontalAlignment="Left" Margin="18,23,0,0" 
                    TextWrapping="Wrap" Text="Рабочая директория" 
                    VerticalAlignment="Top"/>
-        
+
         <TextBox HorizontalAlignment="Left" 
             Height="23" Margin="159,23,0,0" 
             TextWrapping="Wrap" 
             VerticalAlignment="Top" Width="347"
             Text ="{Binding PathToWorkingDirectory}"/>
-        
-        
+
+
         <!-- Главная организация -->
-        <TextBlock HorizontalAlignment="Left" Margin="18,71,0,0" TextWrapping="Wrap" Text="Главная организация" VerticalAlignment="Top"/>
-        <ComboBox x:Name="mcb_MainOrganisation" HorizontalAlignment="Left" Margin="159,71,0,0" VerticalAlignment="Top" Width="347"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,122,0,0" TextWrapping="Wrap" Text="Главная организация" VerticalAlignment="Top"/>
+        <ComboBox x:Name="mcb_MainOrganisation" HorizontalAlignment="Left" Margin="159,121,0,0" VerticalAlignment="Top" Width="347"/>
 
         <!-- Кнопки - завершение работы с окном -->
         <Button x:Name="mbtn_OkButton" 
             Content="Изменить" HorizontalAlignment="Left" 
-            Margin="18,123,0,0" VerticalAlignment="Top" 
+            Margin="18,173,0,0" VerticalAlignment="Top" 
             Width="93" Height="25"
             Command="{Binding OkClicked, FallbackValue='No Data'}"/>
         <Button x:Name="CloseButton" IsCancel="True" 
             Content="Закрыть" HorizontalAlignment="Left" 
-            Margin="141,123,0,0" VerticalAlignment="Top" 
+            Margin="141,173,0,0" VerticalAlignment="Top" 
             Width="87" Height="25"
             Command="{Binding CancelClicked, FallbackValue='No Data'}"
                 />
@@ -42,6 +42,16 @@
             Margin="522,23,0,0" VerticalAlignment="Top" 
             Width="33" Height="23"
             Command="{Binding ChooseWorkingDirectory, FallbackValue='No Data'}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,71,0,0" 
+            TextWrapping="Wrap" Text="Путь к Excel файлу (БД)" 
+            VerticalAlignment="Top"/>
+        
+        <TextBox HorizontalAlignment="Left" 
+            Height="23" Margin="159,71,0,0" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" Width="347"
+            IsReadOnly="True"
+            Text ="{Binding PathToDataBase}"/>
 
     </Grid>
 </Page>

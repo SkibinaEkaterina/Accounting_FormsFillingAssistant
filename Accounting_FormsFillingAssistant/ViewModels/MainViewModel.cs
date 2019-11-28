@@ -17,10 +17,7 @@ namespace Accounting_FormsFillingAssistant
     /// </summary>
     class MainViewModel : ViewModel_Base
     {
-        /// <summary>
-        /// сервис навигации между страницами.
-        /// </summary>
-        private Navigation m_AppNavigationSystem;
+      
 
 
         
@@ -46,14 +43,20 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
+        #region Fields
 
-
+        /// <summary>
+        /// сервис навигации между страницами.
+        /// </summary>
+        private Navigation m_AppNavigationSystem;
 
         private ICommand mcmnd_GoToHomePage;
         private ICommand mcmnd_OpenSettingsWindow;
         private ICommand mcmnd_GoToAccreditivePage_Create;
 
+        #endregion
 
+        #region Commands
         public ICommand GoToHomePage
         {
             get { return mcmnd_GoToHomePage; }
@@ -85,37 +88,86 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
+        #endregion
+
+        #region Methods
+
+
+        // Внутренний метод - проверка заполненности полей, необходимых для работы программы.
+        private bool CheckNecessaryFieldsFilled()
+        {
+            // PathToWorkingDirectory
+            // PathToDataBase
+            // MainOrganisationId
+
+            // Шаг 1.
+            // Если нет рабочей директории - выводим страницу Начального заполнения и сообщение: рабочая директория не выбрана.
+            // Выберите
+
+            // Шаг 2.
+            // Выбрали директорию - создание БД. В данной директории будет создан файл, в котором будут храниться данные
+            // программы, включая Организации, банки и счета, которые введет пользователь.
+            // Кнопка "Создать БД"
+
+            // Шаг 3. Добавить организацию.
+            // База создана. Нам нужна наша организация.
+            // Добавляем организацию (без счетов).
+            // Информация заносится в БД.
+
+            // Шаг 4. Добавить Банк
+            // Но прежде надо добавить Банк - занести данные в БД
+
+            // Шаг 5. Добавить счета для организации (автоматически выбрана наша организация)
+            // Далее добавляем счета для нашей организации - занести данные в БД
 
 
 
+
+            return true;
+
+        }
+
+
+
+        /// <summary>
+        /// Метод, осуществляющий переход на домашнюю страницу - по нажатию кнопки "Домой".
+        /// </summary>
+        /// <param name="o"></param>
         private void GoToHomePage_Execute(object o)
         {
             
             m_AppNavigationSystem.AppNavigationService.Navigate(new Page_Home(), new ViewModel_Home());
         }
 
+        /// <summary>
+        /// Метод, осуществляющий переход к странице настроек.
+        /// </summary>
+        /// <param name="o"></param>
         private void OpenSettingsWindow_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new SettingsPage(),
                 new ViewModel_SettingsWindow(() => FinishWorkOnChildPage()));
         }
 
+        /// <summary>
+        /// Метод, осуществляющий переход к странице создания Аккредитива.
+        /// </summary>
+        /// <param name="o"></param>
         private void GoToAccreditivePage_Create_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new View_Accreditiv(),
                new BlankViewModel_Accreditiv(() => FinishWorkOnChildPage()));
         }
 
-
-
         /// <summary>
         /// Метод передается в качестве параметра в ViewModel дочерних страниц.
+        /// Метод, осуществляющий переход на домашнюю страницу.
         /// </summary>
         void FinishWorkOnChildPage()
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new Page_Home(), null);
         }
 
-
+        #endregion
     }
 }
