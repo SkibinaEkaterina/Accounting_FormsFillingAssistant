@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +36,9 @@ namespace Accounting_FormsFillingAssistant
             GoToHomePage = new RelayCommand(GoToHomePage_Execute);
             OpenSettingsWindow = new RelayCommand(OpenSettingsWindow_Execute);
             GoToAccreditivePage_Create = new RelayCommand(GoToAccreditivePage_Create_Execute);
+            GoToAllOrganisationsPage = new RelayCommand(GoToAllOrganisationsPage_Execute);
 
+            CheckNecessaryFieldsFilled();
 
 
 
@@ -53,6 +56,7 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_GoToHomePage;
         private ICommand mcmnd_OpenSettingsWindow;
         private ICommand mcmnd_GoToAccreditivePage_Create;
+        private ICommand mcmnd_GoToAllOrganisationsPage;
 
         #endregion
 
@@ -84,6 +88,16 @@ namespace Accounting_FormsFillingAssistant
             {
                 mcmnd_GoToAccreditivePage_Create = value;
                 RaisePropertyChanged("GoToAccreditivePage_Create");
+            }
+        }
+
+        public ICommand GoToAllOrganisationsPage
+        {
+            get { return mcmnd_GoToAllOrganisationsPage; }
+            set
+            {
+                mcmnd_GoToAllOrganisationsPage = value;
+                RaisePropertyChanged("GoToAllOrganisationsPage");
             }
         }
 
@@ -121,6 +135,23 @@ namespace Accounting_FormsFillingAssistant
             // Далее добавляем счета для нашей организации - занести данные в БД
 
 
+            if (Properties.Settings.Default.PathToWorkingDirectory == "" ||
+              Properties.Settings.Default.PathToWorkingDirectory == null ||
+              !Directory.Exists(Properties.Settings.Default.PathToWorkingDirectory))
+            {
+                m_AppNavigationSystem.AppNavigationService.Navigate(new InitialFillingPage(), new ViewModel_InitialFillingPage());
+            }
+            else
+            {
+                if(Properties.Settings.Default.PathToDataBase == "" ||
+                   Properties.Settings.Default.PathToDataBase == null)
+                {
+                    // Создать БД в рабочей директории
+
+                    
+
+                }
+            }
 
 
             return true;
@@ -157,6 +188,13 @@ namespace Accounting_FormsFillingAssistant
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new View_Accreditiv(),
                new BlankViewModel_Accreditiv(() => FinishWorkOnChildPage()));
+        }
+
+
+        private void GoToAllOrganisationsPage_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
+               new ViewModel_OrganisationsView());
         }
 
         /// <summary>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\App.xaml
-42054688763
+6-1300450676
 
-26-88749001
+28120126896
 20-583408336
-Pages\SettingsPage.xaml;MainWindow.xaml;Pages\Page_Home.xaml;Pages\View_Accreditiv.xaml;
+DB_ObjectsManipulation_Page.xaml;Pages\Settings and initial fill\SettingsPage.xaml;MainWindow.xaml;Pages\Page_Home.xaml;Pages\Templates\View_Accreditiv.xaml;Pages\Settings and initial fill\InitialFillingPage.xaml;
 
 False
 

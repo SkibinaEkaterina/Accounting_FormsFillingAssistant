@@ -91,7 +91,7 @@
                             </Menu.ItemsPanel>
                             <MenuItem Header="Организации" HorizontalAlignment="Left" Margin="0,1" >
                                 <MenuItem Header="Добавить" />
-                                <MenuItem Header="Все организации" />
+                                <MenuItem Header="Все организации" Command="{Binding GoToAllOrganisationsPage}"/>
                             </MenuItem>
                             <MenuItem Header="Оформление бланков">
                                 <MenuItem Header="Аккредитив">
