@@ -107,8 +107,8 @@ namespace Accounting_FormsFillingAssistant
         public override Dictionary<string, string> CreateDictionaryWithFieldValues()
         {
             // объект - банковский счет плательщика. Включает также информацию о банке.
-            BankAccount PayerBankAccount = (BankAccount) PayerOrganisation.Org_BankAccounts.Where(account => account.BankAc_ID == PayerOrganisation_BankAccount_Id);
-            BankAccount RecipientBankAccount = (BankAccount)PayerOrganisation.Org_BankAccounts.Where(account => account.BankAc_ID == PayerOrganisation_BankAccount_Id);
+            BankAccount PayerBankAccount = (BankAccount) PayerOrganisation.GetLictOfBankAccounts().Where(account => account.BankAc_ID == PayerOrganisation_BankAccount_Id);
+            BankAccount RecipientBankAccount = (BankAccount)PayerOrganisation.GetLictOfBankAccounts().Where(account => account.BankAc_ID == PayerOrganisation_BankAccount_Id);
 
             Dictionary<string, string> DictionaryWithFieldValues = new Dictionary<string, string>
             {

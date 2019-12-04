@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
-    static class TextRepresentationForNumber
+    public static class TextRepresentationForNumber
     {
 
         //Наименования сотен

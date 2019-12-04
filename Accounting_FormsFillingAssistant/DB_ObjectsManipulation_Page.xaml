@@ -10,45 +10,89 @@
 
     <Page.Resources>
         <Style x:Key="top_buttons_style">
-            <Setter Property="Control.Width" Value="30" />
-            <Setter Property="Control.Height" Value="30" />
+            <Setter Property="Control.Width" Value="25" />
+            <Setter Property="Control.Height" Value="25" />
             <Setter Property="Control.Margin" Value="20 10 0 7" />
         </Style>
 
-       
+
+        <Image x:Key="Add_btn_image" Source="Resources/Add_Object.png"/>
+        <Image x:Key="Delete_btn_image" Source="Resources/Delete_Object.png"/>
+        <Image x:Key="Edit_btn_image" Source="Resources/Edit1.png"/>
+
     </Page.Resources>
-    
-    
-    <StackPanel Background="White" Orientation="Vertical">
-        
+
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <!--  -->
-        <StackPanel Orientation="Horizontal">
-            <Button Content="1" Style="{StaticResource top_buttons_style}"/>
-            <Button Content="2" Style="{StaticResource top_buttons_style}"/>
-            <Button Content="3" Style="{StaticResource top_buttons_style}"
-                    Command="{Binding DeleteButtonClicked}"/>
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="0">
+
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Width" Value="30" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="5" />
+
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <!-- Кнопка добавления объекта-->
+            <Button Content="{StaticResource Add_btn_image}"
+                    Command="{Binding AddObjectButtonClicked}"
+                    >
+                <Button.ToolTip>
+                    <ToolTip Content="Добавить"/>
+                </Button.ToolTip>
+            </Button>
+
+            <!-- Кнопка удаления объекта-->
+            <Button Content="{StaticResource Delete_btn_image}"
+                    Command="{Binding DeleteObjectButtonClicked}"
+                    >
+                <Button.ToolTip>
+                    <ToolTip Content="Удалить"/>
+                </Button.ToolTip>                
+            </Button>
+            
+            <!-- Кнопка редактирования объекта-->
+            <Button Content="{StaticResource Edit_btn_image}"
+                    Command="{Binding EditObjectButtonClicked}"
+                    >
+                <Button.ToolTip>
+                    <ToolTip Content="Редактировать"/>
+                </Button.ToolTip>
+            </Button>
+            
+            
         </StackPanel>
 
-        <ListView Margin="5" 
-                  x:Name="ListViewForDBobjects"
-                  ItemsSource="{Binding OrganisationsList}"
-                  SelectedItem="{Binding SelectedObject}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" 
-                                    DisplayMemberBinding="{Binding field1}"
-                                    Width="100"/>
-                    <GridViewColumn Header="Price" 
-                                    DisplayMemberBinding="{Binding field2}"
-                                    Width="100"/>
-                </GridView>
-            </ListView.View>
+        
+        <DataGrid ItemsSource="{Binding ObjectsList}"
+                      SelectedItem="{Binding SelectedObject}"
+                     Grid.Row="1"
+                      Margin="5 0 5 15"
+                      AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" BorderBrush="#FF6F7377" BorderThickness="1" Foreground="Black" GridLinesVisibility="None"
+                      >
+            <!--<DataGrid.Columns>
+                <DataGridTextColumn Header="Serial number" Width="*" Binding="{Binding Path=serialnumber }" />
+                <DataGridTextColumn Header="Date" Width="*" Binding="{Binding Path=assemblydate }" />
+            </DataGrid.Columns>-->
+
+        </DataGrid>
+            
 
 
 
-        </ListView>
         
-        
-        
-    </StackPanel>
+
+
+
+    </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,53 +22,80 @@ namespace Accounting_FormsFillingAssistant
 
 
         #region Properties
+        [DisplayName("ID")]
         public int Org_id
         {
             get { return m_Org_id; }
             set { m_Org_id = value; }
         }
+        [DisplayName("Название")]
         public string Org_Name
         {
             get { return m_Org_Name; }
             set { m_Org_Name = value; }
         }
+        [DisplayName("ИНН")]
         public string Org_INN
         {
             get { return m_Org_INN; }
             set { m_Org_INN = value; }
         }
+        [DisplayName("КПП")]
         public string Org_KPP
         {
             get { return m_Org_KPP; }
             set { m_Org_KPP = value; }
         }
-        public string Org_Type
-        {
-            get { return m_Org_Type; }
-            set { m_Org_Type = value; }
-        }
-        public string Org_City
-        {
-            get { return m_Org_City; }
-            set { m_Org_City = value; }
-        }
+        [DisplayName("Адрес")]
         public string Org_Address
         {
             get { return m_Org_Address; }
             set { m_Org_Address = value; }
         }
-        public string Org_Phone
-        {
-            get { return m_Org_Phone; }
-            set { m_Org_Phone = value; }
-        }
-        public List<BankAccount> Org_BankAccounts
-        {
-            get { return m_Org_BankAccounts; }
-            set { m_Org_BankAccounts = value; }
-        }
+
+
+        //public string Org_Type
+        //{
+        //    get { return m_Org_Type; }
+        //    set { m_Org_Type = value; }
+        //}
+        //public string Org_City
+        //{
+        //    get { return m_Org_City; }
+        //    set { m_Org_City = value; }
+        //}
+        //public string Org_Phone
+        //{
+        //    get { return m_Org_Phone; }
+        //    set { m_Org_Phone = value; }
+        //}
+        //public List<BankAccount> Org_BankAccounts
+        //{
+        //    get { return m_Org_BankAccounts; }
+        //    set { m_Org_BankAccounts = value; }
+        //}
         #endregion
 
+        /// <summary>
+        /// Конструктор без параметров.
+        /// </summary>
+        public Organisation()
+        {
+
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="Org_id"></param>
+        /// <param name="Org_Name"></param>
+        /// <param name="Org_INN"></param>
+        /// <param name="Org_KPP"></param>
+        /// <param name="Org_Type"></param>
+        /// <param name="Org_City"></param>
+        /// <param name="Org_Address"></param>
+        /// <param name="Org_Phone"></param>
+        /// <param name="Org_BankAccounts"></param>
         public Organisation(int Org_id,
         string Org_Name,
         string Org_INN,
@@ -89,7 +117,10 @@ namespace Accounting_FormsFillingAssistant
             m_Org_BankAccounts = Org_BankAccounts;
         }
 
-
+        public List<BankAccount> GetLictOfBankAccounts()
+        {
+            return m_Org_BankAccounts;
+        }
     }
 }
 
