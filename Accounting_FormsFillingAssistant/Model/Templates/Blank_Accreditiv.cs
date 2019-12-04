@@ -68,6 +68,13 @@ namespace Accounting_FormsFillingAssistant
 
         #endregion
 
+
+
+        public Blank_Accreditiv()
+        {
+
+        }
+
         public Blank_Accreditiv(DateTime dateSignDate, string sPaymentType, string sBlankNumber,
                           string sSumRubles, string sSumKopeyki,
                           Organisation orgPayerOrganisation, int iPayerOrganisation_BankAccount_Id,

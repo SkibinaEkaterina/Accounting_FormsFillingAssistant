@@ -27,8 +27,17 @@ namespace Accounting_FormsFillingAssistant
 
             // Добавление контента на вкладку
             //mtab_OrganisationsTab.Content = new TextBlock { Text = "jngkjrntkgn"};
-            
-            
+
+
+            string PathToTestDB = "C:\\Users\\EkaterinaSkibina\\source\\repos\\Accounting_FormsFillingAssistant\\Accounting_FormsFillingAssistant_Tests\\test_Resources\\Test_DB.xlsx";
+            //C://Users//EkaterinaSkibina//source//repos//Accounting_FormsFillingAssistant//Accounting_FormsFillingAssistant_Tests//test_Resources//Test_DB.xlsx
+            List<Dictionary<string, string>> actualExcelData = DatabaseConnection.LoadAllObjectsFromExcelTable(PathToTestDB, "Организации");
+
+
+
+
+
+
         }
 
 

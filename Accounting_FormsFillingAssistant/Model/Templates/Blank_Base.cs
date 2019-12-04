@@ -122,6 +122,11 @@ namespace Accounting_FormsFillingAssistant
             ms_ReservedField = ReservedField;
         }
 
+        public Blank_Base()
+        {
+
+        }
+
 
         // Метод создания словаря
         public abstract Dictionary<string, string> CreateDictionaryWithFieldValues();

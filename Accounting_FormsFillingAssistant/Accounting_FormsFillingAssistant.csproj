@@ -147,7 +147,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <EmbeddedResource Include="Resources\Аккредитив.docx" />
-    <Resource Include="Resources\Test_DB.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

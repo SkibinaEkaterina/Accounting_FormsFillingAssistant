@@ -122,7 +122,7 @@ namespace Accounting_FormsFillingAssistant
         {
             //string PathToExcelFile = Properties.Settings.Default.PathToDataBase;
 
-            if (File.Exists(PathToExcelFile))
+            if (!File.Exists(PathToExcelFile))
             {
                 MessageBox.Show("База данных не найдена. Пройдите в настройки и укажите путь к базе.");
                 return null;
@@ -167,19 +167,24 @@ namespace Accounting_FormsFillingAssistant
 
                 // Выгрузить заголовки
                 List<string> Headers = new List<string>();
-                for(var i=0; i< NumberOfNonEmptyColumns-1; i++)
+                for(var i=0; i< NumberOfNonEmptyColumns; i++)
                 {
-                    Headers.Add(excelWorksheet.Cells[1, i + 1]);
+                    Headers.Add((string)(excelWorksheet.Cells[1, i + 1] as Excel.Range).Value);
                 }
+          
 
-               
-                for(var row=1; row < NumberOfNonEmptyRows; row++)
+
+                for (var row=1; row < NumberOfNonEmptyRows; row++)
                 {
                     Dictionary<string, string> CurrentDictionary = new Dictionary<string, string>();
-                    for (var col = 0; col < NumberOfNonEmptyColumns - 1; col++)
+
+                    //var hhh = (excelWorksheet.Cells[row + 1, 1] as Excel.Range).Value.ToString();
+
+
+                    for (var col = 0; col < NumberOfNonEmptyColumns; col++)
                     {
 
-                        CurrentDictionary[Headers[col]] = excelWorksheet.Cells[row, col + 1];
+                        CurrentDictionary[Headers[col]] = (excelWorksheet.Cells[row+1, col + 1] as Excel.Range).Value.ToString();
                     }
                     DataOnExcelSheet.Add(CurrentDictionary);
                 }
