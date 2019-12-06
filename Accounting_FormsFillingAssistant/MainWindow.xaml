@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="600" Width="1000" Loaded="Window_Loaded" 
+        WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500">
 
 
     <Window.Resources>
@@ -103,7 +104,7 @@
                                 </ItemsPanelTemplate>
                             </Menu.ItemsPanel>
                             <MenuItem Header="Организации" HorizontalAlignment="Left" Margin="0,1" >
-                                <MenuItem Header="Добавить" />
+                                <MenuItem Header="Добавить" Command="{Binding GoToAddOrganisationsPage}"/>
                                 <MenuItem Header="Все организации" Command="{Binding GoToAllOrganisationsPage}"/>
                             </MenuItem>
                             <MenuItem Header="Оформление бланков">
@@ -129,7 +130,9 @@
                             <MenuItem Header="Дополнительно">
                                 <MenuItem Header="Банки">
                                     <MenuItem Header="Добавить" />
-                                    <MenuItem Header="Все банки" />
+                                    <MenuItem Header="Все банки" 
+                                              Command="{Binding GoToPageWithAllBanks}"
+                                              />
                                 </MenuItem>
                                 <MenuItem Header="Счета">
                                     <MenuItem Header="Добавить" />

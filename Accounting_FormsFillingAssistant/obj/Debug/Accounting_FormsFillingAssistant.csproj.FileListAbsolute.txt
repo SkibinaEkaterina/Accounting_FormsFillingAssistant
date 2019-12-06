@@ -3,7 +3,8 @@ C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounti
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\bin\Debug\Accounting_FormsFillingAssistant.pdb
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Interop.ACTIVEXLib.dll
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Accounting_FormsFillingAssistant.csproj.ResolveComReference.cache
-C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\DB_ObjectsManipulation_Page.g.cs
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\Add_Edit_organisation_Page.g.cs
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\DB_ObjectsManipulation_Page.g.cs
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Settings and initial fill\SettingsPage.g.cs
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\MainWindow.g.cs
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Page_Home.g.cs
@@ -14,7 +15,8 @@ C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounti
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Accounting_FormsFillingAssistant_MarkupCompile.cache
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Accounting_FormsFillingAssistant_MarkupCompile.lref
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\App.baml
-C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\DB_ObjectsManipulation_Page.baml
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\Add_Edit_organisation_Page.baml
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\DB_ObjectsManipulation_Page.baml
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Settings and initial fill\SettingsPage.baml
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\MainWindow.baml
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Page_Home.baml

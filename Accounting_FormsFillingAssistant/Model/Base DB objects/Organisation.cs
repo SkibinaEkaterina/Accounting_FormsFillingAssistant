@@ -23,7 +23,7 @@ namespace Accounting_FormsFillingAssistant
 
         #region Properties
         [DisplayName("ID")]
-        public int Org_id
+        public int Id
         {
             get { return m_Org_id; }
             set { m_Org_id = value; }

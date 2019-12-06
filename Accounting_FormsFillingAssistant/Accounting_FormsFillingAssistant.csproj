@@ -57,7 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DB_ObjectsManipulation_Page.xaml.cs">
+    <Compile Include="ViewModels\Add_Edit_Objects\Add_Edit_Organisation_ViewModel.cs" />
+    <Compile Include="Pages\Add or Edit objects\Add_Edit_organisation_Page.xaml.cs">
+      <DependentUpon>Add_Edit_organisation_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Add or Edit objects\DB_ObjectsManipulation_Page.xaml.cs">
       <DependentUpon>DB_ObjectsManipulation_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\DataBase connection\DatabaseConnection.cs" />
@@ -82,7 +86,7 @@
     <Compile Include="ViewModels\Settings and initial fill\ViewModel_SettingsWindow.cs" />
     <Compile Include="ViewModels\ViewModel_Base.cs" />
     <Compile Include="ViewModels\ViewModel_Home.cs" />
-    <Compile Include="ViewModels\ViewModel_OrganisationsView.cs" />
+    <Compile Include="ViewModels\VM to vew objects\ViewModel_ObjectsView_and_Manipulation.cs" />
     <Compile Include="Pages\Templates\View_Accreditiv.xaml.cs">
       <DependentUpon>View_Accreditiv.xaml</DependentUpon>
     </Compile>
@@ -90,7 +94,12 @@
       <DependentUpon>InitialFillingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Settings and initial fill\ViewModel_InitialFillingPage.cs" />
-    <Page Include="DB_ObjectsManipulation_Page.xaml">
+    <Compile Include="ViewModel_ShowBanckAccounts.cs" />
+    <Page Include="Pages\Add or Edit objects\Add_Edit_organisation_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Add or Edit objects\DB_ObjectsManipulation_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +150,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -208,22 +218,31 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Template_Accreditiv.docx.txt" />
+    <EmbeddedResource Include="Resources\Template_Accreditiv.docx.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Delete_Object.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Edit1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\home_icon_124950.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Settings_icon_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Add_Object.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Delete_Object.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Edit1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\home_icon_124950.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Settings_icon_2.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

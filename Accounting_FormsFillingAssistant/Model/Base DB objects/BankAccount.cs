@@ -16,7 +16,7 @@ namespace Accounting_FormsFillingAssistant
         Bank m_BankAc_Bank;
 
         #region Properties
-        public int BankAc_ID
+        public int Id
         {
             get { return m_BankAc_ID; }
             set { m_BankAc_ID = value; }

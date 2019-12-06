@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,27 +18,33 @@ namespace Accounting_FormsFillingAssistant
 
         // Свойства
         #region Properties
-        public int Bank_Id
+
+        [DisplayName("ID")]
+        public int Id
         {
             get { return m_Bank_Id; }
             set { m_Bank_Id = value; }
         }
-
+        [DisplayName("Название")]
         public string Bank_Name
         {
             get { return m_Bank_Name; }
             set { m_Bank_Name = value; }
         }
+        [DisplayName("Город")]
         public string Bank_City
         {
             get { return m_Bank_City; }
             set { m_Bank_City = value; }
         }
+        [DisplayName("БИК")]
         public string Bank_BIK
         {
             get { return m_Bank_BIK; }
             set { m_Bank_BIK = value; }
         }
+
+        [DisplayName("Счет банка")]
         public string Bank_OwnBankAccount
         {
             get { return m_Bank_OwnBankAccount; }

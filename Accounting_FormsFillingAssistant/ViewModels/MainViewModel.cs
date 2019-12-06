@@ -37,6 +37,8 @@ namespace Accounting_FormsFillingAssistant
             OpenSettingsWindow = new RelayCommand(OpenSettingsWindow_Execute);
             GoToAccreditivePage_Create = new RelayCommand(GoToAccreditivePage_Create_Execute);
             GoToAllOrganisationsPage = new RelayCommand(GoToAllOrganisationsPage_Execute);
+            GoToAddOrganisationsPage = new RelayCommand(GoToAddOrganisationsPage_Execute);
+            GoToPageWithAllBanks = new RelayCommand(GoToPageWithAllBanks_Execute);
 
             CheckNecessaryFieldsFilled();
 
@@ -57,7 +59,8 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_OpenSettingsWindow;
         private ICommand mcmnd_GoToAccreditivePage_Create;
         private ICommand mcmnd_GoToAllOrganisationsPage;
-
+        private ICommand mcmnd_GoToAddOrganisationsPage;
+        private ICommand mcmnd_GoToPageWithAllBanks;
         #endregion
 
         #region Commands
@@ -101,6 +104,26 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+        public ICommand GoToAddOrganisationsPage
+        {
+            get { return mcmnd_GoToAddOrganisationsPage; }
+            set
+            {
+                mcmnd_GoToAddOrganisationsPage = value;
+                RaisePropertyChanged("GoToAddOrganisationsPage");
+            }
+        }
+
+
+        public ICommand GoToPageWithAllBanks
+        {
+            get { return mcmnd_GoToPageWithAllBanks; }
+            set
+            {
+                mcmnd_GoToPageWithAllBanks = value;
+                RaisePropertyChanged("GoToPageWithAllBanks");
+            }
+        }
 
         #endregion
 
@@ -194,8 +217,30 @@ namespace Accounting_FormsFillingAssistant
         private void GoToAllOrganisationsPage_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
-               new ViewModel_OrganisationsView());
+               new ViewModel_ObjectsView_and_Manipulation<Organisation>());
         }
+
+
+        private void GoToAddOrganisationsPage_Execute(object o)
+        {
+            Add_organisation_Page newPage = new Add_organisation_Page();
+
+            
+            Add_Edit_Organisation_ViewModel newVM = new Add_Edit_Organisation_ViewModel(-1, newPage.GetFrameNavigationService(),
+                                                                                        () => FinishWorkOnChildPage());
+
+            m_AppNavigationSystem.AppNavigationService.Navigate(newPage, newVM);
+
+
+        }
+
+        private void GoToPageWithAllBanks_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
+                                                                new ViewModel_ObjectsView_and_Manipulation<Bank>());
+        }
+
+
 
         /// <summary>
         /// Метод передается в качестве параметра в ViewModel дочерних страниц.
