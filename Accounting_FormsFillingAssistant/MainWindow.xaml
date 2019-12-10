@@ -129,7 +129,9 @@
 
                             <MenuItem Header="Дополнительно">
                                 <MenuItem Header="Банки">
-                                    <MenuItem Header="Добавить" />
+                                    <MenuItem Header="Добавить" 
+                                               Command="{Binding GoToPageAddEditBank}"
+                                              />
                                     <MenuItem Header="Все банки" 
                                               Command="{Binding GoToPageWithAllBanks}"
                                               />

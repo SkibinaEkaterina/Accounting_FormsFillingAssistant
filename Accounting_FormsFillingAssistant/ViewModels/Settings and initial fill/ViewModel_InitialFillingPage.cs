@@ -18,6 +18,9 @@ namespace Accounting_FormsFillingAssistant
         /// </summary>
         public ViewModel_InitialFillingPage()
         {
+            // Environment.CurrentDirectory;
+
+
             PathToWorkingDirectory = "выберите или введите путь к рабочей директории.";
             DatabaseStatus = "...";
 

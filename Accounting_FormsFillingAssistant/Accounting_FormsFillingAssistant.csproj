@@ -57,6 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml.cs">
+      <DependentUpon>Add_Edit_Bank_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Add_Edit_Objects\Add_Edit_Organisation_ViewModel.cs" />
     <Compile Include="Pages\Add or Edit objects\Add_Edit_organisation_Page.xaml.cs">
       <DependentUpon>Add_Edit_organisation_Page.xaml</DependentUpon>
@@ -94,7 +97,12 @@
       <DependentUpon>InitialFillingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Settings and initial fill\ViewModel_InitialFillingPage.cs" />
-    <Compile Include="ViewModel_ShowBanckAccounts.cs" />
+    <Compile Include="ViewModels\Add_Edit_Objects\ViewModel_AddEdit_Bank.cs" />
+    <Compile Include="ViewModels\ViewModel_ShowBanckAccounts.cs" />
+    <Page Include="Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Add or Edit objects\Add_Edit_organisation_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -222,8 +222,7 @@ namespace Accounting_FormsFillingAssistant
                                                       string SheetName)
         {
             // проверить набор данных
-            
-
+           
             if (!File.Exists(PathToExcelFile))
             {
                 MessageBox.Show("База данных не найдена. Пройдите в настройки и укажите путь к базе.");
@@ -359,9 +358,120 @@ namespace Accounting_FormsFillingAssistant
         /// Добавить новый объект в конец списка в БД.
         /// </summary>
         /// <param name="obj"></param>
-        public static void SaveObjectInTheEndOfExcelTable(Organisation obj, string SheetName)
+        public static void SaveObjectInTheEndOfExcelTable(string PathToExcelFile,
+                                                          Dictionary<string, string> obj, 
+                                                          string SheetName)
         {
-            
+            // проверить набор данных
+
+            if (!File.Exists(PathToExcelFile))
+            {
+                MessageBox.Show("База данных не найдена. Пройдите в настройки и укажите путь к базе.");
+                return;
+            }
+
+            string FileName = PathToExcelFile.Substring(PathToExcelFile.LastIndexOf(@"\") + 1);
+            KillSpecificExcelFileProcess(FileName);
+
+            if (obj == null)
+            {
+                MessageBox.Show("Загружаемый набор данных не содержит элементов.");
+                return;
+            }
+
+            if (obj.Count == 0)
+            {
+                MessageBox.Show("Загружаемый набор данных не содержит элементов.");
+                return;
+            }
+
+            // сверить заголовки
+
+            List<string> LoadedHeadersList = obj.Keys.ToList();
+            List<string> TemplateHeaders = DataBaseHeaders[SheetName];
+
+            if (LoadedHeadersList.Count != TemplateHeaders.Count)
+            {
+                MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
+                return;
+            }
+
+            for (int i = 0; i < TemplateHeaders.Count; i++)
+            {
+                if (LoadedHeadersList[i] != TemplateHeaders[i])
+                {
+                    MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
+                    return;
+                }
+            }
+
+
+            // Сохранение данных.
+            Excel.Application xlApp = null;
+            Excel.Workbook xlWorkBook = null;
+            object misValue = System.Reflection.Missing.Value;
+
+            try
+            {
+                xlApp = new Excel.Application();
+
+
+                if (xlApp == null)
+                {
+                    MessageBox.Show("Excel is not properly installed!!");
+                    return;
+                }
+
+
+                xlWorkBook = xlApp.Workbooks.Open(PathToExcelFile,
+                                                    0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
+                                                    true, false, 0, true, false, false);
+
+                xlApp.DisplayAlerts = false;
+
+                Excel.Sheets excelSheets = xlWorkBook.Worksheets;
+
+
+                Excel.Worksheet excelWorksheet =
+                    (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
+
+                Excel.Range cells = excelWorksheet.Cells;
+
+                cells.NumberFormat = "@";
+
+                // количество заполненных строк
+                int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
+
+
+                
+
+
+                
+                obj["Id"] = (Int32.Parse((excelWorksheet.Cells[NumberOfNonEmptyRows, 1] as Excel.Range).Value.ToString()) +1).ToString();
+                // сохранить информацию на листе
+                for (int col = 0; col < TemplateHeaders.Count; col++)
+                {
+                        excelWorksheet.Cells[NumberOfNonEmptyRows+1, col + 1] = obj[TemplateHeaders[col]]; 
+                }
+
+                xlWorkBook.SaveAs(PathToExcelFile, Type.Missing, Type.Missing,
+                    Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange,
+                    Type.Missing, Type.Missing, Type.Missing,
+                    Type.Missing, Type.Missing);
+
+                xlApp.DisplayAlerts = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                xlWorkBook.Close(misValue, misValue, misValue);
+                xlApp.UserControl = true;
+                xlApp.Quit();
+            }
         }
 
 

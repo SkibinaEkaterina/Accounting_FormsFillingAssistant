@@ -65,6 +65,7 @@ namespace Accounting_FormsFillingAssistant_Tests
                 {
                     ["Id"]="21",
                     ["Название"]="Банк 1",
+                    ["Город"]="Москва",
                     ["Номер счета банка"]="1234567890",
                     ["БИК"]="654323456789"
                 },
@@ -72,6 +73,7 @@ namespace Accounting_FormsFillingAssistant_Tests
                 {
                     ["Id"]="31",
                     ["Название"]="Банк 2",
+                    ["Город"]="Москва",
                     ["Номер счета банка"]="0987654321",
                     ["БИК"]="098767896"
                 }
@@ -90,6 +92,36 @@ namespace Accounting_FormsFillingAssistant_Tests
 
 
         }
+
+        [TestMethod]
+        public void SaveLastObjectToExcelTable_Test1()
+        {
+
+            string PathToTestDB = "C:\\Users\\EkaterinaSkibina\\source\\repos\\Accounting_FormsFillingAssistant\\" +
+                "Accounting_FormsFillingAssistant_Tests\\test_Resources\\Test_DB_2.xlsx";
+
+            Dictionary<string, string> NewObject = new Dictionary<string, string>
+                {
+                    ["Id"]="",
+                    ["Название"]="Банк Super",
+                    ["Город"]="Москва",
+                    ["Номер счета банка"]="98765467890",
+                    ["БИК"]="654398765689"
+                };
+
+
+            DatabaseConnection.SaveObjectInTheEndOfExcelTable(PathToTestDB, NewObject, "Банки");
+            List<Dictionary<string, string>> actualExcelData = DatabaseConnection.LoadAllObjectsFromExcelTable(PathToTestDB, "Банки");
+
+            int lastNmb = actualExcelData.Count-1;
+            string actual = actualExcelData[lastNmb]["Id"] + actualExcelData[lastNmb]["БИК"] + actualExcelData[lastNmb]["Номер счета банка"];
+            string expected = "32" + NewObject["БИК"] + NewObject["Номер счета банка"];
+
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
 
     }
 }

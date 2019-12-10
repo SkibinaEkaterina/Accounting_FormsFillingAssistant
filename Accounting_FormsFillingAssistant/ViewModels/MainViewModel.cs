@@ -39,6 +39,7 @@ namespace Accounting_FormsFillingAssistant
             GoToAllOrganisationsPage = new RelayCommand(GoToAllOrganisationsPage_Execute);
             GoToAddOrganisationsPage = new RelayCommand(GoToAddOrganisationsPage_Execute);
             GoToPageWithAllBanks = new RelayCommand(GoToPageWithAllBanks_Execute);
+            GoToPageAddEditBank = new RelayCommand(GoToPageAddEditBank_Execute);
 
             CheckNecessaryFieldsFilled();
 
@@ -61,9 +62,13 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_GoToAllOrganisationsPage;
         private ICommand mcmnd_GoToAddOrganisationsPage;
         private ICommand mcmnd_GoToPageWithAllBanks;
+        private ICommand mcmnd_GoToPageAddEditBank;
         #endregion
 
         #region Commands
+        /// <summary>
+        /// Свойство команды - Вернуться на домашнюю страницу.
+        /// </summary>
         public ICommand GoToHomePage
         {
             get { return mcmnd_GoToHomePage; }
@@ -74,6 +79,9 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+        /// <summary>
+        /// Своство комманды - открыть окно натсроек.
+        /// </summary>
         public ICommand OpenSettingsWindow
         {
             get { return mcmnd_OpenSettingsWindow; }
@@ -84,6 +92,9 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+        /// <summary>
+        /// Свойство команды - перейти на страницу создания бланка аккредитива.
+        /// </summary>
         public ICommand GoToAccreditivePage_Create
         {
             get { return mcmnd_GoToAccreditivePage_Create; }
@@ -94,6 +105,9 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+        /// <summary>
+        /// Свойство команды - перейти к странице со всеми организациями.
+        /// </summary>
         public ICommand GoToAllOrganisationsPage
         {
             get { return mcmnd_GoToAllOrganisationsPage; }
@@ -122,6 +136,16 @@ namespace Accounting_FormsFillingAssistant
             {
                 mcmnd_GoToPageWithAllBanks = value;
                 RaisePropertyChanged("GoToPageWithAllBanks");
+            }
+        }
+
+        public ICommand GoToPageAddEditBank
+        {
+            get { return mcmnd_GoToPageAddEditBank; }
+            set
+            {
+                mcmnd_GoToPageAddEditBank = value;
+                RaisePropertyChanged("GoToPageAddEditBank");
             }
         }
 
@@ -214,6 +238,10 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
+        /// <summary>
+        /// Действие - перейти на страницу обзора всех организаций в БД.
+        /// </summary>
+        /// <param name="o"></param>
         private void GoToAllOrganisationsPage_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
@@ -221,6 +249,10 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
+        /// <summary>
+        /// Действие - перейти на страницу добавления/редактирования организации.
+        /// </summary>
+        /// <param name="o"></param>
         private void GoToAddOrganisationsPage_Execute(object o)
         {
             Add_organisation_Page newPage = new Add_organisation_Page();
@@ -234,12 +266,26 @@ namespace Accounting_FormsFillingAssistant
 
         }
 
+        /// <summary>
+        /// Действие - перейти на страницу обзора всех банков в БД.
+        /// </summary>
+        /// <param name="o"></param>
         private void GoToPageWithAllBanks_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
                                                                 new ViewModel_ObjectsView_and_Manipulation<Bank>());
         }
 
+
+        /// <summary>
+        /// Действие - перейти на страницу добавления/редактирования банка.
+        /// </summary>
+        /// <param name="o"></param>
+        private void GoToPageAddEditBank_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new Add_Edit_Bank_Page(),
+                                                                new ViewModel_AddEdit_Bank(-1, () => FinishWorkOnChildPage()));
+        }
 
 
         /// <summary>
@@ -250,6 +296,8 @@ namespace Accounting_FormsFillingAssistant
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new Page_Home(), null);
         }
+
+
 
         #endregion
     }
