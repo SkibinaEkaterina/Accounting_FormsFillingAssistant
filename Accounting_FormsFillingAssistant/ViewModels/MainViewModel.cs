@@ -35,12 +35,23 @@ namespace Accounting_FormsFillingAssistant
 
             GoToHomePage = new RelayCommand(GoToHomePage_Execute);
             OpenSettingsWindow = new RelayCommand(OpenSettingsWindow_Execute);
+
+            // Бланки.
             GoToAccreditivePage_Create = new RelayCommand(GoToAccreditivePage_Create_Execute);
+
+            // Организации.
             GoToAllOrganisationsPage = new RelayCommand(GoToAllOrganisationsPage_Execute);
             GoToAddOrganisationsPage = new RelayCommand(GoToAddOrganisationsPage_Execute);
-            GoToPageWithAllBanks = new RelayCommand(GoToPageWithAllBanks_Execute);
-            GoToPageAddEditBank = new RelayCommand(GoToPageAddEditBank_Execute);
 
+            // Банки.
+            GoToPageWithAllBanks = new RelayCommand(GoToPageWithAllBanks_Execute);
+            GoToPageAddEditBank = new RelayCommand(GoToPageAddBank_Execute);
+
+
+            // Счета.
+            GoToPageWithAllBankAccounts = new RelayCommand(GoToPageWithAllBankAccounts_Execute);
+
+            // Проверка наличия всех необходимых данных для работы программы (путь к базе, рабочая директория)
             CheckNecessaryFieldsFilled();
 
 
@@ -56,6 +67,7 @@ namespace Accounting_FormsFillingAssistant
         /// </summary>
         private Navigation m_AppNavigationSystem;
 
+        // Комманды
         private ICommand mcmnd_GoToHomePage;
         private ICommand mcmnd_OpenSettingsWindow;
         private ICommand mcmnd_GoToAccreditivePage_Create;
@@ -63,6 +75,7 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_GoToAddOrganisationsPage;
         private ICommand mcmnd_GoToPageWithAllBanks;
         private ICommand mcmnd_GoToPageAddEditBank;
+        private ICommand mcmnd_GoToPageWithAllBankAccounts;
         #endregion
 
         #region Commands
@@ -146,6 +159,20 @@ namespace Accounting_FormsFillingAssistant
             {
                 mcmnd_GoToPageAddEditBank = value;
                 RaisePropertyChanged("GoToPageAddEditBank");
+            }
+        }
+
+
+        public ICommand GoToPageWithAllBankAccounts
+        {
+            
+
+            get { return mcmnd_GoToPageWithAllBankAccounts; }
+            set
+            {
+                mcmnd_GoToPageWithAllBankAccounts = value;
+                RaisePropertyChanged("GoToPageWithAllBankAccounts" +
+                    "");
             }
         }
 
@@ -245,7 +272,7 @@ namespace Accounting_FormsFillingAssistant
         private void GoToAllOrganisationsPage_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
-               new ViewModel_ObjectsView_and_Manipulation<Organisation>());
+               new ViewModel_ObjectsView_and_Manipulation<Organisation>(m_AppNavigationSystem));
         }
 
 
@@ -273,7 +300,7 @@ namespace Accounting_FormsFillingAssistant
         private void GoToPageWithAllBanks_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
-                                                                new ViewModel_ObjectsView_and_Manipulation<Bank>());
+                                                                new ViewModel_ObjectsView_and_Manipulation<Bank>(m_AppNavigationSystem));
         }
 
 
@@ -281,11 +308,20 @@ namespace Accounting_FormsFillingAssistant
         /// Действие - перейти на страницу добавления/редактирования банка.
         /// </summary>
         /// <param name="o"></param>
-        private void GoToPageAddEditBank_Execute(object o)
+        private void GoToPageAddBank_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new Add_Edit_Bank_Page(),
-                                                                new ViewModel_AddEdit_Bank(-1, () => FinishWorkOnChildPage()));
+                                                                new ViewModel_AddEdit_Bank(null, () => FinishWorkOnChildPage()));
         }
+
+
+        private void GoToPageWithAllBankAccounts_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
+                                                                new ViewModel_ObjectsView_and_Manipulation<BankAccount>(m_AppNavigationSystem));
+        }
+
+
 
 
         /// <summary>

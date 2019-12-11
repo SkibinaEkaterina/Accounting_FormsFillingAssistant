@@ -31,8 +31,8 @@ namespace Accounting_FormsFillingAssistant
 
 
             //ViewModel_ShowBanckAccounts
-            m_AppNavigationSystemAdditional.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
-               new ViewModel_ShowBanckAccounts());
+            //m_AppNavigationSystemAdditional.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
+            //   new ViewModel_ShowBanckAccounts());
 
 
         }

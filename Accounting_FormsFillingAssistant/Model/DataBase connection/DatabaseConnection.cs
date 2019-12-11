@@ -108,12 +108,6 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
-        // где хранится файл базы
-
-
-
-
-
         /// <summary>
         /// Загрузить объекты из БД. Возращает список объектов.
         /// </summary>
@@ -238,31 +232,31 @@ namespace Accounting_FormsFillingAssistant
                 return;
             }
 
-            if(DataToSave.Count == 0)
-            {
-                MessageBox.Show("Загружаемый набор данных не содержит элементов.");
-                return;
-            }
-
-            // сверить заголовки
-            
-            List<string> LoadedHeadersList = DataToSave[0].Keys.ToList();
             List<string> TemplateHeaders = DataBaseHeaders[SheetName];
-
-            if (LoadedHeadersList.Count != TemplateHeaders.Count)
+            if (DataToSave.Count != 0)
             {
-                MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
-                return;
-            }
+                // сверить заголовки
 
-            for(int i=0; i< TemplateHeaders.Count; i++)
-            {
-                if(LoadedHeadersList[i] != TemplateHeaders[i])
+                List<string> LoadedHeadersList = DataToSave[0].Keys.ToList();
+                
+
+                if (LoadedHeadersList.Count != TemplateHeaders.Count)
                 {
                     MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
                     return;
                 }
+
+                for (int i = 0; i < TemplateHeaders.Count; i++)
+                {
+                    if (LoadedHeadersList[i] != TemplateHeaders[i])
+                    {
+                        MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
+                        return;
+                    }
+                }
             }
+
+            
 
 
 
@@ -301,14 +295,18 @@ namespace Accounting_FormsFillingAssistant
               
                 cells.NumberFormat = "@";
 
-                // сохранить информацию на листе
-                for (int row=0; row<DataToSave.Count; row++)
+                if(DataToSave.Count > 0)
                 {
-                    for(int col=0; col< TemplateHeaders.Count; col++)
+                    // сохранить информацию на листе
+                    for (int row = 0; row < DataToSave.Count; row++)
                     {
-                        excelWorksheet.Cells[row + 2, col + 1] = DataToSave[row][TemplateHeaders[col]];
+                        for (int col = 0; col < TemplateHeaders.Count; col++)
+                        {
+                            excelWorksheet.Cells[row + 2, col + 1] = DataToSave[row][TemplateHeaders[col]];
+                        }
                     }
                 }
+               
 
 
                 //File.Delete(PathToExcelFile);
@@ -321,7 +319,7 @@ namespace Accounting_FormsFillingAssistant
 
 
                 xlApp.DisplayAlerts = true;
-
+                MessageBox.Show("Изменения успешно добавлены в базу.");
             }
             catch (Exception ex)
             {
@@ -335,6 +333,11 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+
+        /// <summary>
+        /// Очистить страницу (кроме заголовков).
+        /// </summary>
+        /// <param name="excelWorksheet"></param>
         private static void ClearSheet(Excel.Worksheet excelWorksheet)
         {
             // количество заполненных строк
@@ -441,13 +444,17 @@ namespace Accounting_FormsFillingAssistant
 
                 // количество заполненных строк
                 int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
-
-
                 
+                if(NumberOfNonEmptyRows == 1)
+                {
+                    obj["Id"] = "1";
+                }
+                else
+                {
+                    obj["Id"] = (Int32.Parse((excelWorksheet.Cells[NumberOfNonEmptyRows, 1] as Excel.Range).Value.ToString()) + 1).ToString();
 
+                }
 
-                
-                obj["Id"] = (Int32.Parse((excelWorksheet.Cells[NumberOfNonEmptyRows, 1] as Excel.Range).Value.ToString()) +1).ToString();
                 // сохранить информацию на листе
                 for (int col = 0; col < TemplateHeaders.Count; col++)
                 {
@@ -460,7 +467,7 @@ namespace Accounting_FormsFillingAssistant
                     Type.Missing, Type.Missing);
 
                 xlApp.DisplayAlerts = true;
-
+                MessageBox.Show("Новый объект успешно добавлен в базу.");
             }
             catch (Exception ex)
             {
@@ -475,6 +482,131 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
+        public static void EditObjectInExcelTable(string PathToExcelFile,
+                                                          Dictionary<string, string> obj,
+                                                          string SheetName)
+        {
+            // проверить набор данных
+
+            if (!File.Exists(PathToExcelFile))
+            {
+                MessageBox.Show("База данных не найдена. Пройдите в настройки и укажите путь к базе.");
+                return;
+            }
+
+            string FileName = PathToExcelFile.Substring(PathToExcelFile.LastIndexOf(@"\") + 1);
+            KillSpecificExcelFileProcess(FileName);
+
+            if (obj == null)
+            {
+                MessageBox.Show("Загружаемый набор данных не содержит элементов.");
+                return;
+            }
+
+            if (obj.Count == 0)
+            {
+                MessageBox.Show("Загружаемый набор данных не содержит элементов.");
+                return;
+            }
+
+            // сверить заголовки
+
+            List<string> LoadedHeadersList = obj.Keys.ToList();
+            List<string> TemplateHeaders = DataBaseHeaders[SheetName];
+
+            if (LoadedHeadersList.Count != TemplateHeaders.Count)
+            {
+                MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
+                return;
+            }
+
+            for (int i = 0; i < TemplateHeaders.Count; i++)
+            {
+                if (LoadedHeadersList[i] != TemplateHeaders[i])
+                {
+                    MessageBox.Show("Загружаемый набор данных не соответствует шаблону для заявленного типа.");
+                    return;
+                }
+            }
+
+
+            // Сохранение данных.
+            Excel.Application xlApp = null;
+            Excel.Workbook xlWorkBook = null;
+            object misValue = System.Reflection.Missing.Value;
+
+            try
+            {
+                xlApp = new Excel.Application();
+
+
+                if (xlApp == null)
+                {
+                    MessageBox.Show("Excel is not properly installed!!");
+                    return;
+                }
+
+
+                xlWorkBook = xlApp.Workbooks.Open(PathToExcelFile,
+                                                    0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
+                                                    true, false, 0, true, false, false);
+
+                xlApp.DisplayAlerts = false;
+
+                Excel.Sheets excelSheets = xlWorkBook.Worksheets;
+
+
+                Excel.Worksheet excelWorksheet =
+                    (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
+
+                Excel.Range cells = excelWorksheet.Cells;
+
+                cells.NumberFormat = "@";
+
+                // количество заполненных строк
+                int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
+                int NumberOfRowWithNeededBank = -1;
+
+                for (int i = 2; i< NumberOfNonEmptyRows+1; i++)
+                {
+                    if(obj["Id"] == (excelWorksheet.Cells[i, 1] as Excel.Range).Value.ToString())
+                    {
+                        NumberOfRowWithNeededBank = i;
+                    }
+                }
+
+                // Не нашлии нужной строки - создаем новую запись.
+                if (NumberOfRowWithNeededBank == -1) 
+                {
+                    NumberOfRowWithNeededBank = NumberOfNonEmptyRows+1;
+                }
+
+                // сохранить информацию на листе
+                for (int col = 0; col < TemplateHeaders.Count; col++)
+                {
+                    excelWorksheet.Cells[NumberOfRowWithNeededBank, col + 1] = obj[TemplateHeaders[col]];
+                }
+
+                xlWorkBook.SaveAs(PathToExcelFile, Type.Missing, Type.Missing,
+                    Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange,
+                    Type.Missing, Type.Missing, Type.Missing,
+                    Type.Missing, Type.Missing);
+
+                xlApp.DisplayAlerts = true;
+                MessageBox.Show("Изменения успешно добавлены в базу.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                xlWorkBook.Close(misValue, misValue, misValue);
+                xlApp.UserControl = true;
+                xlApp.Quit();
+            }
+        }
+
         /// <summary>
         /// Закрыть все процессы EXCEL, связанные с файлом.
         /// </summary>
@@ -486,12 +618,13 @@ namespace Accounting_FormsFillingAssistant
 
             foreach (var process in processes)
             {
+                process.Kill();
                 //if (process.MainWindowTitle == "Microsoft Excel - " + excelFileName ||
                 //    process.MainWindowTitle == excelFileName + " - Excel")
                 //    process.Kill();
 
-                if (process.MainWindowTitle.Contains(excelFileName))
-                    process.Kill();
+                //if (process.MainWindowTitle.Contains(excelFileName))
+                //    process.Kill();
 
             }
             

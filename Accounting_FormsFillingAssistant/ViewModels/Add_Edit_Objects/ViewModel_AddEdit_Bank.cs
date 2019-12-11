@@ -13,23 +13,36 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         ///  Конструктор
         /// </summary>
-        public ViewModel_AddEdit_Bank(int idOfCorrectedBank,
+        public ViewModel_AddEdit_Bank(Bank CorrectedBank,
                                       Action GoToTheHomePage)
-        {
-          
-            mi_idOfCorrectedBank = idOfCorrectedBank; // Если == -1, то добавляется новый банк.
+        { 
+            m_CorrectedBank = CorrectedBank; // Если == -1, то добавляется новый банк.
             m_GoToTheHomePage = GoToTheHomePage;
 
-            if(mi_idOfCorrectedBank < 0)
+            if(m_CorrectedBank == null)
             {
                 // Создается новый банк.
                 HeaderText = "Новый банк";
-            }
 
+                BankAccount = "";
+                BankBIK = "";
+
+                OkButtonContent = "Добавить";
+            }
+            else
+            {
+                HeaderText = "Существующий банк";
+
+                BankName = m_CorrectedBank.Bank_Name;
+                BankAddress = m_CorrectedBank.Bank_City;
+                BankAccount = m_CorrectedBank.Bank_OwnBankAccount;
+                BankBIK = m_CorrectedBank.Bank_BIK;
+
+                OkButtonContent = "Редактировать";
+            }
 
             AddNewBank = new RelayCommand(AddNewBank_Execute);
             CancelPage = new RelayCommand(CancelPage_Execute);
-
         }
 
         #region Fields
@@ -37,7 +50,7 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Номер корректируемой организации. Если добавляется новая организация, число < 0.
         /// </summary>
-        private int mi_idOfCorrectedBank;
+        private Bank m_CorrectedBank;
 
         /// <summary>
         /// Делегат - переход на домашнюю страницу.
@@ -69,16 +82,22 @@ namespace Accounting_FormsFillingAssistant
         /// </summary>
         private string ms_BankBIK;
 
+        /// <summary>
+        /// Надпись на кнопке ОК.
+        /// </summary>
+        private string ms_OkButtonContent;
+
         // Команды.
         private ICommand mcmnd_AddNewBank;
         private ICommand mcmnd_CancelPage;
-
         #endregion
 
 
 
 
         #region Properties
+
+        #region Inscriptions
         /// <summary>
         /// Свойство для заголовка страницы.
         /// </summary>
@@ -138,8 +157,18 @@ namespace Accounting_FormsFillingAssistant
             }
             set
             {
-                ms_BankAccount = value;
-                RaisePropertyChanged("BankAccount");
+                
+
+                if (value.ToString().All(char.IsDigit))
+                {
+                    ms_BankAccount = value;
+                    RaisePropertyChanged("BankAccount");
+                }
+                else
+                {
+                    MessageBox.Show("Данное поле должно содержать только цифры от 0 до 9");
+                    //BankAccount = ms_BankAccount;
+                }
             }
         }
 
@@ -154,11 +183,42 @@ namespace Accounting_FormsFillingAssistant
             }
             set
             {
-                ms_BankBIK = value;
-                RaisePropertyChanged("BankBIK");
+                if (value.ToString().All(char.IsDigit))
+                {
+                    ms_BankBIK = value;
+                    RaisePropertyChanged("BankBIK");
+                }
+                else
+                {
+                    MessageBox.Show("Данное поле должно содержать только цифры от 0 до 9");
+                    //BankAccount = ms_BankAccount;
+                }
+
+
             }
         }
 
+
+        public string OkButtonContent
+        {
+            get
+            {
+                return ms_OkButtonContent;
+            }
+            set
+            {
+                ms_OkButtonContent = value;
+                RaisePropertyChanged("OkButtonContent");
+            }
+        }
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        /// Свойство Комманды - нажата кнопка ОК (добавить/редактировать банк).
+        /// </summary>
         public ICommand AddNewBank
         {
             get { return mcmnd_AddNewBank; }
@@ -168,6 +228,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("AddNewOrganisation");
             }
         }
+        /// <summary>
+        /// Свойство Комманды - закрыть.
+        /// </summary>
         public ICommand CancelPage
         {
             get { return mcmnd_CancelPage; }
@@ -177,6 +240,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("CancelPage");
             }
         }
+
+
+        #endregion
 
         #endregion
 
@@ -231,14 +297,53 @@ namespace Accounting_FormsFillingAssistant
 
             if (CheckCorrectFilling())
             {
-                // Добавить банк в БД.
 
+
+                
+
+                // Добавить банк в БД.
+                if (m_CorrectedBank == null)
+                {
+                    // Создать объект банк.
+                    Bank BunkUnderConsideration = new Bank(-1,
+                                                           BankName,
+                                                           BankAddress,
+                                                           BankBIK,
+                                                           BankAccount);
+
+                    ObjectsDBManipulations.AddNewBankToDB(BunkUnderConsideration);
+                }
+                else
+                {
+                    m_CorrectedBank.Bank_Name           = BankName;
+                    m_CorrectedBank.Bank_City           = BankAddress;
+                    m_CorrectedBank.Bank_BIK            = BankBIK;
+                    m_CorrectedBank.Bank_OwnBankAccount = BankAccount;
+
+                    ObjectsDBManipulations.EditBankInDB(m_CorrectedBank);
+                }
+                    
 
                 m_GoToTheHomePage.Invoke();
             }
 
 
             
+        }
+
+
+        private void BankAccountTextChanged_Execute(object o)
+        {
+            
+            if (BankAccount.ToString().All(char.IsDigit))
+            {
+
+            }
+            else
+            {
+                BankAccount = ms_BankAccount;
+
+            }
         }
 
         /// <summary>

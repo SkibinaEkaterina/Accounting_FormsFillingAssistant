@@ -138,7 +138,8 @@
                                 </MenuItem>
                                 <MenuItem Header="Счета">
                                     <MenuItem Header="Добавить" />
-                                    <MenuItem Header="Все счета" />
+                                    <MenuItem Header="Все счета" 
+                                              Command="{Binding GoToPageWithAllBankAccounts}"/> 
                                 </MenuItem>
                             </MenuItem>
                         </Menu>

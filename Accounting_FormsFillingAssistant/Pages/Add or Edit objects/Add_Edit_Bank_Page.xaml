@@ -63,7 +63,8 @@
 
             <TextBlock Text="Номер счета Банка" Grid.Column="0"/>
             <TextBox Grid.Column="1"
-                     Text="{Binding BankAccount}"/>
+                     Text="{Binding BankAccount,UpdateSourceTrigger=PropertyChanged}"
+                     />
         </Grid>
 
         <!-- БИК -->
@@ -84,7 +85,7 @@
                     Grid.Row="5" 
                     Margin="10">
 
-            <Button Content="Добавить"
+            <Button Content="{Binding OkButtonContent}"
                     Margin="5"
                     Width="100"
                     Height="25"

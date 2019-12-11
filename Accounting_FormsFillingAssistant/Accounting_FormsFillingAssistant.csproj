@@ -71,7 +71,7 @@
     <Compile Include="Model\Templates\Blank_Accreditiv.cs" />
     <Compile Include="Model\Templates\Blank_Base.cs" />
     <Compile Include="Model\Additional tools\TextRepresentationForNumber.cs" />
-    <Compile Include="ObjectsDBManipulations.cs" />
+    <Compile Include="Model\DataBase connection\ObjectsDBManipulations.cs" />
     <Compile Include="ViewModels\Templates ViewModels\BlankViewModel_Accreditiv.cs" />
     <Compile Include="Model\Blank_Word.cs" />
     <Compile Include="Model\Additional tools\AdditionalDocumentsActionsClass.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="ViewModels\Settings and initial fill\ViewModel_SettingsWindow.cs" />
     <Compile Include="ViewModels\ViewModel_Base.cs" />
     <Compile Include="ViewModels\ViewModel_Home.cs" />
-    <Compile Include="ViewModels\VM to vew objects\ViewModel_ObjectsView_and_Manipulation.cs" />
+    <Compile Include="ViewModels\VM to view objects\ViewModel_ObjectsView_and_Manipulation.cs" />
     <Compile Include="Pages\Templates\View_Accreditiv.xaml.cs">
       <DependentUpon>View_Accreditiv.xaml</DependentUpon>
     </Compile>
@@ -98,7 +98,6 @@
     </Compile>
     <Compile Include="ViewModels\Settings and initial fill\ViewModel_InitialFillingPage.cs" />
     <Compile Include="ViewModels\Add_Edit_Objects\ViewModel_AddEdit_Bank.cs" />
-    <Compile Include="ViewModels\ViewModel_ShowBanckAccounts.cs" />
     <Page Include="Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
