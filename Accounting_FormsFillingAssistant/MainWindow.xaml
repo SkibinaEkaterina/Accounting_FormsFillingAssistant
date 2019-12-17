@@ -107,25 +107,21 @@
                                 <MenuItem Header="Добавить" Command="{Binding GoToAddOrganisationsPage}"/>
                                 <MenuItem Header="Все организации" Command="{Binding GoToAllOrganisationsPage}"/>
                             </MenuItem>
-                            <MenuItem Header="Оформление бланков">
-                                <MenuItem Header="Аккредитив">
-                                    <MenuItem Header="Создать" 
-                                              Command="{Binding GoToAccreditivePage_Create}"/>
-                                    <MenuItem Header="Редактировать" />
+                            <MenuItem Header="Создать бланк">
+                                <MenuItem Header="Аккредитив" 
+                                          Command="{Binding GoToAccreditivePage_Create}">
                                 </MenuItem>
-                                <MenuItem Header="Инкассо">
-                                    <MenuItem Header="Создать" />
-                                    <MenuItem Header="Редактировать" />
+                                <MenuItem Header="Инкассо"
+                                          Command="{Binding GoToInkassoPage_Create}"
+                                          >
                                 </MenuItem>
-                                <MenuItem Header="Платежное поручение">
-                                    <MenuItem Header="Создать" />
-                                    <MenuItem Header="Редактировать" />
+                                <MenuItem Header="Платежное поручение"
+                                          Command="{Binding GoToPaymentOrderPage_Create}"
+                                          >
                                 </MenuItem>
-                                <MenuItem Header="Платежное требование">
-                                    <MenuItem Header="Создать" 
-                                              Command="{Binding GoToPaymentRequirementPage_Create}"
-                                              />
-                                    <MenuItem Header="Редактировать" />
+                                <MenuItem Header="Платежное требование"
+                                          Command="{Binding GoToPaymentRequirementPage_Create}"
+                                          >
                                 </MenuItem>
                             </MenuItem>
 

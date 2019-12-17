@@ -5,30 +5,262 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="800"
       Title="View_Accreditiv">
 
-    <Grid Background="White">
-        <TextBox x:Name="mtb_Sum_Rubles" HorizontalAlignment="Left" Height="23" Margin="29,25,0,0"
-                 TextWrapping="Wrap" Text="{Binding Sum_Rubles}" VerticalAlignment="Top" Width="120"
-                 MaxLength="12"
-                 />
-        <TextBlock x:Name="mtbl_SumRepresentation" HorizontalAlignment="Left" 
-                   Margin="29,79,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        
-        <Button Content="Создать" HorizontalAlignment="Left" Margin="118,101,0,0" 
-                VerticalAlignment="Top" Width="75"
-                Command="{Binding OkButtonClick}"
-                />
-        <TextBlock x:Name="mtbl_SumRepresentation_Copy" HorizontalAlignment="Left" 
-            Margin="171,25,0,0" TextWrapping="Wrap" Text="Руб." VerticalAlignment="Top"/>
-        
-        <TextBox x:Name="mtb_Sum_Kopeyki" HorizontalAlignment="Left" Height="23" Margin="225,24,0,0"
-            TextWrapping="Wrap" Text="{Binding Sum_Kopeyki}" VerticalAlignment="Top" Width="120"
-                 MaxLength="2"
-                 />
-        <TextBlock x:Name="mtbl_SumRepresentation_Copy1" HorizontalAlignment="Left" 
-            Margin="366,26,0,0" TextWrapping="Wrap" Text="Коп." VerticalAlignment="Top"/>
+
+    <Page.Resources>
+
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Control.Margin" Value="10 6"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Control.Margin" Value="10 4"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Control.Margin" Value="10 4"/>
+        </Style>
+        <Style TargetType="DatePicker">
+            <Setter Property="Control.Margin" Value="10 4"/>
+        </Style>
+
+        <Style x:Key="GridStyle1" TargetType="ItemsControl" >
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                        </Grid>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Page.Resources>
+
+    <Grid Background="White" >
+        <StackPanel Orientation="Vertical" 
+                    Margin="10">
+
+
+
+            <!-- Заголовок -->
+            <TextBlock Text="Аккредитив" 
+                       FontSize="30" FontWeight="Bold"
+                       Margin="10 10 10 20"/>
+
+            <!-- номер и дата -->
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="Номер" />
+                <TextBox Width="50" Text="{Binding TemplateNumber}"/>
+                <TextBlock Text="от"/>
+                <DatePicker Width="150" SelectedDate="{Binding TemplateDate}"/>
+            </StackPanel>
+
+            <!-- Организации -->
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Оганизация-плательщик -->
+                <ItemsControl  Grid.Column="0"
+                      Style="{StaticResource GridStyle1}">
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Плательщик"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1"
+                            Text="Счёт плательщика"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2"
+                            Text="ИНН"/>
+                    <ComboBox Grid.Column="1" Grid.Row="0"
+                              SelectedItem="{Binding OrganisationPayer}"
+                              ItemsSource="{Binding CollectonOfAllOrganisations}"
+                              DisplayMemberPath="Org_Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1"
+                              SelectedItem="{Binding OrganisationPayer_BankAccount}"
+                              ItemsSource="{Binding CollectonOfBankAccountsForPayerOrganisation}" 
+                              DisplayMemberPath="BankAc_Number"
+                              />
+                    <TextBlock Grid.Column="1" Grid.Row="2"
+                            Text="{Binding OrganisationPayer_INN}"/>
+
+                </ItemsControl>
+
+                <!-- Моя организация -->
+                <ItemsControl  Grid.Column="1"
+                      Style="{StaticResource GridStyle1}">
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Организация"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1"
+                            Text="Банковский счёт"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2"
+                            Text="ИНН"/>
+
+                    <ComboBox Grid.Column="1" Grid.Row="0"
+                              SelectedItem="{Binding MainOrganisation}"
+                              ItemsSource="{Binding CollectonOfAllOrganisations}"
+                              DisplayMemberPath="Org_Name"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1"
+                              SelectedItem="{Binding MainOrganisation_BankAccount}"
+                              ItemsSource="{Binding CollectonOfBankAccountsForMainOrganisation}"
+                              DisplayMemberPath="BankAc_Number"
+                              />
+                    <TextBlock Grid.Column="1" Grid.Row="2"
+                            Text="{Binding MainOrganisation_INN}"/>
+                </ItemsControl>
+
+            </Grid>
+
+            <!-- Данные о платеже -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ItemsControl  Grid.Column="0"
+                      Style="{StaticResource GridStyle1}">
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Сумма платежа"/>
+                    <TextBox Grid.Column="1" Grid.Row="0"
+                             Text="{Binding PaymentSum}"/>
+
+                </ItemsControl>
+
+                <ItemsControl  Grid.Column="1"
+                      Style="{StaticResource GridStyle1}">
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Вид платежа"/>
+                    <ComboBox Grid.Column="1" Grid.Row="0"
+                              
+                              SelectedItem="{Binding PaymentType}"
+                              ItemsSource="{Binding CollectonOfPaymentTypes}"
+                              
+                             />
+                </ItemsControl>
+
+            </Grid>
+
+            <!-- Вид аккредитива -->
+            <ItemsControl
+                      Style="{StaticResource GridStyle1}">
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Вид аккредитива"
+                            TextWrapping="Wrap"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+
+                         Text="{Binding AkkreditiveType}"/>
+            </ItemsControl>
+
+            <!-- Условие оплаты  -->
+            <ItemsControl
+                      Style="{StaticResource GridStyle1}">
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Условие оплаты"
+                            TextWrapping="Wrap"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                         Height="48"
+                         Text="{Binding PaymentTerm}"/>
+            </ItemsControl>
+
+            <!-- Подробности сделки  -->
+            <ItemsControl
+                      Style="{StaticResource GridStyle1}">
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Подробности сделки (наименование товаров/работ/услуг, № и дата договора и т.д.)"
+                            TextWrapping="Wrap"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                         Height="98"
+                         Text="{Binding ConditionsDetails}"/>
+            </ItemsControl>
+
+            <!-- Подробности сделки  -->
+            <ItemsControl
+                      Style="{StaticResource GridStyle1}">
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Платеж по представлению (вид документа)"
+                            TextWrapping="Wrap"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                         Height="48"
+                         Text="{Binding SubmissionPayment}"/>
+            </ItemsControl>
+
+            <!-- Дополнительные условия -->
+            <ItemsControl
+                      Style="{StaticResource GridStyle1}">
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                            Text="Дополнительные условия"
+                            TextWrapping="Wrap"/>
+                <TextBox Grid.Column="1" Grid.Row="0"
+                         Height="48"
+                         Text="{Binding AdditionalDetails}"/>
+            </ItemsControl>
+
+
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                
+                <ItemsControl  Grid.Column="0"
+                      Style="{StaticResource GridStyle1}">
+                    <TextBlock Grid.Column="0" Grid.Row="1"
+                            Text="Срок действия аккредитива"
+                               TextWrapping="Wrap"/>
+                    <DatePicker Grid.Column="1" Grid.Row="1"
+                                Width="150" Height="23"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                SelectedDate="{Binding AkkreditiveEOLDate}"/>
+                </ItemsControl>
+
+            </Grid>
+
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center" 
+                    Grid.Row="6" 
+                    Margin="10">
+
+                <Button Content="Сохранить"
+                    Margin="5"
+                    Width="100"
+                    Height="25"
+                    Command="{Binding SaveBlank}"
+                    >
+                    <Button.ToolTip>
+                        <ToolTip Content="Сохранить бланк в рабочую директорию"/>
+                    </Button.ToolTip>
+
+                </Button>
+
+                <Button Content="Закрыть"
+                    Margin="5"
+                    Width="100"
+                    Height="25"
+                    Command="{Binding CancelPage}"
+                    >
+                    <Button.ToolTip>
+                        <ToolTip Content="Закрыть страницу"/>
+                    </Button.ToolTip>
+                </Button>
+            </StackPanel>
+
+        </StackPanel>
+
 
     </Grid>
 </Page>

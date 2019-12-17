@@ -35,6 +35,10 @@ namespace Accounting_FormsFillingAssistant
             // Бланки.
             GoToAccreditivePage_Create = new RelayCommand(GoToAccreditivePage_Create_Execute);
             GoToPaymentRequirementPage_Create = new RelayCommand(GoToPaymentRequirementPage_Create_Execute);
+            GoToPaymentOrderPage_Create = new RelayCommand(GoToPaymentOrderPage_Create_Execute);
+
+
+
             // Организации.
             GoToAllOrganisationsPage = new RelayCommand(GoToAllOrganisationsPage_Execute);
             GoToAddOrganisationsPage = new RelayCommand(GoToAddOrganisationsPage_Execute);
@@ -69,6 +73,7 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_OpenSettingsWindow;
         private ICommand mcmnd_GoToAccreditivePage_Create;
         private ICommand mcmnd_GoToPaymentRequirementPage_Create;
+        private ICommand mcmnd_GoToPaymentOrderPage_Create;
 
 
         private ICommand mcmnd_GoToAllOrganisationsPage;
@@ -120,6 +125,9 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+        /// <summary>
+        /// Свойство команды - переход к странице создания платежного требования.
+        /// </summary>
         public ICommand GoToPaymentRequirementPage_Create
         {
             get { return mcmnd_GoToPaymentRequirementPage_Create; }
@@ -129,7 +137,18 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("GoToPaymentRequirementPage_Create");
             }
         }
-
+        /// <summary>
+        /// Свойство команды - переход к странице создания платежного поручения.
+        /// </summary>
+        public ICommand GoToPaymentOrderPage_Create
+        {
+            get { return mcmnd_GoToPaymentOrderPage_Create; }
+            set
+            {
+                mcmnd_GoToPaymentOrderPage_Create = value;
+                RaisePropertyChanged("GoToPaymentOrderPage_Create");
+            }
+        }
         
 
         /// <summary>
@@ -299,12 +318,18 @@ namespace Accounting_FormsFillingAssistant
             m_AppNavigationSystem.AppNavigationService.Navigate(new View_Accreditiv(),
                new BlankViewModel_Accreditiv(() => FinishWorkOnChildPage()));
         }
+        
 
+         private void GoToPaymentOrderPage_Create_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new View_payment_order(),
+               new Blank_ViewModel_Payment_Order(() => FinishWorkOnChildPage()));
+        }
 
         private void GoToPaymentRequirementPage_Create_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new View_payment_requirement(),
-               new BlankViewModel_PaymentRequirement());
+               new BlankViewModel_PaymentRequirement(() => FinishWorkOnChildPage()));
         }
 
         #endregion

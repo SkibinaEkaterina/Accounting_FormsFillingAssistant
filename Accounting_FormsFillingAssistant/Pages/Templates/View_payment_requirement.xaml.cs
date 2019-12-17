@@ -24,5 +24,6 @@ namespace Accounting_FormsFillingAssistant
         {
             InitializeComponent();
         }
+
     }
 }

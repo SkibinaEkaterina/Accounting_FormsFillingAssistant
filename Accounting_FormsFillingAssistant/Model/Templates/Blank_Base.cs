@@ -169,10 +169,9 @@ namespace Accounting_FormsFillingAssistant
                 rubleWord = "рубля";
 
 
-
+            
 
             string FullTextRepresentation = $"{Rubles_TextRepresentation}{rubleWord} {kop} копеек";
-            // одна копейка 2-3-4 копейки 5 кпеек
 
             return (FullTextRepresentation);
         }

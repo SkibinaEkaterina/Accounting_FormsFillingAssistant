@@ -101,6 +101,16 @@ namespace Accounting_FormsFillingAssistant.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        public static byte[] Payment_order {
+            get {
+                object obj = ResourceManager.GetObject("Payment_order", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap Settings_icon_2 {

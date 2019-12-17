@@ -8,16 +8,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page_Home">
 
-    <!--<Page.Content >
-        <UserControl>
-            <TextBlock>
-                dkfjnkvdfn
-            </TextBlock>
-        </UserControl>
-    </Page.Content>-->
-
-    <Grid Background="White">
-        <TextBlock Text="Main Page" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-    </Grid>
+    <StackPanel Background="White">
+        <TextBlock Text="Рабочая директория" />
+        <TextBlock Text="Текущая дата" />
+    </StackPanel>
 
 </Page>

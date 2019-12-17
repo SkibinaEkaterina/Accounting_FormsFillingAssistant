@@ -54,11 +54,11 @@ namespace Accounting_FormsFillingAssistant
                            "02",  sPaymentPurpose,
                            sCode, sReservedField)
         {
-            ms_paymentCondition = paymentCondition;
-            ms_acceptTime = acceptTime;
-            ms_prTimePeriod = prTimePeriod;
-            ms_PaymentAppoinment = PaymentAppoinment;
-            mdate_date_of_Dispatch = date_of_Dispatch;
+            ms_paymentCondition     = paymentCondition;
+            ms_acceptTime           = acceptTime;
+            ms_prTimePeriod         = prTimePeriod;
+            ms_PaymentAppoinment    = PaymentAppoinment;
+            mdate_date_of_Dispatch  = date_of_Dispatch;
         }
 
         #region Methods

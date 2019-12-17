@@ -37,7 +37,7 @@ namespace Accounting_FormsFillingAssistant.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int MainOrganisationId {
             get {
                 return ((int)(this["MainOrganisationId"]));

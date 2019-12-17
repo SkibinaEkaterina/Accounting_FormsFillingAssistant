@@ -172,6 +172,8 @@ namespace Accounting_FormsFillingAssistant
 
                 WordDoc.SaveAs2(m_PathToWordFile);
 
+                MessageBox.Show("Бланк успешно сохранен в рабочую директорию.");
+
             }
             catch (Exception ex)
             {

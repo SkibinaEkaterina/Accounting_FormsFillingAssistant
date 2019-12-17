@@ -57,7 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BlankViewModel_PaymentRequirement.cs" />
+    <Compile Include="ViewModels\Templates ViewModels\Blank_ViewModel_Payment_Order.cs" />
+    <Compile Include="Model\Templates\Blank_inkasso.cs" />
+    <Compile Include="Model\Templates\Blank_payment_order.cs" />
+    <Compile Include="ViewModels\Templates ViewModels\BlankViewModel_PaymentRequirement.cs" />
+    <Compile Include="ViewModels\Templates ViewModels\Blank_ViewModel_Base.cs" />
     <Compile Include="Model\Templates\Blank_payment_requirement.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -190,6 +194,8 @@
     </None>
     <EmbeddedResource Include="Resources\Аккредитив.docx" />
     <EmbeddedResource Include="Resources\Templaet_PaymentRequirement.docx" />
+    <EmbeddedResource Include="Resources\Payment_order.docx" />
+    <None Include="Resources\Платежное_поручение.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

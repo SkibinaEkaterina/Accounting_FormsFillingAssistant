@@ -37,6 +37,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                         </Grid>
                     </ItemsPanelTemplate>
@@ -46,13 +47,12 @@
 
 
     </Page.Resources>
-    
     <Grid Background="White" >
         <StackPanel Orientation="Vertical" 
                     Margin="10">
 
-            
-            
+
+
             <!-- Заголовок -->
             <TextBlock Text="Платежное требование" 
                        FontSize="30" FontWeight="Bold"
@@ -65,7 +65,7 @@
                 <TextBlock Text="от"/>
                 <DatePicker Width="150" SelectedDate="{Binding TemplateDate}"/>
             </StackPanel>
-        
+
             <!-- Организации -->
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -93,7 +93,7 @@
                               />
                     <TextBlock Grid.Column="1" Grid.Row="2"
                             Text="{Binding OrganisationPayer_INN}"/>
-                    
+
                 </ItemsControl>
 
                 <!-- Моя организация -->
@@ -146,7 +146,9 @@
                     <TextBlock Grid.Column="0" Grid.Row="0"
                             Text="Вид платежа"/>
                     <ComboBox Grid.Column="1" Grid.Row="0"
-                             Text="{Binding PaymentType}"/>
+                              SelectedItem="{Binding PaymentType}"
+                              ItemsSource="{Binding CollectonOfPaymentTypes}"
+                             />
                 </ItemsControl>
 
             </Grid>
@@ -158,10 +160,10 @@
                             Text="Условие оплаты"
                             TextWrapping="Wrap"/>
                 <TextBox Grid.Column="1" Grid.Row="0"
-                         Height="80"
+                         Height="48"
                          Text="{Binding PaymentCondition}"/>
             </ItemsControl>
-            
+
             <!-- назначение платежа -->
             <ItemsControl
                       Style="{StaticResource GridStyle1}">
@@ -182,10 +184,7 @@
 
                 <ItemsControl  Grid.Column="0"
                       Style="{StaticResource GridStyle1}">
-                    <TextBlock Grid.Column="0" Grid.Row="0"
-                            Text="Вид акцепта"/>
-                    <TextBox Grid.Column="1" Grid.Row="0"
-                             Text="{Binding AcceptType}"/>
+
 
                     <TextBlock Grid.Column="0" Grid.Row="1"
                             Text="Срок для акцепта"/>
@@ -194,13 +193,12 @@
                              Text="{Binding AcceptTypePeriod}"/>
                         <TextBlock Text="дней"/>
                     </StackPanel>
-                    
+
                 </ItemsControl>
 
                 <ItemsControl  Grid.Column="1"
                       Style="{StaticResource GridStyle1}">
-                    <TextBlock Grid.Column="0" Grid.Row="0"
-                            Text=""/>
+
                     <TextBlock Grid.Column="0" Grid.Row="1"
                             Text="Дата отсылки документов"
                                TextWrapping="Wrap"/>
@@ -210,37 +208,39 @@
                                 VerticalAlignment="Top"
                                 SelectedDate="{Binding SendingDate}"/>
                 </ItemsControl>
-            
+
             </Grid>
 
             <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center" 
-                    Grid.Row="5" 
+                    Grid.Row="6" 
                     Margin="10">
 
-                <Button Content="Соранить"
+                <Button Content="Сохранить"
                     Margin="5"
                     Width="100"
                     Height="25"
                     Command="{Binding SaveBlank}"
-                    />
+                    >
+                    <Button.ToolTip>
+                        <ToolTip Content="Сохранить бланк в рабочую директорию"/>
+                    </Button.ToolTip>
 
-                <Button Content="Печать"
-                    Margin="5"
-                    Width="100"
-                    Height="25"
-                    Command="{Binding PrintBlank}"
-                    />
+                </Button>
+
                 <Button Content="Закрыть"
                     Margin="5"
                     Width="100"
                     Height="25"
                     Command="{Binding CancelPage}"
-                    />
+                    >
+                    <Button.ToolTip>
+                        <ToolTip Content="Закрыть страницу"/>
+                    </Button.ToolTip>
+                </Button>
             </StackPanel>
 
         </StackPanel>
-
-        
     </Grid>
+    
 </Page>

@@ -103,7 +103,9 @@ namespace Accounting_FormsFillingAssistant
                 case "Платежное требование":
                     template = Properties.Resources.Templaet_PaymentRequirement;
                     break;
-
+                case "Платежное поручение":
+                    template = Properties.Resources.Payment_order;
+                    break;
                 default:
                     MessageBox.Show("Указан неверный вид бланка. Выгрузка шаблона невозможна.");
                     Doc = null;
