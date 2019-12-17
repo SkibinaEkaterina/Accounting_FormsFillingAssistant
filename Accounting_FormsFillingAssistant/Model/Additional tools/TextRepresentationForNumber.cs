@@ -68,7 +68,7 @@ namespace Accounting_FormsFillingAssistant
 
             r.Append(Case(Value, one, two, five));
 
-            if (r.Length != 0) r.Append("");
+            if (r.Length != 0) r.Append(" ");
             return r.ToString();
         }
 

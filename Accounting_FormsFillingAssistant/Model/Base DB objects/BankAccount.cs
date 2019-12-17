@@ -15,7 +15,7 @@ namespace Accounting_FormsFillingAssistant
         private string m_BankAc_Org_Name;
         private string m_BankAc_Number;
         public Bank BankAc_Bank;
-
+        public string BankAccountDescription;
         #region Properties
 
         [DisplayName("ID")]
@@ -80,12 +80,23 @@ namespace Accounting_FormsFillingAssistant
                            Bank bank)
         {
             m_BankAc_ID = id;
-            int m_BankAc_Org_ID = bankAc_Org_ID;
-            int m_BankAc_Bank_ID = bankAc_Bank_ID;
-            string m_BankAc_Org_Name = bankAc_Org_Name;
-            string m_BankAc_Number = bankAc_Number;
-            Bank m_BankAc_Bank = bank;
-
+            m_BankAc_Org_ID = bankAc_Org_ID;
+            m_BankAc_Bank_ID = bankAc_Bank_ID;
+            m_BankAc_Org_Name = bankAc_Org_Name;
+            m_BankAc_Number = bankAc_Number;
+            BankAc_Bank = bank;
+            BankAccountDescription = m_BankAc_Number + "" + m_BankAc_Org_Name;
+        }
+        public BankAccount(Dictionary<string,string> newBankAc,
+                           Bank currentBank)
+        {
+            Id = Int32.Parse(newBankAc["Id"]);
+            BankAc_Number = newBankAc["Номер счета"];
+            BankAc_Org_Name = newBankAc["Название организации владельца"];
+            BankAc_Org_ID = Int32.Parse(newBankAc["id организации владельца"]);
+            BankAc_Bank_ID = Int32.Parse(newBankAc["id банка"]);
+            BankAc_Bank = currentBank;
+            BankAccountDescription = m_BankAc_Number + ", " + BankAc_Bank.Bank_Name;
         }
 
         // 		

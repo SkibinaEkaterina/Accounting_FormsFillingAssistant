@@ -87,7 +87,7 @@ namespace Accounting_FormsFillingAssistant
         /// <param name="BlankType"></param>
         /// <param name="Doc"></param>
         /// <param name="WordApplication"></param>
-        static public void LoadBlankTemplateFromResources(string BlankType, Microsoft.Office.Interop.Word.Document Doc,
+        static public Microsoft.Office.Interop.Word.Document LoadBlankTemplateFromResources(string BlankType, Microsoft.Office.Interop.Word.Document Doc,
                                                      Microsoft.Office.Interop.Word.Application WordApplication)
         {
             String fileName = System.IO.Path.GetTempFileName();
@@ -100,10 +100,14 @@ namespace Accounting_FormsFillingAssistant
                     template = Properties.Resources.Template_Accreditiv;
                     break;
 
+                case "Платежное требование":
+                    template = Properties.Resources.Templaet_PaymentRequirement;
+                    break;
+
                 default:
                     MessageBox.Show("Указан неверный вид бланка. Выгрузка шаблона невозможна.");
                     Doc = null;
-                    return;
+                    return null;
                     
             }
 
@@ -111,6 +115,8 @@ namespace Accounting_FormsFillingAssistant
 
             File.WriteAllBytes(fileName, template);
             Doc = WordApplication.Documents.Add(fileName);
+
+            return Doc;
         }
 
 

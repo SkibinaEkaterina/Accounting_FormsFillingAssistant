@@ -14,14 +14,15 @@ namespace Accounting_FormsFillingAssistant
     public static class DatabaseConnection
     {
 
-        static Dictionary<string, List<string>> DataBaseHeaders = new Dictionary<string, List<string>> { 
-        
-        ["Организации"] = new List<string> {"Id", "Название", "ИНН", "КПП", "Адрес"},
-        ["Счета"] = new List<string> { "Id", "Номер счета", "Название организации владельца", "Название банка", "id организации владельца", "id банка" },
-        ["Банки"] = new List<string> { "Id", "Название", "Город","Номер счета банка", "БИК" }
+        static object misValue = System.Reflection.Missing.Value;
+        static Dictionary<string, List<string>> DataBaseHeaders = new Dictionary<string, List<string>>
+        {
+
+            ["Организации"] = new List<string> { "Id", "Название", "ИНН", "КПП", "Адрес" },
+            ["Счета"] = new List<string> { "Id", "Номер счета", "Название организации владельца", "Название банка", "id организации владельца", "id банка" },
+            ["Банки"] = new List<string> { "Id", "Название", "Город", "Номер счета банка", "БИК" }
 
         };
-
 
 
         /// <summary>
@@ -112,9 +113,8 @@ namespace Accounting_FormsFillingAssistant
         /// Загрузить объекты из БД. Возращает список объектов.
         /// </summary>
         /// <returns></returns>
-        public static List<Dictionary<string, string>> LoadAllObjectsFromExcelTable(string PathToExcelFile, string SheetName)
+        public static List<Dictionary<string, string>> LoadAllObjectsFromOneExcelSHeet(string PathToExcelFile, string SheetName)
         {
-            //string PathToExcelFile = Properties.Settings.Default.PathToDataBase;
 
             if (!File.Exists(PathToExcelFile))
             {
@@ -128,7 +128,7 @@ namespace Accounting_FormsFillingAssistant
 
             Excel.Application xlApp = null;
             Excel.Workbook xlWorkBook = null;
-            object misValue = System.Reflection.Missing.Value;
+            //object misValue = System.Reflection.Missing.Value;
             List<Dictionary<string, string>> DataOnExcelSheet = new List<Dictionary<string, string>>();
 
 
@@ -150,41 +150,36 @@ namespace Accounting_FormsFillingAssistant
 
                 Excel.Sheets excelSheets = xlWorkBook.Worksheets;
 
-  
-                Excel.Worksheet excelWorksheet =
-                    (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
+                DataOnExcelSheet = LoadInfoFromOneWorkSheet(excelSheets, SheetName);
 
-            
+                //Excel.Worksheet excelWorksheet =
+                //    (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
 
+                //// количество заполненных строк
+                //int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
+                //// количество заполненных колонок
+                //int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
 
-                // количество заполненных строк
-                int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
-                // количество заполненных колонок
-                int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
-
-                // Выгрузить заголовки
-                List<string> Headers = new List<string>();
-                for(var i=0; i< NumberOfNonEmptyColumns; i++)
-                {
-                    Headers.Add((string)(excelWorksheet.Cells[1, i + 1] as Excel.Range).Value);
-                }
-          
+                //// Выгрузить заголовки
+                //List<string> Headers = new List<string>();
+                //for(var i=0; i< NumberOfNonEmptyColumns; i++)
+                //{
+                //    Headers.Add((string)(excelWorksheet.Cells[1, i + 1] as Excel.Range).Value);
+                //}
 
 
-                for (var row=1; row < NumberOfNonEmptyRows; row++)
-                {
-                    Dictionary<string, string> CurrentDictionary = new Dictionary<string, string>();
 
-                    //var hhh = (excelWorksheet.Cells[row + 1, 1] as Excel.Range).Value.ToString();
+                //for (var row=1; row < NumberOfNonEmptyRows; row++)
+                //{
+                //    Dictionary<string, string> CurrentDictionary = new Dictionary<string, string>();
 
+                //    for (var col = 0; col < NumberOfNonEmptyColumns; col++)
+                //    {
 
-                    for (var col = 0; col < NumberOfNonEmptyColumns; col++)
-                    {
-
-                        CurrentDictionary[Headers[col]] = (excelWorksheet.Cells[row+1, col + 1] as Excel.Range).Value.ToString();
-                    }
-                    DataOnExcelSheet.Add(CurrentDictionary);
-                }
+                //        CurrentDictionary[Headers[col]] = (excelWorksheet.Cells[row+1, col + 1] as Excel.Range).Value.ToString();
+                //    }
+                //    DataOnExcelSheet.Add(CurrentDictionary);
+                //}
 
             }
             catch (Exception ex)
@@ -203,9 +198,102 @@ namespace Accounting_FormsFillingAssistant
                 DataOnExcelSheet = null;
             }
 
-
             return DataOnExcelSheet;
         }
+
+        public static Dictionary<string, List<Dictionary<string, string>>> LoadAllObjectsFromSeveralExcelSheets(string PathToExcelFile, string[] SheetNames)
+        {
+
+            if (!File.Exists(PathToExcelFile))
+            {
+                MessageBox.Show("База данных не найдена. Пройдите в настройки и укажите путь к базе.");
+                return null;
+            }
+
+            string FileName = PathToExcelFile.Substring(PathToExcelFile.LastIndexOf(@"\") + 1);
+            KillSpecificExcelFileProcess(FileName);
+
+            Excel.Application xlApp = null;
+            Excel.Workbook xlWorkBook = null;
+            Dictionary<string,List<Dictionary<string, string>>> DictionaryOfObjectsOnExcelSheets = new Dictionary<string,List<Dictionary<string, string>>>();
+
+
+            try
+            {
+                xlApp = new Excel.Application();
+
+
+                if (xlApp == null)
+                {
+                    MessageBox.Show("Excel is not properly installed!!");
+                    return null;
+                }
+
+                xlWorkBook = xlApp.Workbooks.Open(PathToExcelFile,
+                                                    0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
+                                                    true, false, 0, true, false, false);
+
+                Excel.Sheets excelSheets = xlWorkBook.Worksheets;
+
+                foreach(var SheetName in SheetNames)
+                {
+                    DictionaryOfObjectsOnExcelSheets[SheetName] = LoadInfoFromOneWorkSheet(excelSheets, SheetName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                xlWorkBook.Close(misValue, misValue, misValue);
+                xlApp.UserControl = true;
+                xlApp.Quit();
+            }
+
+            if (DictionaryOfObjectsOnExcelSheets.Count == 0)
+            {
+                DictionaryOfObjectsOnExcelSheets = null;
+            }
+
+            return DictionaryOfObjectsOnExcelSheets;
+        }
+
+        private static List<Dictionary<string, string>> LoadInfoFromOneWorkSheet(Excel.Sheets excelSheets, string SheetName)
+        {
+            Excel.Worksheet excelWorksheet =
+                    (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
+
+
+            List<Dictionary<string, string>> DataOnExcelSheet = new List<Dictionary<string, string>>();
+
+            // количество заполненных строк
+            int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
+            // количество заполненных колонок
+            int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
+
+            // Выгрузить заголовки
+            List<string> Headers = new List<string>();
+            for (var i = 0; i < NumberOfNonEmptyColumns; i++)
+            {
+                Headers.Add((string)(excelWorksheet.Cells[1, i + 1] as Excel.Range).Value);
+            }
+
+            for (var row = 1; row < NumberOfNonEmptyRows; row++)
+            {
+                Dictionary<string, string> CurrentDictionary = new Dictionary<string, string>();
+
+                for (var col = 0; col < NumberOfNonEmptyColumns; col++)
+                {
+
+                    CurrentDictionary[Headers[col]] = (excelWorksheet.Cells[row + 1, col + 1] as Excel.Range).Value.ToString();
+                }
+                DataOnExcelSheet.Add(CurrentDictionary);
+            }
+            return DataOnExcelSheet;
+        }
+
+
 
         /// <summary>
         /// Сохранить список объектов в БД. БД полностью очищается, будет содержать только загружаемый список объектов.

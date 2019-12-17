@@ -1,5 +1,7 @@
 ﻿
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\App.xaml;;
+FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Add or Edit objects\AddEditBankAccount_Page.xaml;;
+FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml;;
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Add or Edit objects\Add_Edit_organisation_Page.xaml;;
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Add or Edit objects\DB_ObjectsManipulation_Page.xaml;;
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Settings and initial fill\SettingsPage.xaml;;
@@ -7,5 +9,6 @@ FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Account
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Page_Home.xaml;;
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Templates\View_Accreditiv.xaml;;
 FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Settings and initial fill\InitialFillingPage.xaml;;
-FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml;;
+FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Templates\View_payment_requirement.xaml;;
+FC:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\Pages\Templates\View_payment_order.xaml;;
 

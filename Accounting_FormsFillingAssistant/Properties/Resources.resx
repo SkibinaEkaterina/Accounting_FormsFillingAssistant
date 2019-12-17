@@ -133,6 +133,9 @@
   <data name="Settings_icon_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings_icon_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Templaet_PaymentRequirement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\templaet_paymentrequirement.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Template_Accreditiv" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Аккредитив.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

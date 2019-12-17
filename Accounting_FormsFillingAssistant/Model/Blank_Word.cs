@@ -34,10 +34,10 @@ namespace Accounting_FormsFillingAssistant
             set { md_ParametersValues = value; }
         }
 
-        /// <summary>
-        /// Список названий вкладок в документе бланка.
-        /// </summary>
-        private List<string> ml_Bookmarks_Names;
+        ///// <summary>
+        ///// Список названий вкладок в документе бланка.
+        ///// </summary>
+        //private List<string> ml_Bookmarks_Names;
 
         /// <summary>
         /// Путь к файлу на диске.
@@ -72,7 +72,7 @@ namespace Accounting_FormsFillingAssistant
             // осуществить проверку на BlankType значение - при несуществующем - вызвать Exception.
 
             // Загружается список закладок для выбранного типа бланка
-            ml_Bookmarks_Names = AdditionalDocumentsActionsClass.LoadBookmarksNames(m_BlankType);
+            //ml_Bookmarks_Names = AdditionalDocumentsActionsClass.LoadBookmarksNames(m_BlankType);
 
         }
 
@@ -110,7 +110,7 @@ namespace Accounting_FormsFillingAssistant
                 Word.Bookmarks wBookmarks = WordDoc.Bookmarks;
 
                 // Выгрузим значения полей бланка в словарь
-                foreach(string bookmarkName in ml_Bookmarks_Names)
+                foreach(string bookmarkName in md_ParametersValues.Keys)
                 {
                     md_ParametersValues[bookmarkName] = AdditionalDocumentsActionsClass.GetFieldValueFromWordDocumentByBookmark(WordDoc, bookmarkName);
                 }
@@ -151,7 +151,7 @@ namespace Accounting_FormsFillingAssistant
                 }
 
                 // Выгрузить новый шаблон бланка
-                AdditionalDocumentsActionsClass.LoadBlankTemplateFromResources(m_BlankType, WordDoc, WordApplication);
+                WordDoc = AdditionalDocumentsActionsClass.LoadBlankTemplateFromResources(m_BlankType, WordDoc, WordApplication);
 
                 if(WordDoc == null)
                 {
@@ -165,7 +165,7 @@ namespace Accounting_FormsFillingAssistant
                 Word.Bookmarks wBookmarks = WordDoc.Bookmarks;
 
                 // Выгрузим значения полей бланка в словарь
-                foreach (string bookmarkName in ml_Bookmarks_Names)
+                foreach (string bookmarkName in md_ParametersValues.Keys)
                 {
                     AdditionalDocumentsActionsClass.ReplaceTextInWordDocumentByBookmark(WordDoc, bookmarkName, md_ParametersValues[bookmarkName]);
                 }

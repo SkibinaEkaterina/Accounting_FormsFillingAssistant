@@ -31,11 +31,25 @@ namespace Accounting_FormsFillingAssistant
         /// Срок действия аккредитива.
         /// </summary>
         DateTime mdate_AccreditivEOLDate;
-
+        /// <summary>
+        /// Вид аккредитива.
+        /// </summary>
         string ms_AccreditivType;
+        /// <summary>
+        /// Условия оплаты.
+        /// </summary>
         string ms_PaymentCondition;
+        /// <summary>
+        /// Детали условий.
+        /// </summary>
         string ms_ConditionsDetails;
+        /// <summary>
+        /// Подтверждение оплаты.
+        /// </summary>
         string ms_SubmissionPayment;
+        /// <summary>
+        /// Дополнительные детали.
+        /// </summary>
         string ms_AdditionalDetails;
 
 
@@ -77,8 +91,8 @@ namespace Accounting_FormsFillingAssistant
 
         public Blank_Accreditiv(DateTime dateSignDate, string sPaymentType, string sBlankNumber,
                           string sSumRubles, string sSumKopeyki,
-                          Organisation orgPayerOrganisation, int iPayerOrganisation_BankAccount_Id,
-                          Organisation orgRecipientOrganisation, int iRecipientOrganisation_BankAccount_Id,
+                          Organisation orgPayerOrganisation, BankAccount PayerOrganisation_BankAccount,
+                          Organisation orgRecipientOrganisation, BankAccount RecipientOrganisation_BankAccount,
                           //string OperationType,
                           string sPaymentPurpose,
                           string sCode, string sReservedField,
@@ -90,8 +104,8 @@ namespace Accounting_FormsFillingAssistant
                           ) 
             : base( dateSignDate,  sPaymentType,  sBlankNumber,
                            sSumRubles,  sSumKopeyki,
-                           orgPayerOrganisation,  iPayerOrganisation_BankAccount_Id,
-                           orgRecipientOrganisation,  iRecipientOrganisation_BankAccount_Id,
+                           orgPayerOrganisation,  PayerOrganisation_BankAccount,
+                           orgRecipientOrganisation,  RecipientOrganisation_BankAccount,
                            "08",  sPaymentPurpose,
                            sCode,  sReservedField)
         {
@@ -114,8 +128,8 @@ namespace Accounting_FormsFillingAssistant
         public override Dictionary<string, string> CreateDictionaryWithFieldValues()
         {
             // объект - банковский счет плательщика. Включает также информацию о банке.
-            BankAccount PayerBankAccount = (BankAccount) PayerOrganisation.GetListOfBankAccounts().Where(account => account.Id == PayerOrganisation_BankAccount_Id);
-            BankAccount RecipientBankAccount = (BankAccount)PayerOrganisation.GetListOfBankAccounts().Where(account => account.Id == PayerOrganisation_BankAccount_Id);
+            BankAccount PayerBankAccount = PayerOrganisation_BankAccount;//(BankAccount) PayerOrganisation.GetListOfBankAccounts().Where(account => account.Id == PayerOrganisation_BankAccount.);
+            BankAccount RecipientBankAccount = PayerOrganisation_BankAccount; // (BankAccount)PayerOrganisation.GetListOfBankAccounts().Where(account => account.Id == PayerOrganisation_BankAccount);
 
             Dictionary<string, string> DictionaryWithFieldValues = new Dictionary<string, string>
             {

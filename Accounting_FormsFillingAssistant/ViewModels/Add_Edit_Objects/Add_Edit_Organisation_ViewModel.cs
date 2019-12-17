@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
@@ -12,29 +14,55 @@ namespace Accounting_FormsFillingAssistant
     {
 
 
-        public Add_Edit_Organisation_ViewModel(int idOfCorrectedOrganisation,
+        public Add_Edit_Organisation_ViewModel(Organisation CorrectedOrganisation,
                                                NavigationService FrameNavigationService,
                                                Action GoToTheHomePage)
         {
             m_AppNavigationSystemAdditional = new Navigation(FrameNavigationService);
-            mi_idOfCorrectedOrganisation = idOfCorrectedOrganisation; // Если == -1, то добавляется новая организация
+            m_CorrectedOrganisation = CorrectedOrganisation; // Если == -1, то добавляется новая организация
             m_GoToTheHomePage = GoToTheHomePage;
 
 
-            if(mi_idOfCorrectedOrganisation < 0)
+            if(CorrectedOrganisation == null)
             {
                 HeaderText = "Новая организация";
+                OkButtonContent = "Добавить";
+                AddNewOrganisation = new RelayCommand(AddNewOrganisation_Execute);
+            }
+            else
+            {
+                HeaderText = "Существующий организация";
+                OkButtonContent = "Редактировать";
+
+                // Передать информацию о редактируемой организации.
+                OrganisationName = CorrectedOrganisation.Org_Name;
+                OrganisationAddress = CorrectedOrganisation.Org_Address;
+                OrganisationINN = CorrectedOrganisation.Org_INN;
+                OrganisationKPP = CorrectedOrganisation.Org_KPP;
+                AddNewOrganisation = new RelayCommand(EditExistingOrganisation_Execute);
             }
 
-            AddNewOrganisation = new RelayCommand(AddNewOrganisation_Execute);
+
+            
+
+            
             CancelPage = new RelayCommand(CancelPage_Execute);
 
+            DB_ObjectsManipulation_Page Current_DB_ObjectsManipulation_Page = new DB_ObjectsManipulation_Page();
+            ViewModel_ShowBanckAccounts CurrentViewModel_ShowBanckAccounts = new ViewModel_ShowBanckAccounts(CorrectedOrganisation,
+                                                                                                             m_AppNavigationSystemAdditional, 
+                                                                                                             Current_DB_ObjectsManipulation_Page);
 
-            //ViewModel_ShowBanckAccounts
-            //m_AppNavigationSystemAdditional.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
-            //   new ViewModel_ShowBanckAccounts());
+            // передать информацию о счетах редактируемой организации.
+            if (CorrectedOrganisation != null)
+            {
+                CurrentViewModel_ShowBanckAccounts.ObjectsList = new ObservableCollection<BankAccount>(CorrectedOrganisation.Org_BankAccounts);
+            }
 
+            m_AppNavigationSystemAdditional.AppNavigationService.Navigate(Current_DB_ObjectsManipulation_Page,
+               CurrentViewModel_ShowBanckAccounts);
 
+            CollectionOfBankAccounts = CurrentViewModel_ShowBanckAccounts.ObjectsList;
         }
 
 
@@ -48,7 +76,7 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Номер корректируемой организации. Если добавляется новая организация, число < 0.
         /// </summary>
-        private int mi_idOfCorrectedOrganisation;
+        private Organisation m_CorrectedOrganisation;
 
         /// <summary>
         /// Делегат - переход на домашнюю страницу.
@@ -80,13 +108,16 @@ namespace Accounting_FormsFillingAssistant
         /// </summary>
         private string ms_OrganisationKPP;
 
+        /// <summary>
+        /// Надпись на кнопке ОК.
+        /// </summary>
+        private string ms_OkButtonContent;
+
+        readonly ObservableCollection<BankAccount> CollectionOfBankAccounts;
+
         // Команды.
         private ICommand mcmnd_AddNewOrganisation;
         private ICommand mcmnd_CancelPage;
-
-
-
-
 
         #endregion
 
@@ -151,8 +182,15 @@ namespace Accounting_FormsFillingAssistant
             }
             set
             {
-                ms_OrganisationINN = value;
-                RaisePropertyChanged("OrganisationINN");
+                if (value.ToString().All(char.IsDigit))
+                {
+                    ms_OrganisationINN = value;
+                    RaisePropertyChanged("OrganisationINN");
+                }
+                else
+                {
+                    MessageBox.Show("Данное поле должно содержать только цифры от 0 до 9");
+                }
             }
         }
 
@@ -167,11 +205,27 @@ namespace Accounting_FormsFillingAssistant
             }
             set
             {
-                ms_OrganisationKPP = value;
-                RaisePropertyChanged("OrganisationKPP");
+                if (value.ToString().All(char.IsDigit))
+                {
+                    ms_OrganisationKPP = value;
+                    RaisePropertyChanged("OrganisationKPP");
+                }
+                else
+                {
+                    MessageBox.Show("Данное поле должно содержать только цифры от 0 до 9");
+                }
             }
         }
 
+        public string OkButtonContent
+        {
+            get { return ms_OkButtonContent; }
+            set
+            {
+                ms_OkButtonContent = value;
+                RaisePropertyChanged("OkButtonContent");
+            }
+        }
 
         public ICommand AddNewOrganisation
         {
@@ -195,16 +249,76 @@ namespace Accounting_FormsFillingAssistant
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Проверка выполнения всех условий для успешного добавления банка в БД.
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckCorrectFilling()
+        {
+            // Проверка поля Номер счета Банка
+            if (OrganisationINN.Length < 10)
+            {
+                MessageBox.Show("Поле \"ИНН\" должно содержать не менее 10 цифр.");
+                return false;
+            }
 
+            if (OrganisationName == null || OrganisationName == "")
+            {
+                MessageBox.Show("Поле \"Название организации\" не заполнено.");
+                return false;
+            }
 
+            if (OrganisationKPP.Length != 9)
+            {
+                MessageBox.Show("Поле \"КПП\" должно содержать 9 цифр.");
+                return false;
+            }
+            
+
+            return true;
+        }
+
+        /// <summary>
+        /// Метод - добавить новую организацию.
+        /// </summary>
+        /// <param name="o"></param>
         private void AddNewOrganisation_Execute(object o)
         {
 
+            if (CheckCorrectFilling())
+            {
+                // Имеем данные для организации и список ее счетов. И то и то надо добавить в базу.
+
+                //CollectionOfBankAccounts
+
+                ObjectsDBManipulations.AddNewOrganisationWithItsBankAccountsToDB(
+                                 new Organisation(-1, OrganisationName, OrganisationINN, 
+                                                  OrganisationKPP, OrganisationAddress,
+                                                  new List<BankAccount>(CollectionOfBankAccounts)));
+
+                m_GoToTheHomePage.Invoke();
+            }
 
 
-
-            m_GoToTheHomePage.Invoke();
+            
         }
+
+        private void EditExistingOrganisation_Execute(object o)
+        {
+            if (CheckCorrectFilling())
+            {
+                m_CorrectedOrganisation.Org_Name = OrganisationName;
+                m_CorrectedOrganisation.Org_Address = OrganisationAddress;
+                m_CorrectedOrganisation.Org_INN = OrganisationINN;
+                m_CorrectedOrganisation.Org_KPP = OrganisationKPP;
+
+                m_CorrectedOrganisation.Org_BankAccounts = new List<BankAccount>(CollectionOfBankAccounts);
+
+                ObjectsDBManipulations.EditOrganisationWithAllBankAccounts(m_CorrectedOrganisation);
+            }
+            
+        }
+
 
         /// <summary>
         /// Метод - закрыть страницу и перейти на домашнюю страницу или списку всех объектов.
@@ -212,6 +326,8 @@ namespace Accounting_FormsFillingAssistant
         /// <param name="o"></param>
         private void CancelPage_Execute(object o)
         {
+            CollectionOfBankAccounts.Count();
+
             m_GoToTheHomePage.Invoke();
         }
 

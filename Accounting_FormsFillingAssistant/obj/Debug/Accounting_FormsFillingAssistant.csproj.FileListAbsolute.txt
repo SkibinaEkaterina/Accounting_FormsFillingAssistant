@@ -30,3 +30,9 @@ C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounti
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Accounting_FormsFillingAssistant.csprojAssemblyReference.cache
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\Add_Edit_Bank_Page.g.cs
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\Add_Edit_Bank_Page.baml
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\AddEditBankAccount_Page.g.cs
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Add or Edit objects\AddEditBankAccount_Page.baml
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Templates\View_payment_requirement.g.cs
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Templates\View_payment_requirement.baml
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Templates\View_payment_order.g.cs
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Templates\View_payment_order.baml

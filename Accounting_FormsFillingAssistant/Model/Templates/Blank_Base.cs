@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
@@ -16,9 +17,9 @@ namespace Accounting_FormsFillingAssistant
         private string ms_SumKopeyki;
 
         private Organisation m_org_PayerOrganisation;
-        private int mi_PayerOrganisation_BankAccount_Id;
+        private BankAccount m_PayerOrganisation_BankAccount;
         private Organisation m_org_RecipientOrganisation;
-        private int mi_RecipientOrganisation_BankAccount_Id;
+        private BankAccount m_RecipientOrganisation_BankAccount;
 
         private string ms_OperationType;
         private string ms_PaymentPurpose;
@@ -59,20 +60,20 @@ namespace Accounting_FormsFillingAssistant
             get { return m_org_PayerOrganisation; }
             set { m_org_PayerOrganisation = value; }
         }
-        public int PayerOrganisation_BankAccount_Id
+        public BankAccount PayerOrganisation_BankAccount
         {
-            get { return mi_PayerOrganisation_BankAccount_Id; }
-            set { mi_PayerOrganisation_BankAccount_Id = value; }
+            get { return m_PayerOrganisation_BankAccount; }
+            set { m_PayerOrganisation_BankAccount = value; }
         }
         public Organisation RecipientOrganisation
         {
             get { return m_org_RecipientOrganisation; }
             set { m_org_RecipientOrganisation = value; }
         }
-        public int RecipientOrganisation_BankAccount_Id
+        public BankAccount RecipientOrganisation_BankAccount
         {
-            get { return mi_RecipientOrganisation_BankAccount_Id; }
-            set { mi_RecipientOrganisation_BankAccount_Id = value; }
+            get { return m_RecipientOrganisation_BankAccount; }
+            set { m_RecipientOrganisation_BankAccount = value; }
         }
 
         public string OperationType
@@ -100,8 +101,8 @@ namespace Accounting_FormsFillingAssistant
 
         public Blank_Base(DateTime SignDate, string PaymentType, string BlankNumber,
                           string SumRubles, string SumKopeyki, 
-                          Organisation PayerOrganisation, int PayerOrganisation_BankAccount_Id,
-                          Organisation RecipientOrganisation, int RecipientOrganisation_BankAccount_Id,
+                          Organisation PayerOrganisation, BankAccount PayerOrganisation_BankAccount,
+                          Organisation RecipientOrganisation, BankAccount RecipientOrganisation_BankAccount,
                           string OperationType, string PaymentPurpose,
                           string  Code, string ReservedField)
         {
@@ -112,9 +113,9 @@ namespace Accounting_FormsFillingAssistant
             ms_SumKopeyki  = SumKopeyki;
 
             m_org_PayerOrganisation = PayerOrganisation;
-            mi_PayerOrganisation_BankAccount_Id = PayerOrganisation_BankAccount_Id;
+            m_PayerOrganisation_BankAccount = PayerOrganisation_BankAccount;
             m_org_RecipientOrganisation = RecipientOrganisation;
-            mi_RecipientOrganisation_BankAccount_Id = RecipientOrganisation_BankAccount_Id;
+            m_RecipientOrganisation_BankAccount = RecipientOrganisation_BankAccount;
 
             ms_OperationType = OperationType;
             ms_PaymentPurpose = PaymentPurpose;
@@ -156,10 +157,15 @@ namespace Accounting_FormsFillingAssistant
             int i_Rubles = int.Parse(rub);
             string Rubles_TextRepresentation = TextRepresentationForNumber.Str(i_Rubles, true);
 
+           // Rubles_TextRepresentation.Replace("  ", " ");
+
+            Rubles_TextRepresentation = Regex.Replace(Rubles_TextRepresentation, @"\s+", " ");
+
+
             string rubLastCharacter = rub.Substring(rub.Length - 1);
             if (rubLastCharacter == "1")
                 rubleWord = "рубль";
-            if (rubLastCharacter == "2" || rubLastCharacter == "3")
+            if (rubLastCharacter == "2" || rubLastCharacter == "3" || rubLastCharacter == "4")
                 rubleWord = "рубля";
 
 

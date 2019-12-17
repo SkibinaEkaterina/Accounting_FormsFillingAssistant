@@ -35,6 +35,12 @@ namespace Accounting_FormsFillingAssistant
         /// </summary>
         T m_SelectedObject;
 
+        /// <summary>
+        /// Доступность нажатия кнопки - редактирвоать.
+        /// </summary>
+        private System.Windows.Visibility _EditButtonEnabled;
+
+
         string CurrentType;
 
         private ICommand mcmnd_DeleteButtonClicked;
@@ -59,55 +65,19 @@ namespace Accounting_FormsFillingAssistant
 
             CurrentType = typeof(T).Name;
 
+            if(CurrentType == "BankAccount")
+            {
+                IsEditButtonEnabled = System.Windows.Visibility.Hidden;
+            }
+
+
             // Выгрузка необходимых строк из базы
             LoadObjects();
 
-
         }
 
 
-       private void LoadObjects()
-        {
-            
-            ObjectsList = new ObservableCollection<T>();
-
-            switch (CurrentType)
-            {
-                case "Organisation":
-                    {
-
-                        foreach (Organisation org in ObjectsDBManipulations.LoadAllOrganisationsFromDB())
-                        {
-                            ObjectsList.Add((T)Convert.ChangeType(org, typeof(T)));
-                        }
-
-                        break;
-
-                        
-                    }
-                case "Bank":
-                    {
-                        foreach (Bank b in ObjectsDBManipulations.LoadAllBanksFromDB())
-                        {
-                            ObjectsList.Add((T)Convert.ChangeType(b, typeof(T)));
-                        }
-
-                        break;
-                    }
-                case "BankAccount":
-                    {
-                        foreach (BankAccount ba in ObjectsDBManipulations.LoadAllBankAccountsFromDB())
-                        {
-                            ObjectsList.Add((T)Convert.ChangeType(ba, typeof(T)));
-                        }
-
-                        break;
-                    }
-                default:
-                    break;
-            }
-        }
-
+        
 
         #region Properties
         public ObservableCollection<T> ObjectsList
@@ -126,6 +96,16 @@ namespace Accounting_FormsFillingAssistant
             {
                 m_SelectedObject = value;
                 RaisePropertyChanged("SelectedObject");
+            }
+        }
+
+        public System.Windows.Visibility IsEditButtonEnabled // here, underscore typo
+        {
+            get { return _EditButtonEnabled; }
+            set
+            {
+                _EditButtonEnabled = value; // You miss this line, could be ok to do an equality check here to. :)
+                RaisePropertyChanged("IsEditButtonEnabled"); // 
             }
         }
 
@@ -164,6 +144,52 @@ namespace Accounting_FormsFillingAssistant
         #region Methods
 
         /// <summary>
+        /// Загрузка объектов из БД.
+        /// </summary>
+        public void LoadObjects()
+        {
+
+            ObjectsList = new ObservableCollection<T>();
+
+            switch (CurrentType)
+            {
+                case "Organisation":
+                    {
+
+                        foreach (Organisation org in ObjectsDBManipulations.LoadAllOrganisationsFromDB())
+                        {
+                            ObjectsList.Add((T)Convert.ChangeType(org, typeof(T)));
+                        }
+
+                        break;
+
+
+                    }
+                case "Bank":
+                    {
+                        foreach (Bank b in ObjectsDBManipulations.LoadAllBanksFromDB())
+                        {
+                            ObjectsList.Add((T)Convert.ChangeType(b, typeof(T)));
+                        }
+
+                        break;
+                    }
+                case "BankAccount":
+                    {
+                        foreach (BankAccount ba in ObjectsDBManipulations.LoadAllBankAccountsFromDB())
+                        {
+                            ObjectsList.Add((T)Convert.ChangeType(ba, typeof(T)));
+                        }
+
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
+
+
+        /// <summary>
         /// Обработка нажатия кнопки - добавить объект.
         /// </summary>
         /// <param name="o"></param>
@@ -175,7 +201,11 @@ namespace Accounting_FormsFillingAssistant
             {
                 case "Organisation":
                     {
+                        Add_organisation_Page newPage = new Add_organisation_Page();
+                        Add_Edit_Organisation_ViewModel newVM = new Add_Edit_Organisation_ViewModel(null, newPage.GetFrameNavigationService(),
+                                                                                                    () => BackToTheCurrentPage_Execute(null));
 
+                        m_AppParentNavigationSystem.AppNavigationService.Navigate(newPage, newVM);
                         break;
                     }
                 case "Bank":
@@ -183,6 +213,16 @@ namespace Accounting_FormsFillingAssistant
 
                         m_AppParentNavigationSystem.AppNavigationService.Navigate(new Add_Edit_Bank_Page(),
                                                                 new ViewModel_AddEdit_Bank(null, () => BackToTheCurrentPage_Execute(null)));
+
+                        break;
+                    }
+                case "BankAccount":
+                    {
+
+                        m_AppParentNavigationSystem.AppNavigationService.Navigate(new AddEditBankAccount_Page(),
+                                                                new Add_Edit_BankAccount_ViewModel(null, 
+                                                                () => BackToTheCurrentPage_Execute(null),
+                                                                true));
 
                         break;
                     }
@@ -206,12 +246,19 @@ namespace Accounting_FormsFillingAssistant
                 {
                     case "Organisation":
                         {
-
+                            ObjectsDBManipulations.RemoveOrganisationWithBankAccountsFromDB(m_SelectedObject as Organisation);
                             break;
                         }
                     case "Bank":
                         {
                             ObjectsDBManipulations.RemoveBankFromDB(m_SelectedObject as Bank);
+                            break;
+                        }
+
+                    case "BankAccount":
+                        {
+
+                            ObjectsDBManipulations.RemoveBankAccountFromDB(m_SelectedObject as BankAccount);
                             break;
                         }
                     default:
@@ -236,7 +283,11 @@ namespace Accounting_FormsFillingAssistant
                 {
                     case "Organisation":
                         {
+                            Add_organisation_Page newPage = new Add_organisation_Page();
+                            Add_Edit_Organisation_ViewModel newVM = new Add_Edit_Organisation_ViewModel(m_SelectedObject as Organisation, newPage.GetFrameNavigationService(),
+                                                                                                        () => BackToTheCurrentPage_Execute(null));
 
+                            m_AppParentNavigationSystem.AppNavigationService.Navigate(newPage, newVM);
                             break;
                         }
                     case "Bank":

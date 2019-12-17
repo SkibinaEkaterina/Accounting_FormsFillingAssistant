@@ -10,7 +10,7 @@ namespace Accounting_FormsFillingAssistant
     public class Bank
     {
         // Поля
-        int? m_Bank_Id;
+        int m_Bank_Id;
         string m_Bank_Name;
         string m_Bank_City;
         string m_Bank_BIK;
@@ -20,7 +20,7 @@ namespace Accounting_FormsFillingAssistant
         #region Properties
 
         [DisplayName("ID")]
-        public int? Id
+        public int Id
         {
             get { return m_Bank_Id; }
             set { m_Bank_Id = value; }
@@ -70,6 +70,16 @@ namespace Accounting_FormsFillingAssistant
             m_Bank_OwnBankAccount = bank_OwnBankAccount;
         }
 
+        public Bank(Dictionary<string, string> newBank)
+        {
+            Id = Int32.Parse(newBank["Id"]);
+            Bank_Name = newBank["Название"];
+            Bank_City = newBank["Город"];
+            Bank_BIK = newBank["БИК"];
+            Bank_OwnBankAccount = newBank["Номер счета банка"];
+        }
+
+
         public void GetBankForCurrentBankAccount(List<Bank> ListOfBanks, int id)
         {
             ListOfBanks.Where(bank_Id => id == m_Bank_Id);
@@ -88,5 +98,7 @@ namespace Accounting_FormsFillingAssistant
 
             return dNewBank;
         }
+
+        
     }
 }

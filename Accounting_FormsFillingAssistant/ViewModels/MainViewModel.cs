@@ -17,11 +17,7 @@ namespace Accounting_FormsFillingAssistant
     /// Здесь должны инициализироваться все мелкие ViewModels
     /// </summary>
     class MainViewModel : ViewModel_Base
-    {
-      
-
-
-        
+    {        
         /// <summary>
         /// Конструктор класса с входным параметром - сервис навигации.
         /// </summary>
@@ -38,7 +34,7 @@ namespace Accounting_FormsFillingAssistant
 
             // Бланки.
             GoToAccreditivePage_Create = new RelayCommand(GoToAccreditivePage_Create_Execute);
-
+            GoToPaymentRequirementPage_Create = new RelayCommand(GoToPaymentRequirementPage_Create_Execute);
             // Организации.
             GoToAllOrganisationsPage = new RelayCommand(GoToAllOrganisationsPage_Execute);
             GoToAddOrganisationsPage = new RelayCommand(GoToAddOrganisationsPage_Execute);
@@ -50,6 +46,7 @@ namespace Accounting_FormsFillingAssistant
 
             // Счета.
             GoToPageWithAllBankAccounts = new RelayCommand(GoToPageWithAllBankAccounts_Execute);
+            GoToThePageAddBankAccount = new RelayCommand(GoToThePageAddBankAccount_Execute);
 
             // Проверка наличия всех необходимых данных для работы программы (путь к базе, рабочая директория)
             CheckNecessaryFieldsFilled();
@@ -71,11 +68,16 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_GoToHomePage;
         private ICommand mcmnd_OpenSettingsWindow;
         private ICommand mcmnd_GoToAccreditivePage_Create;
+        private ICommand mcmnd_GoToPaymentRequirementPage_Create;
+
+
         private ICommand mcmnd_GoToAllOrganisationsPage;
         private ICommand mcmnd_GoToAddOrganisationsPage;
         private ICommand mcmnd_GoToPageWithAllBanks;
         private ICommand mcmnd_GoToPageAddEditBank;
         private ICommand mcmnd_GoToPageWithAllBankAccounts;
+        private ICommand mcmnd_GoToThePageAddBankAccount;
+
         #endregion
 
         #region Commands
@@ -117,6 +119,18 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("GoToAccreditivePage_Create");
             }
         }
+
+        public ICommand GoToPaymentRequirementPage_Create
+        {
+            get { return mcmnd_GoToPaymentRequirementPage_Create; }
+            set
+            {
+                mcmnd_GoToPaymentRequirementPage_Create = value;
+                RaisePropertyChanged("GoToPaymentRequirementPage_Create");
+            }
+        }
+
+        
 
         /// <summary>
         /// Свойство команды - перейти к странице со всеми организациями.
@@ -172,6 +186,20 @@ namespace Accounting_FormsFillingAssistant
             {
                 mcmnd_GoToPageWithAllBankAccounts = value;
                 RaisePropertyChanged("GoToPageWithAllBankAccounts" +
+                    "");
+            }
+        }
+
+
+        public ICommand GoToThePageAddBankAccount
+        {
+
+
+            get { return mcmnd_GoToThePageAddBankAccount; }
+            set
+            {
+                mcmnd_GoToThePageAddBankAccount = value;
+                RaisePropertyChanged("GoToThePageAddBankAccount" +
                     "");
             }
         }
@@ -233,6 +261,8 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
+        #region Основные страницы
+
 
         /// <summary>
         /// Метод, осуществляющий переход на домашнюю страницу - по нажатию кнопки "Домой".
@@ -254,6 +284,12 @@ namespace Accounting_FormsFillingAssistant
                 new ViewModel_SettingsWindow(() => FinishWorkOnChildPage()));
         }
 
+        #endregion
+
+
+        #region Бланки
+
+
         /// <summary>
         /// Метод, осуществляющий переход к странице создания Аккредитива.
         /// </summary>
@@ -265,16 +301,16 @@ namespace Accounting_FormsFillingAssistant
         }
 
 
-        /// <summary>
-        /// Действие - перейти на страницу обзора всех организаций в БД.
-        /// </summary>
-        /// <param name="o"></param>
-        private void GoToAllOrganisationsPage_Execute(object o)
+        private void GoToPaymentRequirementPage_Create_Execute(object o)
         {
-            m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
-               new ViewModel_ObjectsView_and_Manipulation<Organisation>(m_AppNavigationSystem));
+            m_AppNavigationSystem.AppNavigationService.Navigate(new View_payment_requirement(),
+               new BlankViewModel_PaymentRequirement());
         }
 
+        #endregion
+
+
+        #region Манипуляция с объектами
 
         /// <summary>
         /// Действие - перейти на страницу добавления/редактирования организации.
@@ -283,15 +319,25 @@ namespace Accounting_FormsFillingAssistant
         private void GoToAddOrganisationsPage_Execute(object o)
         {
             Add_organisation_Page newPage = new Add_organisation_Page();
-
-            
-            Add_Edit_Organisation_ViewModel newVM = new Add_Edit_Organisation_ViewModel(-1, newPage.GetFrameNavigationService(),
+            Add_Edit_Organisation_ViewModel newVM = new Add_Edit_Organisation_ViewModel(null, newPage.GetFrameNavigationService(),
                                                                                         () => FinishWorkOnChildPage());
 
             m_AppNavigationSystem.AppNavigationService.Navigate(newPage, newVM);
-
-
         }
+
+        /// <summary>
+        /// Действие - перейти на страницу обзора всех организаций в БД.
+        /// </summary>
+        /// <param name="o"></param>
+        private void GoToAllOrganisationsPage_Execute(object o)
+        {
+
+            m_AppNavigationSystem.AppNavigationService.Navigate(new DB_ObjectsManipulation_Page(),
+               new ViewModel_ObjectsView_and_Manipulation<Organisation>(m_AppNavigationSystem));
+        }
+
+
+
 
         /// <summary>
         /// Действие - перейти на страницу обзора всех банков в БД.
@@ -311,7 +357,8 @@ namespace Accounting_FormsFillingAssistant
         private void GoToPageAddBank_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new Add_Edit_Bank_Page(),
-                                                                new ViewModel_AddEdit_Bank(null, () => FinishWorkOnChildPage()));
+                                                                new ViewModel_AddEdit_Bank(null, 
+                                                                () => FinishWorkOnChildPage()));
         }
 
 
@@ -321,7 +368,16 @@ namespace Accounting_FormsFillingAssistant
                                                                 new ViewModel_ObjectsView_and_Manipulation<BankAccount>(m_AppNavigationSystem));
         }
 
+        private void GoToThePageAddBankAccount_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new AddEditBankAccount_Page(),
+                                                               new Add_Edit_BankAccount_ViewModel(null,
+                                                               () => FinishWorkOnChildPage(),
+                                                               true));
 
+        }
+
+        #endregion
 
 
         /// <summary>

@@ -24,8 +24,8 @@ namespace Accounting_FormsFillingAssistant_Tests
         public void ConvertSumToTextRepresentation_Test1()
         {
             Blank_Accreditiv Blank1 = new Blank_Accreditiv();
-            string actual = Blank1.ConvertSumToTextRepresentation("222", "33");
-            string expected = "Двести двадцать два рубля 33 копеек";
+            string actual = Blank1.ConvertSumToTextRepresentation("100222", "33");
+            string expected = "Сто тысяч двести двадцать два рубля 33 копеек";
 
             Assert.AreEqual(expected, actual);
         }

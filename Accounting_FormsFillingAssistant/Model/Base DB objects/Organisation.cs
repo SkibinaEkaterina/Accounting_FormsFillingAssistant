@@ -92,24 +92,29 @@ namespace Accounting_FormsFillingAssistant
         /// <param name="Org_Address"></param>
         /// <param name="Org_BankAccounts"></param>
         public Organisation(int Org_id,
-        string Org_Name,
-        string Org_INN,
-        string Org_KPP,
-        //string Org_Type,
-        //string Org_City,
-        string Org_Address,
-        //string Org_Phone,
-        List<BankAccount> Org_BankAccounts)
+                            string Org_Name,
+                            string Org_INN,
+                            string Org_KPP,
+                            string Org_Address,
+                            List<BankAccount> OrgBankAccounts)
         {
             m_Org_id = Org_id;
             m_Org_Name = Org_Name;
             m_Org_INN = Org_INN;
             m_Org_KPP = Org_KPP;
-            //m_Org_Type = Org_Type;
-            //m_Org_City = Org_City;
+          
             m_Org_Address = Org_Address;
-            //m_Org_Phone = Org_Phone;
-            Org_BankAccounts = Org_BankAccounts;
+            Org_BankAccounts = OrgBankAccounts;
+        }
+        public Organisation(Dictionary<string,string> org,
+                            List<BankAccount> ListOfBankAccountsForOrganisation)
+        {
+            Id = Int32.Parse(org["Id"]);
+            Org_Name = org["Название"];
+            Org_INN = org["ИНН"];
+            Org_KPP = org["КПП"];
+            Org_Address = org["Адрес"];
+            Org_BankAccounts = ListOfBankAccountsForOrganisation;
         }
 
         public List<BankAccount> GetListOfBankAccounts()

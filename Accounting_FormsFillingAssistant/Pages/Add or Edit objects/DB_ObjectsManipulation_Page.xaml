@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Window_Loaded"
       Title="DB_ObjectsManipulation_Page">
 
     <Page.Resources>
@@ -65,6 +66,7 @@
             <!-- Кнопка редактирования объекта-->
             <Button Content="{StaticResource Edit_btn_image}"
                     Command="{Binding EditObjectButtonClicked}"
+                     Visibility="{Binding IsEditButtonEnabled}"
                     >
                 <Button.ToolTip>
                     <ToolTip Content="Редактировать"/>

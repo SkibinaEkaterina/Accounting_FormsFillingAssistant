@@ -15,6 +15,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Collections.ObjectModel;
+
+using System.Globalization;
+
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+
 namespace Accounting_FormsFillingAssistant
 {
     /// <summary>
@@ -70,5 +76,10 @@ namespace Accounting_FormsFillingAssistant
             }
             return null;
         }
-    }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
+    
+}
 }

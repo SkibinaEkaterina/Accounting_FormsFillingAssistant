@@ -39,11 +39,11 @@
 
             <TextBlock Text="Название организации" Grid.Column="0"/>
             <TextBox Grid.Column="1"
-                     Text="{Binding ms_BankName}"/>
+                     Text="{Binding OrganisationName}"/>
 
         </Grid>
 
-        <!-- Город -->
+        <!-- Адрес -->
         <Grid  Grid.Row="2"
             Margin="50 10">
             <Grid.ColumnDefinitions>
@@ -51,13 +51,13 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Город" Grid.Column="0"/>
+            <TextBlock Text="Адрес" Grid.Column="0"/>
             <TextBox Grid.Column="1"
                      Text="{Binding OrganisationAddress}"/>
 
         </Grid>
         
-        <!-- номер счета -->
+        <!-- ИНН -->
         <Grid  Grid.Row="3"
             Margin="50 10">
             <Grid.ColumnDefinitions>
@@ -65,9 +65,9 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Номер счета" Grid.Column="0"/>
+            <TextBlock Text="ИНН" Grid.Column="0"/>
             <TextBox Grid.Column="1"
-                     Text="{Binding BankAccount}"/>
+                     Text="{Binding OrganisationINN,UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
         
         <!-- КПП -->
@@ -80,7 +80,7 @@
 
             <TextBlock Text="КПП" Grid.Column="0"/>
             <TextBox Grid.Column="1"
-                     Text="{Binding BankBIK}"/>
+                     Text="{Binding OrganisationKPP,UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <GroupBox Margin="30 10"
@@ -100,7 +100,7 @@
                     Grid.Row="6" 
                     Margin="10">
             
-            <Button Content="Добавить"
+            <Button Content="{Binding OkButtonContent}"
                     Margin="5"
                     Width="100"
                     Height="25"

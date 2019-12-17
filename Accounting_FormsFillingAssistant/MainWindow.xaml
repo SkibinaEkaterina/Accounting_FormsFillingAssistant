@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000" Loaded="Window_Loaded" 
-        WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500">
+        Title="MainWindow" Height="700" Width="1000" Loaded="Window_Loaded" 
+        WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="500">
 
 
     <Window.Resources>
@@ -122,7 +122,9 @@
                                     <MenuItem Header="Редактировать" />
                                 </MenuItem>
                                 <MenuItem Header="Платежное требование">
-                                    <MenuItem Header="Создать" />
+                                    <MenuItem Header="Создать" 
+                                              Command="{Binding GoToPaymentRequirementPage_Create}"
+                                              />
                                     <MenuItem Header="Редактировать" />
                                 </MenuItem>
                             </MenuItem>
@@ -137,7 +139,8 @@
                                               />
                                 </MenuItem>
                                 <MenuItem Header="Счета">
-                                    <MenuItem Header="Добавить" />
+                                    <MenuItem Header="Добавить" 
+                                              Command="{Binding GoToThePageAddBankAccount}"/>
                                     <MenuItem Header="Все счета" 
                                               Command="{Binding GoToPageWithAllBankAccounts}"/> 
                                 </MenuItem>

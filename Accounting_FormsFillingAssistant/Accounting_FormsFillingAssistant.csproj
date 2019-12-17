@@ -57,6 +57,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BlankViewModel_PaymentRequirement.cs" />
+    <Compile Include="Model\Templates\Blank_payment_requirement.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Add_Edit_Objects\Add_Edit_BankAccount_ViewModel.cs" />
+    <Compile Include="Pages\Add or Edit objects\AddEditBankAccount_Page.xaml.cs">
+      <DependentUpon>AddEditBankAccount_Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml.cs">
       <DependentUpon>Add_Edit_Bank_Page.xaml</DependentUpon>
     </Compile>
@@ -98,6 +109,17 @@
     </Compile>
     <Compile Include="ViewModels\Settings and initial fill\ViewModel_InitialFillingPage.cs" />
     <Compile Include="ViewModels\Add_Edit_Objects\ViewModel_AddEdit_Bank.cs" />
+    <Compile Include="ViewModels\VM to view objects\ViewModel_ShowBanckAccounts.cs" />
+    <Compile Include="Pages\Templates\View_payment_requirement.xaml.cs">
+      <DependentUpon>View_payment_requirement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Templates\View_payment_order.xaml.cs">
+      <DependentUpon>View_payment_order.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\Add or Edit objects\AddEditBankAccount_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,15 +161,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Templates\View_payment_requirement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Templates\View_payment_order.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -156,14 +181,15 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <EmbeddedResource Include="Resources\Аккредитив.docx" />
+    <EmbeddedResource Include="Resources\Templaet_PaymentRequirement.docx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

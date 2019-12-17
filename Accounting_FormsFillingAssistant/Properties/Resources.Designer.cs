@@ -113,6 +113,16 @@ namespace Accounting_FormsFillingAssistant.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
+        public static byte[] Templaet_PaymentRequirement {
+            get {
+                object obj = ResourceManager.GetObject("Templaet_PaymentRequirement", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
         public static byte[] Template_Accreditiv {
             get {
                 object obj = ResourceManager.GetObject("Template_Accreditiv", resourceCulture);

@@ -193,12 +193,12 @@ namespace Accounting_FormsFillingAssistant
                     MessageBox.Show("Данное поле должно содержать только цифры от 0 до 9");
                     //BankAccount = ms_BankAccount;
                 }
-
-
             }
         }
 
-
+        /// <summary>
+        /// Свойство - надпись на кнопке ОК.
+        /// </summary>
         public string OkButtonContent
         {
             get
@@ -326,25 +326,9 @@ namespace Accounting_FormsFillingAssistant
 
                 m_GoToTheHomePage.Invoke();
             }
-
-
-            
         }
 
 
-        private void BankAccountTextChanged_Execute(object o)
-        {
-            
-            if (BankAccount.ToString().All(char.IsDigit))
-            {
-
-            }
-            else
-            {
-                BankAccount = ms_BankAccount;
-
-            }
-        }
 
         /// <summary>
         /// Метод - закрыть страницу и перейти на домашнюю страницу или списку всех объектов.
