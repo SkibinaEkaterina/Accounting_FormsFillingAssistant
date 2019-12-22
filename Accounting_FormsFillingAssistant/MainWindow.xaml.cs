@@ -49,5 +49,10 @@ namespace Accounting_FormsFillingAssistant
             MainViewModel mvm_MainViewModel = new MainViewModel(mfr_WorkingPanel.NavigationService);
             DataContext = mvm_MainViewModel;
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

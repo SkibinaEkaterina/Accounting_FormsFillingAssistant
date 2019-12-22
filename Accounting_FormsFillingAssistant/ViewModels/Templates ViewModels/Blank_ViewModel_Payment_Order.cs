@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для платежного поручения.
+    /// </summary>
     class Blank_ViewModel_Payment_Order : Blank_ViewModel_Base
     {
 
-
+        /// <summary>
+        /// Конструткор
+        /// </summary>
+        /// <param name="GoToTheHomePage">Делегат - переход на домашнюю страницу.</param>
         public Blank_ViewModel_Payment_Order(Action GoToTheHomePage)
             : base()
         {
@@ -18,8 +24,7 @@ namespace Accounting_FormsFillingAssistant
 
             LoadObjects();
 
-            MainOrganisation = CollectonOfAllOrganisations.Where(id => id.Id == Properties.Settings.Default.MainOrganisationId).FirstOrDefault();
-
+         
             TemplateDate        = DateTime.Now;
             PayerStatus         = "";
             Priority            = "";

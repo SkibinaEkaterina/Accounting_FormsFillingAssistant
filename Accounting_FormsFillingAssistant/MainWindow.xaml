@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1000" Loaded="Window_Loaded" 
-        WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="500">
+        Title="Помощник бухгалтера" Height="700" Width="1000" Loaded="Window_Loaded" 
+        WindowStartupLocation="CenterScreen" MinWidth="900" MinHeight="500" Closed="Window_Closed">
 
 
     <Window.Resources>
@@ -16,14 +16,14 @@
             <Setter Property="Control.Background" Value="White" />
             <Setter Property="Control.Foreground" Value="Black" />
             <Setter Property="Control.Margin"     Value="0" />
-            <Setter Property="Control.Width"      Value="200" />
+            <Setter Property="Control.Width"      Value="220" />
 
             <!-- Стиль элементов меню -->
             <Style.Resources>
                 <Style TargetType="MenuItem">
                     <Setter Property="Margin" Value="1"/>
                     <Setter Property="Height" Value="36"/>
-                    <Setter Property="Control.Width"     Value="200" />
+                    <Setter Property="Control.Width"     Value="220" />
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                     <Setter Property="BorderThickness" Value="3"/>
                     <Setter Property="Control.BorderBrush" Value="LightGray" />
@@ -50,7 +50,7 @@
     <!-- Основной контейнер -->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="220" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -111,7 +111,7 @@
                                 <MenuItem Header="Аккредитив" 
                                           Command="{Binding GoToAccreditivePage_Create}">
                                 </MenuItem>
-                                <MenuItem Header="Инкассо"
+                                <MenuItem Header="Инкассовое поручение"
                                           Command="{Binding GoToInkassoPage_Create}"
                                           >
                                 </MenuItem>

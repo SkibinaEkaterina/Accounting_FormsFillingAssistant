@@ -6,27 +6,12 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс - бланка аккредитива.
+    /// </summary>
     public class Blank_Accreditiv : Blank_Base
     {
-        /*
-            private DateTime mdate_SignDate;
-            private string ms_PaymentType;
-            private string ms_BlankNumber;
-            private string ms_SumRubles;
-            private string ms_SumKopeyki;
-
-            private int mi_PayerOrganisation_Id;
-            private int mi_RecipientOrganisation_Id;
-
-            private string ms_OperationType;
-            private string ms_PaymentPurpose;
-            private string ms_Code;
-            private string ms_ReservedField;
-
-
-
-        */
-
+        #region Fields        
         /// <summary>
         /// Срок действия аккредитива.
         /// </summary>
@@ -51,7 +36,7 @@ namespace Accounting_FormsFillingAssistant
         /// Дополнительные детали.
         /// </summary>
         string ms_AdditionalDetails;
-
+        #endregion
 
         #region Properties
         public string AccreditivType
@@ -83,12 +68,36 @@ namespace Accounting_FormsFillingAssistant
         #endregion
 
 
-
+        /// <summary>
+        /// Конструктор 1.
+        /// </summary>
         public Blank_Accreditiv()
+            :base()
         {
 
         }
 
+        /// <summary>
+        /// Конструктор с параметрами.
+        /// </summary>
+        /// <param name="dateSignDate">Датат на бланке</param>
+        /// <param name="sPaymentType">Тип оплаты</param>
+        /// <param name="sBlankNumber">Номер бланка</param>
+        /// <param name="sSumRubles">Сумма, рубли</param>
+        /// <param name="sSumKopeyki">Сумма, копейки</param>
+        /// <param name="orgPayerOrganisation">Плательщик</param>
+        /// <param name="PayerOrganisation_BankAccount">Счёт Плательщика</param>
+        /// <param name="orgRecipientOrganisation">Получатель</param>
+        /// <param name="RecipientOrganisation_BankAccount">Счёт Получателя</param>
+        /// <param name="sPaymentPurpose">Назначение платежа</param>
+        /// <param name="sCode">Код</param>
+        /// <param name="sReservedField">Резервное поле</param>
+        /// <param name="dateAccreditivEOLDate">Дата окончания</param>
+        /// <param name="sAccreditivType">Типа аккредитива</param>
+        /// <param name="sPaymentCondition">Условие оплаты</param>
+        /// <param name="sConditionsDetails">Детали</param>
+        /// <param name="sSubmissionPayment">Подтверждение оплаты</param>
+        /// <param name="sAdditionalDetails">Дополнительные сведения</param>
         public Blank_Accreditiv(DateTime dateSignDate, string sPaymentType, string sBlankNumber,
                           string sSumRubles, string sSumKopeyki,
                           Organisation orgPayerOrganisation, BankAccount PayerOrganisation_BankAccount,
@@ -124,7 +133,10 @@ namespace Accounting_FormsFillingAssistant
 
 
         #region Methods
-        // Метод создания словаря
+        /// <summary>
+        /// Метод создания словаря
+        /// </summary>
+        /// <returns>Словарь со значениями для бланка.</returns>
         public override Dictionary<string, string> CreateDictionaryWithFieldValues()
         {
   
@@ -171,7 +183,11 @@ namespace Accounting_FormsFillingAssistant
             return DictionaryWithFieldValues;
         }
 
-        // Метод выгрузки информации из словаря в поля класса
+
+        /// <summary>
+        /// Метод выгрузки информации из словаря в поля класса.
+        /// </summary>
+        /// <param name="DictionaryWithFieldValues"></param>
         public override void LoadValuesFromDictionary(Dictionary<string, string> DictionaryWithFieldValues)
         {
             if (DictionaryWithFieldValues == null)

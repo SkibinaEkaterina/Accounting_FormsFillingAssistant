@@ -9,9 +9,15 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для платежного требования.
+    /// </summary>
     public class BlankViewModel_PaymentRequirement : Blank_ViewModel_Base
     {
-
+        /// <summary>
+        /// Конструткор
+        /// </summary>
+        /// <param name="GoToTheHomePage">Делегат - переход на домашнюю страницу.</param>
         public BlankViewModel_PaymentRequirement(Action GoToTheHomePage)
             :base()
         {
@@ -21,8 +27,6 @@ namespace Accounting_FormsFillingAssistant
             // Выгрузка организаций.
             LoadObjects();
             
-            MainOrganisation    = CollectonOfAllOrganisations.Where(id => id.Id == Properties.Settings.Default.MainOrganisationId).FirstOrDefault();
-
             TemplateDate        = DateTime.Now;
             SendingDate         = DateTime.Now;
             

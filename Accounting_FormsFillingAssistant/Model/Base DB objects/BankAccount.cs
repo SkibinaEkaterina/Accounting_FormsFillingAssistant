@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс счёта.
+    /// </summary>
     public class BankAccount
     {
         private int m_BankAc_ID;
@@ -67,11 +70,15 @@ namespace Accounting_FormsFillingAssistant
         #endregion
 
 
-        public BankAccount()
-        {
-
-        }
-
+        /// <summary>
+        /// конструктор класса с параметрами.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bankAc_Org_ID"></param>
+        /// <param name="bankAc_Bank_ID"></param>
+        /// <param name="bankAc_Org_Name"></param>
+        /// <param name="bankAc_Number"></param>
+        /// <param name="bank"></param>
         public BankAccount(int id,
                            int bankAc_Org_ID,
                            int bankAc_Bank_ID,
@@ -87,6 +94,11 @@ namespace Accounting_FormsFillingAssistant
             BankAc_Bank = bank;
             BankAccountDescription = m_BankAc_Number + "" + m_BankAc_Org_Name;
         }
+        /// <summary>
+        /// Конструктор класса - перевод значений из словаря.
+        /// </summary>
+        /// <param name="newBankAc"></param>
+        /// <param name="currentBank"></param>
         public BankAccount(Dictionary<string,string> newBankAc,
                            Bank currentBank)
         {
@@ -99,8 +111,10 @@ namespace Accounting_FormsFillingAssistant
             BankAccountDescription = m_BankAc_Number + ", " + BankAc_Bank.Bank_Name;
         }
 
-        // 		
-
+        /// <summary>
+        /// Конвертировать значения полей счёта в словарь.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> ConvertBankaccountInfoToDictionary()
         {
             Dictionary<string, string> dNewBank = new Dictionary<string, string>

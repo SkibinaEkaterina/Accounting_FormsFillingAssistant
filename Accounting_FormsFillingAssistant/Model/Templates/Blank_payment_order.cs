@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс - платежное поручение.
+    /// </summary>
     class Blank_payment_order : Blank_Base
     {
 
@@ -56,7 +59,32 @@ namespace Accounting_FormsFillingAssistant
         string ms_PaymentType2;
         #endregion
 
-
+        /// <summary>
+        /// Конструктор с параметрами.
+        /// </summary>
+        /// <param name="dateSignDate">Датат на бланке</param>
+        /// <param name="sPaymentType">Тип оплаты</param>
+        /// <param name="sBlankNumber">Номер бланка</param>
+        /// <param name="sSumRubles">Сумма, рубли</param>
+        /// <param name="sSumKopeyki">Сумма, копейки</param>
+        /// <param name="orgPayerOrganisation">Плательщик</param>
+        /// <param name="PayerOrganisation_BankAccount">Счёт Плательщика</param>
+        /// <param name="orgRecipientOrganisation">Получатель</param>
+        /// <param name="RecipientOrganisation_BankAccount">Счёт Получателя</param>
+        /// <param name="sPaymentPurpose">Назначение платежа</param>
+        /// <param name="sCode">Код</param>
+        /// <param name="sReservedField">Резервное поле</param>
+        /// <param name="s_PayerStatus">СТатус плательщика</param>
+        /// <param name="s_PaymentAppoinment">Цель платежа</param>
+        /// <param name="s_Code_UIN">КОд УИН</param>
+        /// <param name="s_Code_KBK">КБК</param>
+        /// <param name="s_Code_oktmo">ОКТМО</param>
+        /// <param name="s_BasisOfPayment"></param>
+        /// <param name="s_DocumentDate">Дата</param>
+        /// <param name="s_PaymentType2">Тип оплаты 2 код</param>
+        /// <param name="s_TaxPeriodIndicator">Метка налогового периода</param>
+        /// <param name="s_PaymentBasisNumber"></param>
+        /// <param name="s_Priority">Очередность</param>
         public Blank_payment_order(DateTime dateSignDate, string sPaymentType, string sBlankNumber,
                           string sSumRubles, string sSumKopeyki,
                           Organisation orgPayerOrganisation, BankAccount PayerOrganisation_BankAccount,
@@ -92,7 +120,10 @@ namespace Accounting_FormsFillingAssistant
         #region Methods
 
 
-        // Метод создания словаря
+        /// <summary>
+        /// Метод создания словаря
+        /// </summary>
+        /// <returns>Словарь значений полей бланка.</returns>
         public override Dictionary<string, string> CreateDictionaryWithFieldValues()
         {
             Dictionary<string, string> DictionaryWithFieldValues = new Dictionary<string, string>

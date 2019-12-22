@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Accounting_FormsFillingAssistant
 {
     /// <summary>
-    /// Класс предназначен для непосредственной манипуляцией конкретными объектами.
-    /// Напрмер, выгрузить организации (что предполагает выгрузку счетов с банками.
+    /// Класс предназначен для манипуляции объектами в БД, включая добавление, удаление и редактирвоание объектов. 
+    /// Для некоторых типов подразумевается набор нескольких манипуляций с БД. Например, выгрузка организаций подразумевает выгрузку банков и счетов).
     /// </summary>
     public static class ObjectsDBManipulations
     {
@@ -42,7 +42,7 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Удалить выбранный банк из БД.
         /// </summary>
-        /// <param name="RemovingBank"></param>
+        /// <param name="RemovingBank">Удаляемый банк.</param>
         public static void RemoveBankFromDB(Bank RemovingBank)
         {
             // Шаг 1.
@@ -69,7 +69,7 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Добавить новый банк в БД.
         /// </summary>
-        /// <param name="NewBank"></param>
+        /// <param name="NewBank">Новый банк.</param>
         public static void AddNewBankToDB(Bank NewBank)
         {
             Dictionary<string, string> dNewBank = NewBank.ConvertBankInfoToDictionary();
@@ -81,7 +81,7 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Редактировать информацию о банке в БД.
         /// </summary>
-        /// <param name="ExistingBank"></param>
+        /// <param name="ExistingBank">Редактируемый банк.</param>
         public static void EditBankInDB(Bank ExistingBank)
         {
 
@@ -95,7 +95,10 @@ namespace Accounting_FormsFillingAssistant
 
 
         #region Bank Accounts
-
+        /// <summary>
+        /// Выгрузить список всех банковских счетов из БД.
+        /// </summary>
+        /// <returns>Возвращает список всех банковских счетов в БД.</returns>
         public static List<BankAccount> LoadAllBankAccountsFromDB()
         {
             // Выгрузить все счета и банки.
@@ -115,8 +118,12 @@ namespace Accounting_FormsFillingAssistant
             return lAllBankAccounts;
         }
 
-
-
+        /// <summary>
+        /// Сформировать список банковских счетов в нужном для работы программы виде.
+        /// </summary>
+        /// <param name="lAllBanks">Все банки.</param>
+        /// <param name="dAllBankAccounts">Список словарей со значениями для каждого счета.</param>
+        /// <returns></returns>
         private static List<BankAccount> FormAListOfBankAccounts(List<Bank> lAllBanks, List<Dictionary<string, string>> dAllBankAccounts)
         {
             List<BankAccount> lAllBankAccounts = new List<BankAccount>();
@@ -139,6 +146,10 @@ namespace Accounting_FormsFillingAssistant
             return lAllBankAccounts;
         }
 
+        /// <summary>
+        /// Добавить новый счёт в БД.
+        /// </summary>
+        /// <param name="NewBankAccount">Новый счет.</param>
         public static void AddNewBankAccountToDB(BankAccount NewBankAccount)
         {
             Dictionary<string, string> dNewBankAccount = NewBankAccount.ConvertBankaccountInfoToDictionary();
@@ -147,6 +158,10 @@ namespace Accounting_FormsFillingAssistant
             DatabaseConnection.SaveObjectInTheEndOfExcelTable(Properties.Settings.Default.PathToDataBase, dNewBankAccount, "Счета");
         }
 
+        /// <summary>
+        /// Удалить счёт из БД.
+        /// </summary>
+        /// <param name="BankAccount"></param>
         public static void RemoveBankAccountFromDB(BankAccount BankAccount)
         {
             //Удалить счет.
@@ -162,14 +177,16 @@ namespace Accounting_FormsFillingAssistant
 
 
         #region Organisations
-
+        /// <summary>
+        /// Выгрузить все организации из БД.
+        /// </summary>
+        /// <returns>Возвращает список всех организаций в БД.</returns>
         public static List<Organisation> LoadAllOrganisationsFromDB()
         {
 
             // Выгрузить все.
             Dictionary<string, List<Dictionary<string, string>>> DictionaryWithObjects = DatabaseConnection.LoadAllObjectsFromSeveralExcelSheets(Properties.Settings.Default.PathToDataBase,
                                                                     new string[] {"Организации","Счета", "Банки"});
-
 
             // Перевести все банки в нужный вид.
             List<Bank> ListOfAllBanks = new List<Bank>();
@@ -208,8 +225,9 @@ namespace Accounting_FormsFillingAssistant
 
 
         /// <summary>
-        /// Созранить информацию об организациях и ее счетах в файл.
+        /// Добавить новую организацию в БД.
         /// </summary>
+        /// <param name="NewOrganisation">Добавляемая организация.</param>
         public static void AddNewOrganisationWithItsBankAccountsToDB(Organisation NewOrganisation)
         {
             Dictionary<string, string> dNewOrganisation = NewOrganisation.ConvertOrganisationInfoToDictionary();
@@ -242,6 +260,11 @@ namespace Accounting_FormsFillingAssistant
 
         }
 
+
+        /// <summary>
+        /// УДалить организацию из БД.
+        /// </summary>
+        /// <param name="RemovingOrganisation">Удаляемая организация.</param>
         public static void RemoveOrganisationWithBankAccountsFromDB(Organisation RemovingOrganisation)
         {
             // Выгрузить все.
@@ -271,7 +294,10 @@ namespace Accounting_FormsFillingAssistant
                                                             dAllOrganisationsCorrected, "Организации");
         }
 
-
+        /// <summary>
+        /// Редактировать организацию.
+        /// </summary>
+        /// <param name="EditingOrganisation">Изменяемая организация.</param>
         public static void EditOrganisationWithAllBankAccounts(Organisation EditingOrganisation)
         {
             // Изменить информацию об организациях

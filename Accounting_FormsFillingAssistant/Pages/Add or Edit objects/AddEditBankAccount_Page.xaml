@@ -47,9 +47,12 @@
 
             <TextBlock Text="Организация" Grid.Column="0"/>
             <ComboBox Grid.Column="1"
+                      IsEnabled="{Binding IsOrganisationsEnabled}"
+                      
                       ItemsSource="{Binding CollectonOfAllOrganisations}"
                       SelectedItem="{Binding SelectedOrganisation}"
                       DisplayMemberPath="Org_Name"
+                      
                       />
 
         </Grid>

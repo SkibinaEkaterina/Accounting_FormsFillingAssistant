@@ -9,9 +9,17 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для добавления/редактирования счёта.
+    /// </summary>
     class Add_Edit_BankAccount_ViewModel : ViewModel_Base
     {
-
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="CorrectedBankAccount">Корректируемый счет.</param>
+        /// <param name="GoToTheHomePage">Переход на домашнюю страницу (делегат).</param>
+        /// <param name="LoadInfoToDataBase">Флаг - загружать ли информацию в БД.</param>
         public Add_Edit_BankAccount_ViewModel(BankAccount CorrectedBankAccount,
                                               Action GoToTheHomePage,
                                               bool LoadInfoToDataBase)
@@ -24,9 +32,15 @@ namespace Accounting_FormsFillingAssistant
             CollectionOfAllBanks = new ObservableCollection<Bank>(ObjectsDBManipulations.LoadAllBanksFromDB());
 
             // Выгрузка организаций не происходит - если создаем новую организацию.
-            if(LoadInfoToDataBase)
+            if (LoadInfoToDataBase)
+            {
                 CollectonOfAllOrganisations = new ObservableCollection<Organisation>(ObjectsDBManipulations.LoadAllOrganisationsFromDB());
-
+                IsOrganisationsEnabled = true;
+            }
+            else
+            {
+                IsOrganisationsEnabled = false;
+            }
 
             if (m_CorrectedBankAccount == null)
             {
@@ -70,7 +84,12 @@ namespace Accounting_FormsFillingAssistant
         /// Строка заголовка.
         /// </summary>
         string ms_HeaderText;
-        
+
+        /// <summary>
+        /// Доступ выбора организации.
+        /// </summary>
+        private bool _IsOrganisationsEnabled;
+
         /// <summary>
         /// Надпись на кнопке ОК.
         /// </summary>
@@ -143,6 +162,17 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("HeaderText");
             }
         }
+
+        public bool IsOrganisationsEnabled // here, underscore typo
+        {
+            get { return _IsOrganisationsEnabled; }
+            set
+            {
+                _IsOrganisationsEnabled = value; // You miss this line, could be ok to do an equality check here to. :)
+                RaisePropertyChanged("IsOrganisationsEnabled"); // 
+            }
+        }
+
 
         /// <summary>
         /// Свойство - номер счета.

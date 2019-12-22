@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс - бланка платежного требования.
+    /// </summary>
     class Blank_payment_requirement : Blank_Base
     {
-        
 
+        #region Fields
         string ms_paymentCondition;
 
         /// <summary>
@@ -30,12 +33,30 @@ namespace Accounting_FormsFillingAssistant
         /// Дата отсылки.
         /// </summary>
         DateTime mdate_date_of_Dispatch;
-
-        public Blank_payment_requirement()
-        {
-        }
+        #endregion
 
 
+
+        /// <summary>
+        /// Конструктор с параметрами.
+        /// </summary>
+        /// <param name="dateSignDate">Датат на бланке</param>
+        /// <param name="sPaymentType">Тип оплаты</param>
+        /// <param name="sBlankNumber">Номер бланка</param>
+        /// <param name="sSumRubles">Сумма, рубли</param>
+        /// <param name="sSumKopeyki">Сумма, копейки</param>
+        /// <param name="orgPayerOrganisation">Плательщик</param>
+        /// <param name="PayerOrganisation_BankAccount">Счёт Плательщика</param>
+        /// <param name="orgRecipientOrganisation">Получатель</param>
+        /// <param name="RecipientOrganisation_BankAccount">Счёт Получателя</param>
+        /// <param name="sPaymentPurpose">Назначение платежа</param>
+        /// <param name="sCode">Код</param>
+        /// <param name="sReservedField">Резервное поле</param>
+        /// <param name="paymentCondition">Условия платежа</param>
+        /// <param name="acceptTime">Время получения</param>
+        /// <param name="prTimePeriod">Период получения</param>
+        /// <param name="PaymentAppoinment">Цель платежа</param>
+        /// <param name="date_of_Dispatch">Дата отправки</param>
         public Blank_payment_requirement(DateTime dateSignDate, string sPaymentType, string sBlankNumber,
                           string sSumRubles, string sSumKopeyki,
                           Organisation orgPayerOrganisation, BankAccount PayerOrganisation_BankAccount,
@@ -63,9 +84,12 @@ namespace Accounting_FormsFillingAssistant
 
         #region Methods
 
-       
 
-        // Метод создания словаря
+
+        /// <summary>
+        /// Метод создания словаря
+        /// </summary>
+        /// <returns>Словарь значений полей бланка.</returns>
         public override Dictionary<string, string> CreateDictionaryWithFieldValues()
         {
             Dictionary<string, string> DictionaryWithFieldValues = new Dictionary<string, string>

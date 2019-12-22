@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 namespace Accounting_FormsFillingAssistant
 {
     /// <summary>
-    /// Здесь должны инициализироваться все мелкие ViewModels
+    /// Класс главной ViewModel.
     /// </summary>
     class MainViewModel : ViewModel_Base
     {        
@@ -33,10 +33,10 @@ namespace Accounting_FormsFillingAssistant
             OpenSettingsWindow = new RelayCommand(OpenSettingsWindow_Execute);
 
             // Бланки.
-            GoToAccreditivePage_Create = new RelayCommand(GoToAccreditivePage_Create_Execute);
-            GoToPaymentRequirementPage_Create = new RelayCommand(GoToPaymentRequirementPage_Create_Execute);
-            GoToPaymentOrderPage_Create = new RelayCommand(GoToPaymentOrderPage_Create_Execute);
-
+            GoToAccreditivePage_Create          = new RelayCommand(GoToAccreditivePage_Create_Execute);
+            GoToPaymentRequirementPage_Create   = new RelayCommand(GoToPaymentRequirementPage_Create_Execute);
+            GoToPaymentOrderPage_Create         = new RelayCommand(GoToPaymentOrderPage_Create_Execute);
+            GoToInkassoPage_Create              = new RelayCommand(GoToInkassoPage_Create_Execute);
 
 
             // Организации.
@@ -54,10 +54,6 @@ namespace Accounting_FormsFillingAssistant
 
             // Проверка наличия всех необходимых данных для работы программы (путь к базе, рабочая директория)
             CheckNecessaryFieldsFilled();
-
-
-
-
         }
 
 
@@ -74,7 +70,7 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_GoToAccreditivePage_Create;
         private ICommand mcmnd_GoToPaymentRequirementPage_Create;
         private ICommand mcmnd_GoToPaymentOrderPage_Create;
-
+        private ICommand mcmnd_GoToInkassoPage_Create;
 
         private ICommand mcmnd_GoToAllOrganisationsPage;
         private ICommand mcmnd_GoToAddOrganisationsPage;
@@ -125,6 +121,21 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
+        /// <summary>
+        /// Свойство команды - перейти на страницу создания бланка инкассового поручения.
+        /// </summary>
+        public ICommand GoToInkassoPage_Create
+        {
+            get { return mcmnd_GoToInkassoPage_Create; }
+            set
+            {
+                mcmnd_GoToInkassoPage_Create = value;
+                RaisePropertyChanged("GoToInkassoPage_Create");
+            }
+        }
+
+
+        
         /// <summary>
         /// Свойство команды - переход к странице создания платежного требования.
         /// </summary>
@@ -228,55 +239,25 @@ namespace Accounting_FormsFillingAssistant
         #region Methods
 
 
-        // Внутренний метод - проверка заполненности полей, необходимых для работы программы.
-        private bool CheckNecessaryFieldsFilled()
+        /// <summary>
+        /// Внутренний метод - проверка заполненности полей, необходимых для работы программы.
+        /// </summary>
+        /// <returns></returns>
+        private void CheckNecessaryFieldsFilled()
         {
-            // PathToWorkingDirectory
-            // PathToDataBase
-            // MainOrganisationId
-
-            // Шаг 1.
-            // Если нет рабочей директории - выводим страницу Начального заполнения и сообщение: рабочая директория не выбрана.
-            // Выберите
-
-            // Шаг 2.
-            // Выбрали директорию - создание БД. В данной директории будет создан файл, в котором будут храниться данные
-            // программы, включая Организации, банки и счета, которые введет пользователь.
-            // Кнопка "Создать БД"
-
-            // Шаг 3. Добавить организацию.
-            // База создана. Нам нужна наша организация.
-            // Добавляем организацию (без счетов).
-            // Информация заносится в БД.
-
-            // Шаг 4. Добавить Банк
-            // Но прежде надо добавить Банк - занести данные в БД
-
-            // Шаг 5. Добавить счета для организации (автоматически выбрана наша организация)
-            // Далее добавляем счета для нашей организации - занести данные в БД
-
-
+            
             if (Properties.Settings.Default.PathToWorkingDirectory == "" ||
               Properties.Settings.Default.PathToWorkingDirectory == null ||
-              !Directory.Exists(Properties.Settings.Default.PathToWorkingDirectory))
+              !Directory.Exists(Properties.Settings.Default.PathToWorkingDirectory)
+              || Properties.Settings.Default.PathToDataBase == "" ||
+                   Properties.Settings.Default.PathToDataBase == null)
             {
-                m_AppNavigationSystem.AppNavigationService.Navigate(new InitialFillingPage(), new ViewModel_InitialFillingPage());
+                m_AppNavigationSystem.AppNavigationService.Navigate(new InitialFillingPage(), new ViewModel_InitialFillingPage(() => FinishWorkOnChildPage()));
             }
             else
             {
-                if(Properties.Settings.Default.PathToDataBase == "" ||
-                   Properties.Settings.Default.PathToDataBase == null)
-                {
-                    // Создать БД в рабочей директории
-
-                    
-
-                }
+               m_AppNavigationSystem.AppNavigationService.Navigate(new Page_Home(), new ViewModel_Home());
             }
-
-
-            return true;
-
         }
 
 
@@ -318,9 +299,15 @@ namespace Accounting_FormsFillingAssistant
             m_AppNavigationSystem.AppNavigationService.Navigate(new View_Accreditiv(),
                new BlankViewModel_Accreditiv(() => FinishWorkOnChildPage()));
         }
-        
 
-         private void GoToPaymentOrderPage_Create_Execute(object o)
+
+        private void GoToInkassoPage_Create_Execute(object o)
+        {
+            m_AppNavigationSystem.AppNavigationService.Navigate(new View_Inkasso_Order(),
+               new Blank_ViewModel_Inkasso(() => FinishWorkOnChildPage()));
+        }
+
+        private void GoToPaymentOrderPage_Create_Execute(object o)
         {
             m_AppNavigationSystem.AppNavigationService.Navigate(new View_payment_order(),
                new Blank_ViewModel_Payment_Order(() => FinishWorkOnChildPage()));
@@ -411,7 +398,7 @@ namespace Accounting_FormsFillingAssistant
         /// </summary>
         void FinishWorkOnChildPage()
         {
-            m_AppNavigationSystem.AppNavigationService.Navigate(new Page_Home(), null);
+            m_AppNavigationSystem.AppNavigationService.Navigate(new Page_Home(), new ViewModel_Home());
         }
 
 

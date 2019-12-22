@@ -8,36 +8,61 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс  ViewModel домашней страницы.
+    /// </summary>
     class ViewModel_Home : ViewModel_Base
     {
-        // Поле
-        private ICommand _RaiseMessageBox;
+        #region Fields
+        /// <summary>
+        /// Рабочая директория.
+        /// </summary>
+        private string ms_WorkingDirectoryPath;
+        /// <summary>
+        /// Текущая дата.
+        /// </summary>
+        private string ms_CurrentDate;
+        #endregion
 
-        // Свойство
-        public ICommand RaiseMessageBox
+        #region Properties
+        /// <summary>
+        /// Свойство - Рабочая директория.
+        /// </summary>
+        public string WorkingDirectoryPath
         {
-            get
-            {
-                return _RaiseMessageBox;
-            }
+            get => ms_WorkingDirectoryPath;
             set
             {
-                //_RaiseMessageBox = value;
-
-                _RaiseMessageBox = value;
-                // повещаем о том, что изменилось свойство.
-                RaisePropertyChanged("RaiseMessageBox");
+                ms_WorkingDirectoryPath = value;
+                RaisePropertyChanged("WorkingDirectoryPath");
             }
         }
+        /// <summary>
+        /// Свойство - Текущая дата.
+        /// </summary>
+        public string CurrentDate
+        {
+            get => ms_CurrentDate;
+            set
+            {
+                ms_CurrentDate = value;
+                RaisePropertyChanged("CurrentDate");
+            }
+        }
+        #endregion
 
+
+
+        /// <summary>
+        /// Конструткор.
+        /// </summary>
         public ViewModel_Home()
         {
-            RaiseMessageBox = new RelayCommand(SomeAction);
+            CurrentDate = DateTime.Now.ToString("DD-mm-yyyy");
+            WorkingDirectoryPath = Properties.Settings.Default.PathToWorkingDirectory;
+
         }
 
-        public void SomeAction(object prm)
-        {
-            MessageBox.Show("Hello world!");
-        }
+       
     }
 }

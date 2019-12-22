@@ -9,9 +9,14 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel - базовый для ViewModel всех бланков.
+    /// </summary>
     public abstract class Blank_ViewModel_Base : ViewModel_Base
     {
-
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
         public Blank_ViewModel_Base()
         {
             TemplateNumber  = "";

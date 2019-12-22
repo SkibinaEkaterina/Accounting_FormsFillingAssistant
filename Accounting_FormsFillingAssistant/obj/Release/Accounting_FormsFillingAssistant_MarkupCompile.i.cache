@@ -1,0 +1,20 @@
+﻿Accounting_FormsFillingAssistant
+
+
+winexe
+C#
+.cs
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Release\
+Accounting_FormsFillingAssistant
+none
+false
+TRACE
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\App.xaml
+12-1870287050
+
+47-1867212843
+21-1355440990
+Pages\Add or Edit objects\AddEditBankAccount_Page.xaml;Pages\Add or Edit objects\Add_Edit_Bank_Page.xaml;Pages\Add or Edit objects\Add_Edit_organisation_Page.xaml;Pages\Add or Edit objects\DB_ObjectsManipulation_Page.xaml;Pages\Settings and initial fill\SettingsPage.xaml;MainWindow.xaml;Pages\Page_Home.xaml;Pages\Templates\View_Accreditiv.xaml;Pages\Settings and initial fill\InitialFillingPage.xaml;Pages\Templates\View_payment_requirement.xaml;Pages\Templates\View_payment_order.xaml;Pages\Templates\View_Inkasso_Order.xaml;
+
+False
+

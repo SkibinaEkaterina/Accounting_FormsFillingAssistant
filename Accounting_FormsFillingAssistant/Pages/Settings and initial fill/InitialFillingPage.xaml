@@ -5,85 +5,87 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="View_InitialFillingPage">
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="View_InitialFillingPage"
+      Background="White" >
 
-    <Grid Background="White">
+    <StackPanel Background="White"
+                Margin="10">
 
-        <TextBlock HorizontalAlignment="Left" Margin="12,10,0,0" 
-                   TextWrapping="Wrap" Text="Начальная страница" 
-                   VerticalAlignment="Top" 
-                   RenderTransformOrigin="-4.315,0.05" FontSize="18" FontWeight="Bold"/>
+        <!-- Заголовок -->
+        <TextBlock Text="Начало работы" 
+                       FontSize="30" FontWeight="Bold"
+                       Margin="10 10 10 20"/>
 
 
-        <TextBlock HorizontalAlignment="Left" Margin="15,39,0,0" 
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
             TextWrapping="Wrap"  VerticalAlignment="Top"
-            Text="Добро пожаловать! Перед началом работы с программой необходимо осуществить несколько шагов." Height="38" Width="493"
+            Text="Добро пожаловать в программу помощник бухгалтера! Перед началом работы с программой необходимо осуществить несколько шагов." Height="38" Width="493"
                    />
 
 
 
         <!-- Шаг 1 -->
-        <TextBlock HorizontalAlignment="Left" Margin="13,82,0,0" 
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
                    TextWrapping="Wrap"  VerticalAlignment="Top"
                    Text="Шаг 1. Выбор рабочей директории."
                    />
 
-        <TextBlock HorizontalAlignment="Left" Margin="13,98,0,0" 
-            TextWrapping="Wrap" Text="Для хранения данных выберите рабочую директорию. Все бланки будут автоматически сохраняться в эту директорию." 
-            VerticalAlignment="Top" Height="44" Width="489"/>
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
+            TextWrapping="Wrap" Text="Рабочая директория программы - директория на компьютере пользователя, в которой будут храниться все создаваемые в программе бланки. Не рекомендуется указывать в качестве рабочей директории служебные директории, директории с ограниченным или закрытым доступом, директории с уже содержащимися данными." 
+            VerticalAlignment="Top" Height="70" Width="489"/>
 
 
 
-        <TextBlock HorizontalAlignment="Left" Margin="15,143,0,0" 
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
             TextWrapping="Wrap" Text="Рабочая директория" 
             VerticalAlignment="Top"/>
 
-        <TextBox x:Name="mtbox_WorkingDirectory"
-            HorizontalAlignment="Left" 
-            Height="23" Margin="161,140,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" Width="347"
-            Text ="{Binding PathToWorkingDirectory}"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="mtbox_WorkingDirectory"
+                HorizontalAlignment="Left" 
+                Height="23" Margin="12 4" 
+                TextWrapping="Wrap" 
+                VerticalAlignment="Top" Width="347"
+                Text ="{Binding PathToWorkingDirectory}"/>
 
-        <Button x:Name="mbtn_ChooseWorkingDirectory" 
+            <Button x:Name="mbtn_ChooseWorkingDirectory" 
             Content="..." HorizontalAlignment="Left" 
-            Margin="523,141,0,0" VerticalAlignment="Top" 
+            Margin="12 4" VerticalAlignment="Top" 
             Width="33" Height="23"
             Command="{Binding ChooseWorkingDirectory, FallbackValue=No Data}"/>
-
+        </StackPanel>
         <!-- Шаг 2 -->
-        <TextBlock HorizontalAlignment="Left" Margin="13,175,0,0" 
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
             TextWrapping="Wrap"  VerticalAlignment="Top"
             Text="Шаг 2. Создание базы данных программы."
                    />
-        <TextBlock HorizontalAlignment="Left" Margin="14,196,0,0" 
-            TextWrapping="Wrap" Text="Для хранения данных об организациях, их счетах и 
-банках необходимо наличие Excel файл. Файл будет сохранен в рабочей директории. Чтобы создать базу, нажмите кнопку 'Создать'." 
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
+            TextWrapping="Wrap" Text="Для хранения данных, необходимых для заполнения бланков (организации, их счетах и 
+банки), требуется создать Excel-файл. Он будет служить в качестве базы данных. Чтобы создать базу, нажмите кнопку 'Создать'. Файл будет сохранен в рабочей директории." 
             VerticalAlignment="Top" Height="53" Width="489"/>
-
+        
+        <StackPanel Orientation="Horizontal">
         <TextBlock x:Name="mtb_DbStatus"
-            HorizontalAlignment="Left" Margin="171,254,0,0" 
+            HorizontalAlignment="Left" Margin="12 4" 
             TextWrapping="Wrap"  
             VerticalAlignment="Top" Height="20" Width="304"
             Text="{Binding DatabaseStatus}"
                    />
 
         <Button Content="Создать" HorizontalAlignment="Left" 
-                Margin="54,255,0,0" VerticalAlignment="Top"
+                Margin="12 4" VerticalAlignment="Top"
                 Width="75"
                 Command="{Binding CreateDataBase}"/>
-
+        </StackPanel>
 
         <!-- Шаг 3 -->
-        <TextBlock HorizontalAlignment="Left" Margin="9,279,0,0" 
+        <TextBlock HorizontalAlignment="Left" Margin="12 4" 
             TextWrapping="Wrap"  VerticalAlignment="Top"
-            Text="Шаг 3. Добавление главной организации."
+            Text="Далее, прежде чем приступить к заполнению бланков, Вам необходимо добавить Банки, в которых ваши организации имеют счета, и сами Организации со счтеами. О порядке добавления объектов в базу ознакомьтесь с инструкцией."
                    />
-        <TextBlock HorizontalAlignment="Left" Margin="9,300,0,0" 
-            TextWrapping="Wrap" Text="Далее для работы программы необходимо добавить Вашу организацию." 
-            VerticalAlignment="Top" Height="18" Width="489"/>
-        <Button Content="Добаивть" HorizontalAlignment="Left" Margin="54,323,0,0" VerticalAlignment="Top" Width="75"/>
-
-    </Grid>
+        <Button Content="Продолжить" HorizontalAlignment="Center"
+                Command="{Binding GoToHomePage}"
+                Margin="5" Width="80"/>
+    </StackPanel>
 </Page>

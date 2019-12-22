@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\Templates ViewModels\Blank_ViewModel_Inkasso.cs" />
     <Compile Include="ViewModels\Templates ViewModels\Blank_ViewModel_Payment_Order.cs" />
     <Compile Include="Model\Templates\Blank_inkasso.cs" />
     <Compile Include="Model\Templates\Blank_payment_order.cs" />
@@ -120,6 +121,9 @@
     <Compile Include="Pages\Templates\View_payment_order.xaml.cs">
       <DependentUpon>View_payment_order.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Templates\View_Inkasso_Order.xaml.cs">
+      <DependentUpon>View_Inkasso_Order.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\Add or Edit objects\AddEditBankAccount_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +177,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Templates\View_Inkasso_Order.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -195,6 +203,7 @@
     <EmbeddedResource Include="Resources\Аккредитив.docx" />
     <EmbeddedResource Include="Resources\Templaet_PaymentRequirement.docx" />
     <EmbeddedResource Include="Resources\Payment_order.docx" />
+    <EmbeddedResource Include="Resources\Inkasso_Order.docx" />
     <None Include="Resources\Платежное_поручение.docx" />
   </ItemGroup>
   <ItemGroup>
@@ -282,6 +291,8 @@
   <ItemGroup>
     <Resource Include="Resources\Add_Object.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Icon1.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,10 +11,18 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс, осуществляющий взаимодействие непосредственно с файлом БД.
+    /// </summary>
     public static class DatabaseConnection
     {
-
+        /// <summary>
+        /// Значение - поле пусто.
+        /// </summary>
         static object misValue = System.Reflection.Missing.Value;
+        /// <summary>
+        /// Словарь с правильными заголовками БД.
+        /// </summary>
         static Dictionary<string, List<string>> DataBaseHeaders = new Dictionary<string, List<string>>
         {
 
@@ -128,9 +136,8 @@ namespace Accounting_FormsFillingAssistant
 
             Excel.Application xlApp = null;
             Excel.Workbook xlWorkBook = null;
-            //object misValue = System.Reflection.Missing.Value;
+            
             List<Dictionary<string, string>> DataOnExcelSheet = new List<Dictionary<string, string>>();
-
 
             try
             {
@@ -139,7 +146,7 @@ namespace Accounting_FormsFillingAssistant
 
                 if (xlApp == null)
                 {
-                    MessageBox.Show("Excel is not properly installed!!");
+                    MessageBox.Show("Excel не инсталлирован!");
                     return null;
                 }
 
@@ -152,35 +159,7 @@ namespace Accounting_FormsFillingAssistant
 
                 DataOnExcelSheet = LoadInfoFromOneWorkSheet(excelSheets, SheetName);
 
-                //Excel.Worksheet excelWorksheet =
-                //    (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
-
-                //// количество заполненных строк
-                //int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
-                //// количество заполненных колонок
-                //int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
-
-                //// Выгрузить заголовки
-                //List<string> Headers = new List<string>();
-                //for(var i=0; i< NumberOfNonEmptyColumns; i++)
-                //{
-                //    Headers.Add((string)(excelWorksheet.Cells[1, i + 1] as Excel.Range).Value);
-                //}
-
-
-
-                //for (var row=1; row < NumberOfNonEmptyRows; row++)
-                //{
-                //    Dictionary<string, string> CurrentDictionary = new Dictionary<string, string>();
-
-                //    for (var col = 0; col < NumberOfNonEmptyColumns; col++)
-                //    {
-
-                //        CurrentDictionary[Headers[col]] = (excelWorksheet.Cells[row+1, col + 1] as Excel.Range).Value.ToString();
-                //    }
-                //    DataOnExcelSheet.Add(CurrentDictionary);
-                //}
-
+                
             }
             catch (Exception ex)
             {
@@ -201,6 +180,12 @@ namespace Accounting_FormsFillingAssistant
             return DataOnExcelSheet;
         }
 
+        /// <summary>
+        /// Загрузить объекты нескольких типов из БД. Возращает список объектов.
+        /// </summary>
+        /// <param name="PathToExcelFile">Путь к БД.</param>
+        /// <param name="SheetNames"></param>
+        /// <returns></returns>
         public static Dictionary<string, List<Dictionary<string, string>>> LoadAllObjectsFromSeveralExcelSheets(string PathToExcelFile, string[] SheetNames)
         {
 
@@ -225,7 +210,7 @@ namespace Accounting_FormsFillingAssistant
 
                 if (xlApp == null)
                 {
-                    MessageBox.Show("Excel is not properly installed!!");
+                    MessageBox.Show("Приложение Excel не инсталлировано!");
                     return null;
                 }
 
@@ -259,10 +244,19 @@ namespace Accounting_FormsFillingAssistant
             return DictionaryOfObjectsOnExcelSheets;
         }
 
+        /// <summary>
+        /// Выгрузка информации с одной страницы файла.
+        /// </summary>
+        /// <param name="excelSheets">Список страниц файла.</param>
+        /// <param name="SheetName">Название страницы, с которой будем выгружать объекты.</param>
+        /// <returns></returns>
         private static List<Dictionary<string, string>> LoadInfoFromOneWorkSheet(Excel.Sheets excelSheets, string SheetName)
         {
             Excel.Worksheet excelWorksheet =
                     (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
+
+            if (excelWorksheet == null)
+                throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Excel файл не содержит нужной страницы. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
 
 
             List<Dictionary<string, string>> DataOnExcelSheet = new List<Dictionary<string, string>>();
@@ -272,11 +266,26 @@ namespace Accounting_FormsFillingAssistant
             // количество заполненных колонок
             int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
 
-            // Выгрузить заголовки
+            if(NumberOfNonEmptyColumns == 0)
+                throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+
+            List<string> TemplateHeaders = DataBaseHeaders[SheetName];
+
+            // Выгрузить заголовки на странице
             List<string> Headers = new List<string>();
             for (var i = 0; i < NumberOfNonEmptyColumns; i++)
             {
                 Headers.Add((string)(excelWorksheet.Cells[1, i + 1] as Excel.Range).Value);
+            }
+
+            // Проверка заголовков страницы.
+            for (int i = 0; i < NumberOfNonEmptyColumns; i++)
+            {
+                if (TemplateHeaders[i] != Headers[i])
+                {
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Имена колонок на выбранной странице Excel файла указаны неверно. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+                }
             }
 
             for (var row = 1; row < NumberOfNonEmptyRows; row++)
@@ -359,7 +368,7 @@ namespace Accounting_FormsFillingAssistant
 
                 if (xlApp == null)
                 {
-                    MessageBox.Show("Excel is not properly installed!!");
+                    MessageBox.Show("Excel не инсталлирован!");
                     return ;
                 }
 
@@ -376,6 +385,10 @@ namespace Accounting_FormsFillingAssistant
                 Excel.Worksheet excelWorksheet =
                     (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
 
+                if (excelWorksheet == null)
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Excel файл не содержит нужной страницы. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+
                 // удалить информацию на странице (кроме заголовков)
                 ClearSheet(excelWorksheet);
 
@@ -383,14 +396,30 @@ namespace Accounting_FormsFillingAssistant
               
                 cells.NumberFormat = "@";
 
-                if(DataToSave.Count > 0)
+                // количество заполненных колонок
+                int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
+
+                if (NumberOfNonEmptyColumns == 0)
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+                // Проверка заголовков страницы.
+                for (int i = 0; i < NumberOfNonEmptyColumns; i++)
+                {
+                    if (TemplateHeaders[i ] != (cells[1, i+1] as Excel.Range).Value.ToString())
+                    {
+                        throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Имена колонок на выбранной странице Excel файла указаны неверно. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+                    }
+                }
+
+
+                if (DataToSave.Count > 0)
                 {
                     // сохранить информацию на листе
                     for (int row = 0; row < DataToSave.Count; row++)
                     {
                         for (int col = 0; col < TemplateHeaders.Count; col++)
                         {
-                            excelWorksheet.Cells[row + 2, col + 1] = DataToSave[row][TemplateHeaders[col]];
+                            cells[row + 2, col + 1] = DataToSave[row][TemplateHeaders[col]];
                         }
                     }
                 }
@@ -407,7 +436,7 @@ namespace Accounting_FormsFillingAssistant
 
 
                 xlApp.DisplayAlerts = true;
-                MessageBox.Show("Изменения успешно добавлены в базу.");
+                //MessageBox.Show("Изменения успешно добавлены в базу.");
             }
             catch (Exception ex)
             {
@@ -448,7 +477,7 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Добавить новый объект в конец списка в БД.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">Словарь значений.</param>
         public static void SaveObjectInTheEndOfExcelTable(string PathToExcelFile,
                                                           Dictionary<string, string> obj, 
                                                           string SheetName)
@@ -509,7 +538,7 @@ namespace Accounting_FormsFillingAssistant
 
                 if (xlApp == null)
                 {
-                    MessageBox.Show("Excel is not properly installed!!");
+                    MessageBox.Show("Excel не инсталлирован!");
                     return;
                 }
 
@@ -526,14 +555,32 @@ namespace Accounting_FormsFillingAssistant
                 Excel.Worksheet excelWorksheet =
                     (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
 
+                if (excelWorksheet == null)
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Excel файл не содержит нужной страницы. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+
                 Excel.Range cells = excelWorksheet.Cells;
 
                 cells.NumberFormat = "@";
 
                 // количество заполненных строк
                 int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
-                
-                if(NumberOfNonEmptyRows == 1)
+                // количество заполненных колонок
+                int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
+
+                if (NumberOfNonEmptyColumns == 0)
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+                // Проверка заголовков страницы.
+                for (int i = 0; i < NumberOfNonEmptyColumns; i++)
+                {
+                    if (TemplateHeaders[i] != (cells[1, i + 1] as Excel.Range).Value.ToString())
+                    {
+                        throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Имена колонок на выбранной странице Excel файла указаны неверно. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+                    }
+                }
+
+                if (NumberOfNonEmptyRows == 1)
                 {
                     obj["Id"] = "1";
                 }
@@ -555,7 +602,7 @@ namespace Accounting_FormsFillingAssistant
                     Type.Missing, Type.Missing);
 
                 xlApp.DisplayAlerts = true;
-                MessageBox.Show("Новый объект успешно добавлен в базу.");
+                //MessageBox.Show("Новый объект успешно добавлен в базу.");
             }
             catch (Exception ex)
             {
@@ -569,7 +616,12 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
-
+        /// <summary>
+        /// Редактирвоать нужный объект в БД.
+        /// </summary>
+        /// <param name="PathToExcelFile">Путь к файлу БД.</param>
+        /// <param name="obj">Словарь новых значений.</param>
+        /// <param name="SheetName">Название страницы, на котрой производим редактирование.</param>
         public static void EditObjectInExcelTable(string PathToExcelFile,
                                                           Dictionary<string, string> obj,
                                                           string SheetName)
@@ -630,7 +682,7 @@ namespace Accounting_FormsFillingAssistant
 
                 if (xlApp == null)
                 {
-                    MessageBox.Show("Excel is not properly installed!!");
+                    MessageBox.Show("Excel не инсталлирован!");
                     return;
                 }
 
@@ -647,17 +699,38 @@ namespace Accounting_FormsFillingAssistant
                 Excel.Worksheet excelWorksheet =
                     (Excel.Worksheet)excelSheets.get_Item(SheetName) as Excel.Worksheet;
 
+
+                if(excelWorksheet == null)
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Excel файл не содержит нужной страницы. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+
                 Excel.Range cells = excelWorksheet.Cells;
 
                 cells.NumberFormat = "@";
 
                 // количество заполненных строк
                 int NumberOfNonEmptyRows = excelWorksheet.UsedRange.Rows.Count;
+                // количество заполненных колонок
+                int NumberOfNonEmptyColumns = excelWorksheet.UsedRange.Columns.Count;
                 int NumberOfRowWithNeededBank = -1;
+
+                if (NumberOfNonEmptyColumns == 0)
+                    throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+
+                // Проверка заголовков страницы.
+                for (int i = 0; i < NumberOfNonEmptyColumns; i++)
+                {
+                    if (TemplateHeaders[i] != (cells[1, i + 1] as Excel.Range).Value.ToString())
+                    {
+                        throw new System.ArgumentException("Формат базы данных не удовлетворяет требованиям. Имена колонок на выбранной странице Excel файла указаны неверно. Создайте файл заново или укажите путь к файлу в верном формате.", "original");
+                    }
+                }
+
+
 
                 for (int i = 2; i< NumberOfNonEmptyRows+1; i++)
                 {
-                    if(obj["Id"] == (excelWorksheet.Cells[i, 1] as Excel.Range).Value.ToString())
+                    if(obj["Id"] == (cells[i, 1] as Excel.Range).Value.ToString())
                     {
                         NumberOfRowWithNeededBank = i;
                     }
@@ -681,7 +754,7 @@ namespace Accounting_FormsFillingAssistant
                     Type.Missing, Type.Missing);
 
                 xlApp.DisplayAlerts = true;
-                MessageBox.Show("Изменения успешно добавлены в базу.");
+                //MessageBox.Show("Изменения успешно добавлены в базу.");
             }
             catch (Exception ex)
             {

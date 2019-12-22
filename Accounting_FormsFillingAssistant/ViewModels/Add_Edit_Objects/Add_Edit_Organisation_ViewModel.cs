@@ -10,6 +10,9 @@ using System.Windows.Navigation;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для добавления/редактирования организации.
+    /// </summary>
     public class Add_Edit_Organisation_ViewModel : ViewModel_Base
     {
 

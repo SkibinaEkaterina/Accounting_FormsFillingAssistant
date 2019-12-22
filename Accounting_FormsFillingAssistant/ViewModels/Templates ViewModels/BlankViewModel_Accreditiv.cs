@@ -11,6 +11,10 @@ namespace Accounting_FormsFillingAssistant
 {
     public class BlankViewModel_Accreditiv : Blank_ViewModel_Base
     {
+        /// <summary>
+        /// Конструткор
+        /// </summary>
+        /// <param name="GoToTheHomePage">Делегат - переход на домашнюю страницу.</param>
         public BlankViewModel_Accreditiv(Action GoToTheHomePage)
             : base()
         {
@@ -20,8 +24,6 @@ namespace Accounting_FormsFillingAssistant
 
             // Выгрузка организаций.
             LoadObjects();
-
-            MainOrganisation   = CollectonOfAllOrganisations.Where(id => id.Id == Properties.Settings.Default.MainOrganisationId).FirstOrDefault();
 
             TemplateDate       = DateTime.Now;
             AkkreditiveEOLDate = DateTime.Now;

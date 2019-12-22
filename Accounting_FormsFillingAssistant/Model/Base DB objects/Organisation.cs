@@ -7,80 +7,86 @@ using System.Threading.Tasks;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс организаций.
+    /// </summary>
     public class Organisation
     {
         // поля
+        /// <summary>
+        /// ID.
+        /// </summary>
         private int m_Org_id;
+        /// <summary>
+        /// Название.
+        /// </summary>
         private string m_Org_Name;
+        /// <summary>
+        /// ИНН.
+        /// </summary>
         private string m_Org_INN;
+        /// <summary>
+        /// КПП.
+        /// </summary>
         private string m_Org_KPP;
+        /// <summary>
+        /// Адрес.
+        /// </summary>
         private string m_Org_Address;
-
+        /// <summary>
+        /// Список счетов банка.
+        /// </summary>
         public List<BankAccount> Org_BankAccounts;
 
 
         #region Properties
+        /// <summary>
+        /// Свойство - Id.
+        /// </summary>
         [DisplayName("ID")]
         public int Id
         {
             get { return m_Org_id; }
             set { m_Org_id = value; }
         }
+        /// <summary>
+        /// Свойство - название.
+        /// </summary>
         [DisplayName("Название")]
         public string Org_Name
         {
             get { return m_Org_Name; }
             set { m_Org_Name = value; }
         }
+        /// <summary>
+        /// Свойство - ИНН.
+        /// </summary>
         [DisplayName("ИНН")]
         public string Org_INN
         {
             get { return m_Org_INN; }
             set { m_Org_INN = value; }
         }
+        /// <summary>
+        /// Свойство- КПП.
+        /// </summary>
         [DisplayName("КПП")]
         public string Org_KPP
         {
             get { return m_Org_KPP; }
             set { m_Org_KPP = value; }
         }
+        /// <summary>
+        /// Свойство - Адрес.
+        /// </summary>
         [DisplayName("Адрес")]
         public string Org_Address
         {
             get { return m_Org_Address; }
             set { m_Org_Address = value; }
         }
-
-
-        //public string Org_Type
-        //{
-        //    get { return m_Org_Type; }
-        //    set { m_Org_Type = value; }
-        //}
-        //public string Org_City
-        //{
-        //    get { return m_Org_City; }
-        //    set { m_Org_City = value; }
-        //}
-        //public string Org_Phone
-        //{
-        //    get { return m_Org_Phone; }
-        //    set { m_Org_Phone = value; }
-        //}
-        //public List<BankAccount> Org_BankAccounts
-        //{
-        //    get { return m_Org_BankAccounts; }
-        //    set { m_Org_BankAccounts = value; }
-        //}
         #endregion
 
-        /// <summary>
-        /// Конструктор без параметров.
-        /// </summary>
-        public Organisation()
-        {
-
-        }
 
         /// <summary>
         /// Конструктор с параметрами

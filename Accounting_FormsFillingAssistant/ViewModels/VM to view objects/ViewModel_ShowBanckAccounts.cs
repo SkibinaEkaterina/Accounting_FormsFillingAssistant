@@ -10,6 +10,9 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для страницы со списком объектов.
+    /// </summary>
     public class ViewModel_ShowBanckAccounts : ViewModel_Base
     {
         #region Fields
@@ -33,24 +36,39 @@ namespace Accounting_FormsFillingAssistant
         /// Доступность нажатия кнопки - редактирвоать.
         /// </summary>
         private System.Windows.Visibility _EditButtonEnabled;
-
+        
+        /// <summary>
+        /// корректируемая организация.
+        /// </summary>
         Organisation m_CorrectedOrganisation;
 
+        /// <summary>
+        /// Команда - нажата кнопка Удалить.
+        /// </summary>
         private ICommand mcmnd_DeleteButtonClicked;
+        /// <summary>
+        /// Команда - нажата кнопка Добавить.
+        /// </summary>
         private ICommand mcmnd_AddObjectButtonClicked;
+        /// <summary>
+        /// Команда - нажата кнопка Добаивть.
+        /// </summary>
         private ICommand mcmnd_EditObjectButtonClicked;
 
 
         
         Add_Edit_BankAccount_ViewModel New_Add_Edit_BankAccount_ViewModel;
 
-       
+
         #endregion
 
 
         /// <summary>
-        /// Конструктор
+        /// Конструктор с параметрами.
         /// </summary>
+        /// <param name="CorrectedOrganisation">Корректируемая организация</param>
+        /// <param name="ParentNavigator">Родительский Навигатор </param>
+        /// <param name="Current_DB_ObjectsManipulation_Page">Тип объекта</param>
         public ViewModel_ShowBanckAccounts( Organisation CorrectedOrganisation, Navigation ParentNavigator, Page Current_DB_ObjectsManipulation_Page)
         {
 
@@ -58,40 +76,20 @@ namespace Accounting_FormsFillingAssistant
             m_CorrectedOrganisation = CorrectedOrganisation;
 
 
-            AddObjectButtonClicked = new RelayCommand(AddObjectButtonClicked_Execute);
-            EditObjectButtonClicked = null;//new RelayCommand(EditObjectButtonClicked_Execute);
-            DeleteObjectButtonClicked = new RelayCommand(DeleteButtonClicked_Execute);
+            AddObjectButtonClicked      = new RelayCommand(AddObjectButtonClicked_Execute);
+            EditObjectButtonClicked     = null;
+            DeleteObjectButtonClicked   = new RelayCommand(DeleteButtonClicked_Execute);
 
-            IsEditButtonEnabled = System.Windows.Visibility.Hidden;
-
-
-            //CurrentType = typeof(T).Name;
-
-            //if (CurrentType == "BankAccount")
-            //{
+            IsEditButtonEnabled     = System.Windows.Visibility.Hidden;
             
-            //}
-
-
-            //// Выгрузка необходимых строк из базы
-            //LoadObjects();
-
         }
 
-
-
-        public void LoadObjects()
-        {
-
-            ObjectsList = new ObservableCollection<BankAccount>();
-            foreach (BankAccount ba in ObjectsDBManipulations.LoadAllBankAccountsFromDB())
-            {
-                ObjectsList.Add(ba);
-            }
-        }
 
 
         #region Properties
+        /// <summary>
+        /// Свойство - Список всех объектов.
+        /// </summary>
         public ObservableCollection<BankAccount> ObjectsList
         {
             get { return m_CollectionOfBankAccounts; }
@@ -101,7 +99,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("ObjectsList");
             }
         }
-
+        /// <summary>
+        /// Свойство - выбранный объект.
+        /// </summary>
         public BankAccount SelectedObject
         {
             get { return m_SelectedObject; }
@@ -111,7 +111,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("SelectedObject");
             }
         }
-
+        /// <summary>
+        /// Свойство - видимость кнопки Редактировать.
+        /// </summary>
         public System.Windows.Visibility IsEditButtonEnabled // here, underscore typo
         {
             get { return _EditButtonEnabled; }
@@ -121,7 +123,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("IsEditButtonEnabled"); // 
             }
         }
-
+        /// <summary>
+        /// Свойство - команда нажатия Удалить.
+        /// </summary>
         public ICommand DeleteObjectButtonClicked
         {
             get { return mcmnd_DeleteButtonClicked; }
@@ -131,6 +135,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("DeleteObjectButtonClicked");
             }
         }
+        /// <summary>
+        /// Свойство - команда нажатия Добавить.
+        /// </summary>
         public ICommand AddObjectButtonClicked
         {
             get { return mcmnd_AddObjectButtonClicked; }
@@ -140,6 +147,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("AddObjectButtonClicked");
             }
         }
+        /// <summary>
+        /// Свойство - команда нажатия ОК.
+        /// </summary>
         public ICommand EditObjectButtonClicked
         {
             get { return mcmnd_EditObjectButtonClicked; }
@@ -172,8 +182,8 @@ namespace Accounting_FormsFillingAssistant
                                                     false);
 
             // событие - нажатие кнопки Добавить.
-            New_Add_Edit_BankAccount_ViewModel.AddButtonClicked += ChildPage_OkButtonClicked;
-            New_Add_Edit_BankAccount_ViewModel.CancelButtonClicked += ChildPage_CancelButtonClicked;
+            New_Add_Edit_BankAccount_ViewModel.AddButtonClicked     += ChildPage_OkButtonClicked;
+            New_Add_Edit_BankAccount_ViewModel.CancelButtonClicked  += ChildPage_CancelButtonClicked;
 
             m_AppParentNavigationSystem.AppNavigationService.Navigate(new AddEditBankAccount_Page(),
                                                     New_Add_Edit_BankAccount_ViewModel);
@@ -194,8 +204,8 @@ namespace Accounting_FormsFillingAssistant
                 {
                     if(m_CorrectedOrganisation != null)
                     {
-                        NewBankAccount.BankAc_Org_ID = m_CorrectedOrganisation.Id;
-                        NewBankAccount.BankAc_Org_Name = m_CorrectedOrganisation.Org_Name;
+                        NewBankAccount.BankAc_Org_ID    = m_CorrectedOrganisation.Id;
+                        NewBankAccount.BankAc_Org_Name  = m_CorrectedOrganisation.Org_Name;
                     }
                     
                     ObjectsList.Add(NewBankAccount);

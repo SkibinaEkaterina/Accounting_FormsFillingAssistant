@@ -8,22 +8,50 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для страницы настроек.
+    /// </summary>
     public class ViewModel_SettingsWindow : ViewModel_Base
     {
 
-        #region Fields and properties
+        #region Fields
 
-        
+        /// <summary>
+        /// Путь к рабочей директории.
+        /// </summary>
         private string ms_PathToWorkingDirectory;
+        /// <summary>
+        /// Путь к БД.
+        /// </summary>
         private string ms_PathToDataBase;
+        /// <summary>
+        /// Команда - нажатие кнопки выбора рабочей директории.
+        /// </summary>
         private ICommand mcmnd_ChooseWorkingDirectory;
+        /// <summary>
+        /// Команда - нажатие кнопки выбора БД.
+        /// </summary>
+        private ICommand mcmnd_ChooseDBPath;
+        /// <summary>
+        /// Команда - нажатие кнопки ОК.
+        /// </summary>
         private ICommand mcmnd_OkClicked;
+        /// <summary>
+        /// Свойство. Команда - нажатие кнопки Закрыть.
+        /// </summary>
         private ICommand mcmnd_CancelClicked;
+        /// <summary>
+        /// Делегат - вернуться на домашнюю страницу.
+        /// </summary>
         private Action m_GoToTheHomePage;
 
+        #endregion
 
-        
+        #region Properties
 
+        /// <summary>
+        /// Свойство - Путь к рабочей директории.
+        /// </summary>
         public string PathToWorkingDirectory
         {
             get { return ms_PathToWorkingDirectory; }
@@ -33,7 +61,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("PathToWorkingDirectory");
             }
         }
-
+        /// <summary>
+        /// Свойство - Путь к БД.
+        /// </summary>
         public string PathToDataBase
         {
             get { return ms_PathToDataBase; }
@@ -43,7 +73,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("PathToDataBase");
             }
         }
-
+        /// <summary>
+        /// Свойство. Команда - нажатие кнопки выбора рабочей директории.
+        /// </summary>
         public ICommand ChooseWorkingDirectory
         {
             get { return mcmnd_ChooseWorkingDirectory; }
@@ -53,7 +85,21 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("ChooseWorkingDirectory");
             }
         }
-
+        /// <summary>
+        /// Свойство. Команда - нажатие кнопки выбора БД.
+        /// </summary>
+        public ICommand ChooseDBPath
+        {
+            get { return mcmnd_ChooseDBPath; }
+            set
+            {
+                mcmnd_ChooseDBPath = value;
+                RaisePropertyChanged("ChooseDBPath");
+            }
+        }
+        /// <summary>
+        /// Свойство. Команда - нажатие кнопки ОК.
+        /// </summary>
         public ICommand OkClicked
         {
             get { return mcmnd_OkClicked; }
@@ -63,6 +109,9 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("OkClicked");
             }
         }
+        /// <summary>
+        /// Свойство. Команда - нажатие кнопки Закрыть.
+        /// </summary>
         public ICommand CancelClicked
         {
             get { return mcmnd_CancelClicked; }
@@ -79,41 +128,25 @@ namespace Accounting_FormsFillingAssistant
         /// <summary>
         /// Конструктор класса.
         /// </summary>
+        /// <param name="GoToTheHomePage">Делегат - переход на домашнюю страницу.</param>
         public ViewModel_SettingsWindow(Action GoToTheHomePage)
         {
-
             PathToWorkingDirectory = Properties.Settings.Default.PathToWorkingDirectory;
             if(PathToWorkingDirectory == null || PathToWorkingDirectory == "\\")
                 PathToWorkingDirectory = @"";
+
+            ms_PathToDataBase = Properties.Settings.Default.PathToDataBase;
+            if (ms_PathToDataBase == null || ms_PathToDataBase == "\\")
+                ms_PathToDataBase = @"";
+
             m_GoToTheHomePage = GoToTheHomePage;
 
 
             ChooseWorkingDirectory = new RelayCommand(ChooseWorkingDirectory_execute);
+            ChooseDBPath = new RelayCommand(ChooseDBPath_Execute);
             OkClicked = new RelayCommand(AddValuesToSettings);
             CancelClicked = new RelayCommand(FinishWorkOnCurrentPage);
-
         }
-
-
-
-        public ViewModel_SettingsWindow()
-        {
-
-            PathToWorkingDirectory = Properties.Settings.Default.PathToWorkingDirectory;
-            if (PathToWorkingDirectory == null || PathToWorkingDirectory == "\\")
-                PathToWorkingDirectory = @"";
-
-
-            ChooseWorkingDirectory = new RelayCommand(ChooseWorkingDirectory_execute);
-            OkClicked = new RelayCommand(AddValuesToSettings);
-            CancelClicked = new RelayCommand(FinishWorkOnCurrentPage);
-
-            // Добавть создание выпадающего списка и выбор нужной организации
-
-            // решение проблемы с обновлением комба - см. https://stackoverflow.com/questions/34321074/wpf-binding-combobox-to-my-viewmodel
-        }
-
-
         #endregion
 
 
@@ -134,7 +167,10 @@ namespace Accounting_FormsFillingAssistant
             }
         }
 
-
+        /// <summary>
+        /// Сохранить значения в настройки.
+        /// </summary>
+        /// <param name="o"></param>
         private void AddValuesToSettings(object o)
         {
             if(Properties.Settings.Default.PathToWorkingDirectory != ms_PathToWorkingDirectory)
@@ -152,16 +188,35 @@ namespace Accounting_FormsFillingAssistant
 
             }
 
+            m_GoToTheHomePage.Invoke();
+        }
+        /// <summary>
+        /// Метод - выбор пути к базе.
+        /// </summary>
+        /// <param name="o"></param>
+        private void ChooseDBPath_Execute(object o)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = ms_PathToWorkingDirectory;
 
-            //m_GoToTheHomePage.Invoke();
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    PathToDataBase = openFileDialog.FileName;
+                }
+            }
         }
 
-
+        /// <summary>
+        /// Метод - закончить рабоу на данной странице и перейти на главную.
+        /// </summary>
+        /// <param name="o"></param>
         private void FinishWorkOnCurrentPage(object o)
         {
             m_GoToTheHomePage.Invoke();
         }
 
+       
         #endregion
     }
 }

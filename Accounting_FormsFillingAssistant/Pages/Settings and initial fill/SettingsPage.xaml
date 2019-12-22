@@ -6,52 +6,98 @@
       xmlns:local="clr-namespace:Accounting_FormsFillingAssistant"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SettingsPage">
+      Title="SettingsPage"
+      Background="White" >
 
-    <Grid Background="White">
-        <!-- Рабочая директория -->
-        <TextBlock HorizontalAlignment="Left" Margin="18,23,0,0" 
+    <StackPanel Orientation="Vertical"
+                Margin="10">
+        <!-- Заголовок -->
+        <TextBlock Text="Настройки" 
+                       FontSize="30" FontWeight="Bold"
+                       Margin="10 10 10 20"/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <!-- Рабочая директория -->
+            <TextBlock 
+                   Margin="12 4" 
                    TextWrapping="Wrap" Text="Рабочая директория" 
                    VerticalAlignment="Top"/>
+            
+            <StackPanel Grid.Row="0" Grid.Column="1"
+                        Orientation="Horizontal">
+                <TextBox Grid.Row="0" Grid.Column="1"
+                         Height="46" Width="350" Margin="12 0" 
+                         TextWrapping="Wrap" HorizontalAlignment="Left"
+                         Text ="{Binding PathToWorkingDirectory}"/>
 
-        <TextBox HorizontalAlignment="Left" 
-            Height="23" Margin="159,23,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" Width="347"
-            Text ="{Binding PathToWorkingDirectory}"/>
+
+                <Button x:Name="mbtn_ChooseWorkingDirectory"
+                        Width="33" Height="23"
+                        Content="..." HorizontalAlignment="Left" 
+                        Margin="4 4" VerticalAlignment="Top" 
+                        Command="{Binding ChooseWorkingDirectory, FallbackValue='No Data'}"/>
 
 
-        <!-- Главная организация -->
-        <TextBlock HorizontalAlignment="Left" Margin="18,122,0,0" TextWrapping="Wrap" Text="Главная организация" VerticalAlignment="Top"/>
-        <ComboBox x:Name="mcb_MainOrganisation" HorizontalAlignment="Left" Margin="159,121,0,0" VerticalAlignment="Top" Width="347"/>
+
+            </StackPanel>
+            
+            
+            <!-- Путь к БД -->
+
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                Margin="12 4" 
+            TextWrapping="Wrap" Text="Путь к Excel файлу (БД)" 
+            VerticalAlignment="Top"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="1"
+                        Orientation="Horizontal">
+                <TextBox HorizontalAlignment="Left" 
+                    Grid.Row="1" Grid.Column="1"
+                    Height="46" Width="350" Margin="12 4" 
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Top" 
+                    IsReadOnly="True"
+                    Text ="{Binding PathToDataBase}"/>
+
+                <Button x:Name="mbtn_ChooseDBPath" 
+                    Content="..." HorizontalAlignment="Left" 
+                    Margin="4 4" VerticalAlignment="Top" 
+                    Width="33" Height="23"
+                    Command="{Binding ChooseDBPath, FallbackValue='No Data'}"/>
+
+            </StackPanel>
+        </Grid>
 
         <!-- Кнопки - завершение работы с окном -->
-        <Button x:Name="mbtn_OkButton" 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                    Margin="5">
+            <Button x:Name="mbtn_OkButton" 
             Content="Изменить" HorizontalAlignment="Left" 
-            Margin="18,173,0,0" VerticalAlignment="Top" 
+            Margin="12 0" VerticalAlignment="Top" 
             Width="93" Height="25"
             Command="{Binding OkClicked, FallbackValue='No Data'}"/>
-        <Button x:Name="CloseButton" IsCancel="True" 
+            <Button x:Name="CloseButton" IsCancel="True" 
             Content="Закрыть" HorizontalAlignment="Left" 
-            Margin="141,173,0,0" VerticalAlignment="Top" 
+            Margin="12 0" VerticalAlignment="Top" 
             Width="87" Height="25"
             Command="{Binding CancelClicked, FallbackValue='No Data'}"
                 />
-        <Button x:Name="mbtn_ChooseWorkingDirectory" 
-            Content="..." HorizontalAlignment="Left" 
-            Margin="522,23,0,0" VerticalAlignment="Top" 
-            Width="33" Height="23"
-            Command="{Binding ChooseWorkingDirectory, FallbackValue='No Data'}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="18,71,0,0" 
-            TextWrapping="Wrap" Text="Путь к Excel файлу (БД)" 
-            VerticalAlignment="Top"/>
+        </StackPanel>
         
-        <TextBox HorizontalAlignment="Left" 
-            Height="23" Margin="159,71,0,0" 
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" Width="347"
-            IsReadOnly="True"
-            Text ="{Binding PathToDataBase}"/>
+        
+        
 
-    </Grid>
+    </StackPanel>
 </Page>

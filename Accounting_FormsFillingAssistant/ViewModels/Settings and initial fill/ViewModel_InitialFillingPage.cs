@@ -9,14 +9,16 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel - для страницы начального заполнения.
+    /// </summary>
     public class ViewModel_InitialFillingPage : ViewModel_Base
     {
-
-        
         /// <summary>
-        /// Конструктор
+        /// Конструктор.
         /// </summary>
-        public ViewModel_InitialFillingPage()
+        /// <param name="GoToTheHomePage">Делегат - переход на домашнюю страницу.</param>
+        public ViewModel_InitialFillingPage(Action GoToTheHomePage)
         {
             // Environment.CurrentDirectory;
 
@@ -26,7 +28,9 @@ namespace Accounting_FormsFillingAssistant
 
             ChooseWorkingDirectory = new RelayCommand(ChooseWorkingDirectory_execute);
             CreateDataBase = new RelayCommand(CreateDatabase);
+            GoToHomePage = new RelayCommand(GoToHomePage_Execute);
 
+            m_actionGoToTheHomePage = GoToTheHomePage;
 
                 //Properties.Settings.Default.PathToWorkingDirectory;
         }
@@ -40,7 +44,8 @@ namespace Accounting_FormsFillingAssistant
         private string ms_DatabaseStatus;
         private ICommand mcmnd_ChooseWorkingDirectory;
         private ICommand mcmnd_CreateDataBase;
-
+        private ICommand mcmnd_GoToHomePage;
+        private Action m_actionGoToTheHomePage;
         #endregion
 
 
@@ -91,6 +96,16 @@ namespace Accounting_FormsFillingAssistant
             {
                 mcmnd_CreateDataBase = value;
                 RaisePropertyChanged("CreateDataBase");
+            }
+        }
+
+        public ICommand GoToHomePage
+        {
+            get { return mcmnd_GoToHomePage; }
+            set
+            {
+                mcmnd_GoToHomePage = value;
+                RaisePropertyChanged("GoToHomePage");
             }
         }
 
@@ -149,6 +164,14 @@ namespace Accounting_FormsFillingAssistant
 
         }
 
+        /// <summary> 
+        /// Переход на главную страницу.
+        /// </summary>
+        /// <param name="o"></param>
+        private void GoToHomePage_Execute(object o)
+        {
+            m_actionGoToTheHomePage.Invoke();
+        }
         #endregion
 
 

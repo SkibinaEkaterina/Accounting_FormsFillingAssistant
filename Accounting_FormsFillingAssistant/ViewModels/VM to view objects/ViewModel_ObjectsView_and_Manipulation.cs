@@ -14,8 +14,38 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 namespace Accounting_FormsFillingAssistant
 {
 
+    /// <summary>
+    /// Класс ViewModel для отображения списка объектов.
+    /// </summary>
+    /// <typeparam name="T">Тип отображаемого объекта.</typeparam>
     class ViewModel_ObjectsView_and_Manipulation<T> : ViewModel_Base
     {
+        /// <summary>
+        /// Конструткор
+        /// </summary>
+        /// <param name="ParentNavigator">Родительский навигатор.</param>
+        public ViewModel_ObjectsView_and_Manipulation(Navigation ParentNavigator)
+        {
+
+            m_AppParentNavigationSystem = ParentNavigator;
+
+            AddObjectButtonClicked = new RelayCommand(AddObjectButtonClicked_Execute);
+            EditObjectButtonClicked = new RelayCommand(EditObjectButtonClicked_Execute);
+            DeleteObjectButtonClicked = new RelayCommand(DeleteButtonClicked_Execute);
+
+
+            CurrentType = typeof(T).Name;
+
+            if (CurrentType == "BankAccount")
+            {
+                IsEditButtonEnabled = System.Windows.Visibility.Hidden;
+            }
+
+
+            // Выгрузка необходимых строк из базы
+            LoadObjects();
+
+        }
 
 
         #region Fields
@@ -49,35 +79,6 @@ namespace Accounting_FormsFillingAssistant
 
         #endregion
 
-
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public ViewModel_ObjectsView_and_Manipulation(Navigation ParentNavigator)
-        {
-
-            m_AppParentNavigationSystem = ParentNavigator;
-
-            AddObjectButtonClicked = new RelayCommand(AddObjectButtonClicked_Execute);
-            EditObjectButtonClicked = new RelayCommand(EditObjectButtonClicked_Execute);
-            DeleteObjectButtonClicked = new RelayCommand(DeleteButtonClicked_Execute);
-
-
-            CurrentType = typeof(T).Name;
-
-            if(CurrentType == "BankAccount")
-            {
-                IsEditButtonEnabled = System.Windows.Visibility.Hidden;
-            }
-
-
-            // Выгрузка необходимых строк из базы
-            LoadObjects();
-
-        }
-
-
-        
 
         #region Properties
         public ObservableCollection<T> ObjectsList

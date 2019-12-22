@@ -8,11 +8,17 @@ using System.Windows.Input;
 
 namespace Accounting_FormsFillingAssistant
 {
+    /// <summary>
+    /// Класс ViewModel для добавления/редактирования банка.
+    /// </summary>
     public class ViewModel_AddEdit_Bank : ViewModel_Base
     {
+
         /// <summary>
-        ///  Конструктор
+        /// Конструктор с параметрами.
         /// </summary>
+        /// <param name="CorrectedBank">Корректируемый банк.</param>
+        /// <param name="GoToTheHomePage">Делегат - переход на доамашнюю страницу.</param>
         public ViewModel_AddEdit_Bank(Bank CorrectedBank,
                                       Action GoToTheHomePage)
         { 
@@ -91,8 +97,6 @@ namespace Accounting_FormsFillingAssistant
         private ICommand mcmnd_AddNewBank;
         private ICommand mcmnd_CancelPage;
         #endregion
-
-
 
 
         #region Properties
