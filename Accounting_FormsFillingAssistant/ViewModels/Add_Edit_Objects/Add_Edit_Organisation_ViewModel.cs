@@ -34,7 +34,7 @@ namespace Accounting_FormsFillingAssistant
             }
             else
             {
-                HeaderText = "Существующий организация";
+                HeaderText = "Существующая организация";
                 OkButtonContent = "Редактировать";
 
                 // Передать информацию о редактируемой организации.

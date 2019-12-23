@@ -111,7 +111,7 @@ class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
 font-family:"Arial",sans-serif;color:black'>Framework</span></span><span
 class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
 "Arial",sans-serif;color:black'> 4.5). Для работы в программе требуется
-установить&nbsp;Microsoft Office на устройство пользователя. </span></span></p>
+установить&nbsp;Microsoft Office (2019) на устройство пользователя. </span></span></p>
 
 <p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
 background:white'><span class=s1mailrucssattributepostfix><span
