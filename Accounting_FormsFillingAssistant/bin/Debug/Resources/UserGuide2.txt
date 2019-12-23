@@ -1,0 +1,479 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.p1mailrucssattributepostfix, li.p1mailrucssattributepostfix, div.p1mailrucssattributepostfix
+	{mso-style-name:p1_mailru_css_attribute_postfix;
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.s1mailrucssattributepostfix
+	{mso-style-name:s1_mailru_css_attribute_postfix;}
+p.p2mailrucssattributepostfix, li.p2mailrucssattributepostfix, div.p2mailrucssattributepostfix
+	{mso-style-name:p2_mailru_css_attribute_postfix;
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.apple-converted-spacemailrucssattributepostfix
+	{mso-style-name:apple-converted-space_mailru_css_attribute_postfix;}
+p.li1mailrucssattributepostfix, li.li1mailrucssattributepostfix, div.li1mailrucssattributepostfix
+	{mso-style-name:li1_mailru_css_attribute_postfix;
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=RU>
+
+<div class=WordSection1>
+
+<p class=p1mailrucssattributepostfix align=center style='margin:0cm;margin-bottom:
+.0001pt;text-align:center;background:white'><span
+class=s1mailrucssattributepostfix><b><span style='font-size:16.0pt;font-family:
+"Arial",sans-serif;color:black'>Помощник бухгалтера</span></b></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.5pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Добро
+пожаловать в программу «Помощник бухгалтера». Данная программа создана для
+заполнения документов бухгалтерского учета, включая аккредитив, инкассовое
+поручение, платежное требование и платежное поручение. </span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-size:14.0pt;font-family:"Arial",sans-serif;color:black'>Технические
+требования</span></b></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Программа
+работает только на устройствах с ОС Windows (.</span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'>NET</span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'> </span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'>Framework</span></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'> 4.5). Для работы в программе требуется
+установить&nbsp;Microsoft Office (2019) на устройство пользователя. </span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-size:14.0pt;font-family:"Arial",sans-serif;color:black'>Работа с программой</span></b></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Для работы
+программы пользователю необходимо в обязательном порядке указать рабочую
+директорию и создать Excel-файл, который будет служить базой данных программы.</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><i><u><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Рабочая
+директория программы</span></u></i></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'> - директория на компьютере пользователя, в
+которой будут храниться все создаваемые в программе бланки. Не рекомендуется
+указывать в качестве рабочей директории служебные директории, директории с
+ограниченным или закрытым доступом, директории с уже содержащимися данными.
+Лучшим вариантом будет создать новую директорию в доступном пространстве на
+диске и указать ее в программе в качестве рабочей директории.</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><i><u><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>База данных
+программы (БД)</span></u></i></span><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'> -
+Excel-файл, используемый программой для хранения информации об организациях,
+банках и счетах (<u>программа автоматически создаст файл в нужном формате</u>).
+Такой формат хранения информации выбран с целью обеспечить пользователю
+просмотр и ввод данных вручную через программу Excel. Файл содержит три
+страницы и включает все необходимые для заполнения бланков информацией для:</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>организаций (</span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'>id</span></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'>, название, ИНН, КПП, Адрес);</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>банков (</span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'>i</span></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'>d, Название, Город, Номер счета банка, БИК);</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>счетов организаций (</span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'>i</span></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'>d, Номер счета, Название организации владельца,
+Название банка, id организации владельца, id банка);</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-size:14.0pt;font-family:"Arial",sans-serif;color:black'>Добавление
+информации в БД программы</span></b></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Для
+автоматического заполнения документов потребуется добавить в базу информацию о:</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>банках, в которых
+организации имеют свои счета,&nbsp;</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>организациях</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>и счётах организаций.</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Предусмотрено
+два варианта добавления данных в БД:</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>пользователь может добавить
+информацию средствами программы-помощника;</span></span></p>
+
+<p class=li1mailrucssattributepostfix style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt;
+background:white'><span style='font-size:10.0pt;font-family:Symbol;color:black'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span class=s1mailrucssattributepostfix><span style='font-size:
+11.0pt;font-family:"Arial",sans-serif;color:black'>пользователь может ввести
+данные непосредственно в файл с помощью </span></span><span
+class=s1mailrucssattributepostfix><span lang=EN-US style='font-size:11.0pt;
+font-family:"Arial",sans-serif;color:black'>E</span></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'>xcel-приложения.</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-family:"Arial",sans-serif;color:black'>Добавление объектов
+средствами программы</span></b></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Добавление
+объектов в базу средствами программы-помощника осуществляется на
+соответствующих вкладках.</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Вначале</span></b></span><span
+class=s1mailrucssattributepostfix><span style='font-size:11.0pt;font-family:
+"Arial",sans-serif;color:black'> необходимо <b>добавить информацию о</b> <b>банках</b>,
+в которых организации имеют счета. Для этого нужно нажать в главном меню:
+Дополнительно -&gt; Банки -&gt; Добавить. Откроется форма добавления банка.
+Заполните все требуемые поля и нажмите кнопку Добавить. Банк добавлен в БД.
+Чтобы посмотреть добавленный банк пройдите на страницу со списком всех банков:
+Дополнительно -&gt; Банки -&gt; Все банки. На открывшейся странице пользователь
+увидит список всех банков, информация о которых хранится в базе. Для добавления
+нового банка также можно нажать на кнопку Добавить в верхней части страницы,
+над списком банков. Если информация о банке заполнена некорректно – выберите
+банк в списке и нажмите кнопку Редактировать, расположенную в верхней части
+страницы. Откроется страница редактирования банка. Когда информация будет
+отредактирована – нажмите кнопку Редактировать. Вновь откроется страница со
+всеми банками. Если созданный банк нужно удалить, выберите нужный банк в списке
+и нажмите кнопку Удалить. Внимание! Удаление банка произойдёт вместе с
+удалением всех счетов, которые пользователь успел добавить в систему.</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Чтобы
+добавить организацию и ее счета, нажмите в главном меню Организации -&gt;
+Добавить. Откроется страница добавления новой организации и ее счетов.
+Заполните все поля организации. Чтобы добавить счёт - нажмите кнопку Добавить в
+разделе Счета на странице добавления организации. Откроется окно добавления
+нового счёта создаваемой организации. Введите данные о счете и выберите банк.
+После заполнения всех позиций, нажмите кнопку Добавить. Если какой-то из счетов
+в созданном списке счетов организации лишний – удалите его, нажав кнопку
+Удалить в разделе счетов. Редактирование счета не предусмотрено.</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Когда все
+данные о новой организации будут введены, нажмите кнопку Добавить. </span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Чтобы
+увидеть список всех организаций, добавленных в БД, необходимо нажать в главном
+меню Организации -&gt; Все организации. Для добавления новой организации с
+данной страницы нажмите кнопку Добавить в верхней части страницы над списком
+организаций. Чтобы удалить организацию – нажмите кнопку Удалить. Внимание! Удаление
+организации произойдёт с удалением всех счетов этой организации. Чтобы
+корректировать информацию об организации или добавить/удалить счёт организации,
+можно перейти к редактированию организации нажав кнопку Редактировать в верхней
+части страницы. Откроется страница редактирования организации. После
+осуществления всех изменений, необходимо нажать кнопку Редактировать и новая
+информация будет добавлена в БД.&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Также,
+чтобы добавить счёт организации, можно пройти: Дополнительно -&gt; Счета -&gt; Добавить.
+Откроется форма добавления нового счёта. Необходимо ввести информацию о счете и
+выбрать организацию, владеющую данным счётом, и банк, в котором существует этот
+счёт. Когда все поля будут заполнены, нажмите кнопку Добавить. Чтобы увидеть
+список всех счетов, пройдите: Дополнительно -&gt; Счета -&gt; Все счета.
+Откроется страница со списком всех счетов, добавленных пользователем в БД.
+Чтобы добавить новый счёт с данной страницы – нажмите кнопку Добавить в верху
+страницы над списком счетов. Чтобы удалить счёт – выберите соответствующий счёт
+в списке и нажмите кнопку Удалить в над списком счетов.</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-family:"Arial",sans-serif;color:black'>Ввод данных непосредственно
+в excel-файл</span></b></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Если
+пользователь решит вводить информацию через Excel-приложение непосредственно в
+файл, необходимо соблюдать установленный формат БД. Нельзя переименовывать
+столбцы и страницы файла, переносить колонки в другие столбцы или как-то ещё
+менять вид базы. Также необходимо знать: каждому объекту в любой таблице должен
+быть присвоен id, который не должен повторяться в рамках одного типа (например,
+если в таблице существует организация с id равным 3, то в данной таблице не
+должно быть больше организаций с таким id). Обязательно следите, чтобы id
+организаций и банков в таблице счетов совпадали с соответствующими
+организациями и банками на соответствующих страницах. После внесения изменений
+в базу рекомендуется сохранить и закрыть Excel-файл, прежде чем запускать
+программу-помощник (после запуска программа должна иметь полный доступ к файлу
+для возможности внесения изменений).</span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><b><span
+style='font-size:14.0pt;font-family:"Arial",sans-serif;color:black'>Создание
+бланков</span></b></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>В данной
+программе имеется возможность создания бланков четырёх видов: аккредитив,
+инкассовое поручение, платежное требование и платежное поручение. </span></span></p>
+
+<p class=p2mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Для
+создания бланка, нажмите Создать бланк и выберите нужный тип бланка. Откроется
+форма заполнения бланка. Заполните все необходимые поля и нажмите Сохранить.
+Обязательные для заполнения поля: номер, дата, информация об организациях и их
+счетах.</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span style='font-size:11.0pt;font-family:"Arial",sans-serif;
+color:black'>&nbsp;</span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>После
+нажатия кнопки Сохранить, программа сохранит созданный бланк в рабочей
+директории и выведет сообщение об успешно проведённой операции сохранения.</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Например,
+необходимо создать новый бланк аккредитива. Нажмите Создать бланк -&gt;
+Аккредитив. Откроется страница заполнения данных бланка Аккредитива. В начале
+заполните поля: номер аккредитива, дата создания бланка. Далее выберите
+организацию-плательщика и ее счёт в соответствующих выпадающих списках. Произведите
+такие же действия для организации получателя. Для обеих организаций после
+выбора появятся номера ИНН в соответствующих полях. Далее необходимо заполнить
+поля ...</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>Когда все
+поля будут заполнены, нужно нажать кнопку Сохранить. Программа сгенерирует
+бланк Аккредитива, добавит введённую пользователем информацию и автоматически
+добавит данные об организациях и банках, а также заполнит поля Сумма (прописью
+и цифрами), номер операции. В рабочей директории появится Word-файл созданного
+бланка. Файл доступен для редактирования: можно менять или добавлять
+записи.&nbsp;</span></span></p>
+
+<p class=p1mailrucssattributepostfix style='margin:0cm;margin-bottom:.0001pt;
+background:white'><span class=s1mailrucssattributepostfix><span
+style='font-size:11.0pt;font-family:"Arial",sans-serif;color:black'>В программе
+помощника не предусмотрена функция редактирования бланков. Если понадобится
+внести изменения в созданный бланк, пользователю необходимо провести коррекцию
+в созданном файле или создать новый бланк в программе.&nbsp;</span></span></p>
+
+<p class=MsoNormal><span style='font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -172,7 +172,7 @@
                             Text="Назначение платежа"
                             TextWrapping="Wrap"/>
                 <TextBox Grid.Column="1" Grid.Row="0"
-                         Height="60"
+                         Height="60" TextWrapping="Wrap"
                          Text="{Binding PaymentAppointment}"/>
             </ItemsControl>
 

@@ -38,3 +38,4 @@ C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounti
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Templates\View_Inkasso_Order.g.cs
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Pages\Templates\View_Inkasso_Order.baml
 C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\obj\Debug\Accounting_FormsFillingAssistant.csprojAssemblyReference.cache
+C:\Users\EkaterinaSkibina\source\repos\Accounting_FormsFillingAssistant\Accounting_FormsFillingAssistant\bin\Debug\Resources\UserGuide2.txt
