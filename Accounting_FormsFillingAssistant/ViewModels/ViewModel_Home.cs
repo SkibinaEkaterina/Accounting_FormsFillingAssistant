@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +24,11 @@ namespace Accounting_FormsFillingAssistant
         /// Текущая дата.
         /// </summary>
         private string ms_CurrentDate;
+
+        /// <summary>
+        /// Рабочая директория.
+        /// </summary>
+        private string ms_html;
         #endregion
 
         #region Properties
@@ -49,6 +56,19 @@ namespace Accounting_FormsFillingAssistant
                 RaisePropertyChanged("CurrentDate");
             }
         }
+
+        /// <summary>
+        /// Рабочая директория.
+        /// </summary>
+        public string HtmlString
+        {
+            get => ms_html;
+            set
+            {
+                ms_html = value;
+                RaisePropertyChanged("HtmlString");
+            }
+        }
         #endregion
 
 
@@ -61,8 +81,36 @@ namespace Accounting_FormsFillingAssistant
             CurrentDate = DateTime.Now.ToString("DD-mm-yyyy");
             WorkingDirectoryPath = Properties.Settings.Default.PathToWorkingDirectory;
 
+            HtmlString = Properties.Resources.UserGuide2.ToString();
         }
 
-       
+
+        public static string GetEmbeddedResource()
+        {
+            Assembly _assembly;
+
+            try
+            {
+                _assembly = Assembly.GetExecutingAssembly();
+                using (Stream resourceStream = _assembly.GetManifestResourceStream("Accounting_FormsFillingAssistant.UserGuid.htm"))
+                {
+                    if (resourceStream == null)
+                        return null;
+
+                    using (StreamReader reader = new StreamReader(resourceStream))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error accessing resources!");
+            }
+            return null;
+            
+        }
+     
+
     }
 }

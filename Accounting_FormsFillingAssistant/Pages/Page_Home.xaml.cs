@@ -23,6 +23,8 @@ namespace Accounting_FormsFillingAssistant
         public Page_Home()
         {
             InitializeComponent();
+
+           
         }
     }
 }

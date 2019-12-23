@@ -159,5 +159,34 @@ namespace Accounting_FormsFillingAssistant.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на &lt;html&gt;
+        ///
+        ///&lt;head&gt;
+        ///&lt;meta http-equiv=Content-Type content=&quot;text/html; charset=utf-8&quot;&gt;
+        ///&lt;meta name=Generator content=&quot;Microsoft Word 15 (filtered)&quot;&gt;
+        ///&lt;style&gt;
+        ///&lt;!--
+        /// /* Font Definitions */
+        /// @font-face
+        ///	{font-family:Wingdings;
+        ///	panose-1:5 0 0 0 0 0 0 0 0 0;}
+        ///@font-face
+        ///	{font-family:&quot;Cambria Math&quot;;
+        ///	panose-1:2 4 5 3 5 4 6 3 2 4;}
+        ///@font-face
+        ///	{font-family:Calibri;
+        ///	panose-1:2 15 5 2 2 2 4 3 2 4;}
+        /// /* Style Definitions */
+        /// p.MsoNormal, li.MsoNormal, div.MsoNormal
+        ///	{margin-top:0cm;
+        ///	margin-right:0cm;        /// [остаток строки не уместился]&quot;;.
+        /// </summary>
+        public static string UserGuide2 {
+            get {
+                return ResourceManager.GetString("UserGuide2", resourceCulture);
+            }
+        }
     }
 }

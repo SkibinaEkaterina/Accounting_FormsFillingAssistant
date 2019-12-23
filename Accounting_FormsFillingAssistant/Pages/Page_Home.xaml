@@ -18,23 +18,35 @@
     </Page.Resources>
 
     <Grid Background="White" >
-        <StackPanel Orientation="Vertical" 
-                    Margin="10">
+        <Grid Margin="10">
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <!-- Заголовок -->
             <TextBlock Text="Домашняя страница" 
                        FontSize="30" FontWeight="Bold"
-                       Margin="10 10 10 20"/>
+                       Margin="10 10 10 20"
+                       Grid.Row="0"
+                       />
             
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="1">
                 <TextBlock Text="Рабочая директория" />
                 <TextBox Text="{Binding WorkingDirectoryPath}"/>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="2">
                 <TextBlock Text="Текущая дата" />
                 <TextBox Text="{Binding CurrentDate}"/>
             </StackPanel>
-        </StackPanel>
+
+            <WebBrowser Grid.Row="3"
+                x:Name="UserGuidSection" Height="Auto" local:WebBrowserExtentions.Document="{Binding HtmlString}"/>
+        </Grid>
     </Grid>
 </Page>

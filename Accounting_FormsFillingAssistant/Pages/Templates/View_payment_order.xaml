@@ -108,9 +108,9 @@
                 <ItemsControl  Grid.Column="1"
                       Style="{StaticResource GridStyle1}">
                     <TextBlock Grid.Column="0" Grid.Row="0"
-                            Text="Организация"/>
+                            Text="Получатель"/>
                     <TextBlock Grid.Column="0" Grid.Row="1"
-                            Text="Банковский счёт"/>
+                            Text="Счёт получателя"/>
                     <TextBlock Grid.Column="0" Grid.Row="2"
                             Text="ИНН"/>
 
