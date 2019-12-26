@@ -3,4 +3,6 @@
 
 Программа работает только на устройствах с ОС Windows (.NET Framework 4.5). Для работы в программе требуется установить Microsoft Office (желательно 2019) на устройство пользователя. 
 
-Для работы с программой инсталляция не требуется. 
+Для работы с программой инсталляция не требуется. Exe-файл дял запуска программы - Accounting_FormsFillingAssistant/Accounting_FormsFillingAssistant/bin/Release/Accounting_FormsFillingAssistant.exe.
+
+Краткое руководство пользователя - Accounting_FormsFillingAssistant/User guide/Руководство пользователя.docx.
